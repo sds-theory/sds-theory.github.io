@@ -1,4 +1,4 @@
-import { ArrowRight, CalendarDays, GraduationCap, Newspaper, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, GraduationCap, Newspaper } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { EventCard } from '../components/EventCard';
@@ -30,11 +30,7 @@ export function Home() {
 
         <div className="mx-auto grid min-h-[380px] max-w-7xl items-center px-4 py-12 sm:min-h-[440px] sm:px-6 lg:min-h-[480px] lg:px-8">
           <div className="max-w-3xl animate-rise">
-            <div className="inline-flex items-center gap-2 rounded border border-white/14 bg-white/8 px-3 py-2 text-sm text-white/78 backdrop-blur">
-              <Sparkles size={16} className="text-copper" />
-              {textOf(site.longName, i18n.language)}
-            </div>
-            <h1 className="mt-6 max-w-full text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-full text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
               {titleLines.map((line) => (
                 <span key={line} className="block">
                   {line}
