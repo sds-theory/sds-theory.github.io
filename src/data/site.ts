@@ -217,11 +217,11 @@ export const news: NewsItem[] = [
     date: '2026-05-19',
     title: {
       en: 'Three papers by Professor Tao Lin accepted to EC 2026',
-      zh: '林涛教授三篇著作被 EC 2026 录用',
+      zh: '林涛教授三篇论文被 EC 2026 录用',
     },
     summary: {
       en: 'Professor Tao Lin has three works accepted to the 27th ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
-      zh: '林涛教授三篇著作《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 the 27th ACM Conference on Economics and Computation (EC 2026) 录用。',
+      zh: '林涛教授三篇论文《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 the 27th ACM Conference on Economics and Computation (EC 2026) 录用。',
     },
   },
 ];
