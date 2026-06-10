@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Header } from './components/Header';
-import { site, textOf } from './data/site';
 import { Events } from './pages/Events';
 import { Faculty } from './pages/Faculty';
 import { Home } from './pages/Home';
@@ -32,16 +31,8 @@ function AppShell() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <footer className="border-t border-slate-200 bg-white py-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 text-sm text-slate-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
           <p>{t('footer.line')}</p>
-          <div className="flex flex-wrap gap-4">
-            <a className="transition hover:text-tealstone" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-            <a className="transition hover:text-tealstone" href={site.github}>
-              {textOf(site.name, i18n.language)}
-            </a>
-          </div>
         </div>
       </footer>
     </div>

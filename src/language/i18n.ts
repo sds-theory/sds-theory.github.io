@@ -64,7 +64,7 @@ i18n.use(initReactI18next).init({
           status: 'Status',
         },
         footer: {
-          line: 'SDS CS Theory Group',
+          line: '2026 - Now, all rights reserved to SDS CS Theory Group.',
         },
         contact: {
           title: 'Contact Us',
@@ -129,7 +129,7 @@ i18n.use(initReactI18next).init({
           status: '状态',
         },
         footer: {
-          line: 'SDS CS 理论研究组',
+          line: '2026 至今，版权所有 SDS CS 理论研究组。',
         },
         contact: {
           title: '联系我们',
