@@ -67,7 +67,7 @@ export function Home() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 pb-8 pt-10 sm:px-6 sm:pt-12 lg:px-8">
           <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.introEyebrow')}</h2>
-          <div className="mt-5 min-w-0 max-w-5xl space-y-4 break-all text-base leading-7 text-slate-600">
+          <div className="mt-5 min-w-0 max-w-5xl space-y-4 break-words text-base leading-7 text-slate-600">
             {textOf(proposalIntro.body, i18n.language).split('\n\n').map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}

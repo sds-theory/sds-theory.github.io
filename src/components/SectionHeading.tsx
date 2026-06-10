@@ -12,7 +12,7 @@ export function SectionHeading({
   return (
     <div className="min-w-0 max-w-3xl">
       {eyebrow && <p className="text-sm font-semibold uppercase tracking-normal text-copper">{eyebrow}</p>}
-      <h2 className={`${eyebrow ? 'mt-2' : ''} break-all text-2xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink'}`}>
+      <h2 className={`${eyebrow ? 'mt-2' : ''} break-words text-2xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink'}`}>
         {title}
       </h2>
       {summary && (
