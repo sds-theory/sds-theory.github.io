@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+.env
+.codex-vite.out.log
+.codex-vite.err.log
+.codex-vite.job.log
+.codex-vite.pid
