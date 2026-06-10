@@ -2,8 +2,7 @@ import { ArrowRight, CalendarDays, GraduationCap, Newspaper } from 'lucide-react
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { EventCard } from '../components/EventCard';
-import { SectionHeading } from '../components/SectionHeading';
-import { events, news, prospective, proposalIntro, researchAreas, site, textOf } from '../data/site';
+import { events, news, prospective, proposalIntro, researchAreas, textOf } from '../data/site';
 
 export function Home() {
   const { i18n, t } = useTranslation();
@@ -12,8 +11,8 @@ export function Home() {
     ? ['SDS CS', '理论研究组']
     : ['SDS CS', 'Theory Group'];
   const subtitleLines = i18n.language.startsWith('zh')
-    ? ['推动计算理论基础发展的', '学术共同体。']
-    : ['A community that advances the', 'theoretical foundation of computation.'];
+    ? ['致力推动理论基础研究的', '发展与应用。']
+    : ['Committed to advancing theoretical', 'foundations and their applications.'];
 
   return (
     <main>
@@ -30,7 +29,7 @@ export function Home() {
 
         <div className="mx-auto grid min-h-[380px] max-w-7xl items-center px-4 py-12 sm:min-h-[440px] sm:px-6 lg:min-h-[480px] lg:px-8">
           <div className="max-w-3xl animate-rise">
-            <h1 className="max-w-full text-5xl font-semibold leading-tight sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-full text-5xl font-semibold leading-[1.14] sm:text-6xl sm:leading-[1.16] lg:text-7xl">
               {titleLines.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -66,12 +65,9 @@ export function Home() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <SectionHeading
-            eyebrow={t('home.introEyebrow')}
-            title={textOf(proposalIntro.title, i18n.language)}
-          />
-          <div className="min-w-0 max-w-3xl space-y-5 break-all text-base leading-8 text-slate-600">
+        <div className="mx-auto max-w-7xl px-4 pb-8 pt-10 sm:px-6 sm:pt-12 lg:px-8">
+          <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.introEyebrow')}</h2>
+          <div className="mt-5 min-w-0 max-w-5xl space-y-4 break-all text-base leading-7 text-slate-600">
             {textOf(proposalIntro.body, i18n.language).split('\n\n').map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -80,9 +76,9 @@ export function Home() {
       </section>
 
       <section className="bg-[#f9faf7]">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow={t('home.areasEyebrow')} title={t('home.areasTitle')} />
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.areasTitle')}</h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {researchAreas.map((area) => (
               <div
                 key={textOf(area, i18n.language)}
@@ -96,21 +92,20 @@ export function Home() {
       </section>
 
       <section className="bg-[#eef5f2]">
-        <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="grid gap-8 rounded border border-tealstone/20 bg-white p-6 shadow-xl shadow-tealstone/5 md:grid-cols-[auto_1fr_auto] md:items-center">
             <div className="grid h-14 w-14 place-items-center rounded bg-tealstone text-white">
               <GraduationCap size={28} />
             </div>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-normal text-copper">{t('home.prospectiveEyebrow')}</p>
-              <h2 className="mt-2 text-2xl font-semibold text-ink">{textOf(prospective.title, i18n.language)}</h2>
+              <h2 className="text-2xl font-semibold text-ink">{textOf(prospective.title, i18n.language)}</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">{textOf(prospective.body, i18n.language)}</p>
             </div>
             <a
-              href={`mailto:${site.email}`}
+              href={prospective.url}
               className="inline-flex items-center justify-center gap-2 rounded bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-tealstone"
             >
-              {t('actions.email')}
+              {t('actions.admissions')}
               <ArrowRight size={16} />
             </a>
           </div>
@@ -120,7 +115,7 @@ export function Home() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeading eyebrow={t('home.eventsEyebrow')} title={t('home.eventsTitle')} />
+            <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.eventsTitle')}</h2>
             <Link
               to="/events"
               className="inline-flex w-fit items-center gap-2 rounded border border-slate-300 px-4 py-2 text-sm font-semibold text-ink transition hover:border-tealstone hover:text-tealstone"
@@ -145,7 +140,7 @@ export function Home() {
 
       <section className="bg-[#f9faf7]">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow={t('home.newsEyebrow')} title={t('home.newsTitle')} />
+          <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {news.map((item) => (
               <article

@@ -31,7 +31,7 @@ export function Events() {
     <main className="min-h-screen bg-[#f9faf7]">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow={t('nav.events')} title={t('events.title')} summary={t('events.intro')} />
+          <SectionHeading title={t('events.title')} summary={t('events.intro')} />
         </div>
       </section>
 
@@ -92,7 +92,6 @@ export function Events() {
 
           <div>
             <SectionHeading
-              eyebrow={t('events.details')}
               title={selected ? textOf(selected.title, i18n.language) : t('events.details')}
               summary={!selected ? t('events.empty') : undefined}
             />

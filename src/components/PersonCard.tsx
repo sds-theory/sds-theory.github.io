@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Person, textOf } from '../data/site';
 
@@ -7,7 +7,7 @@ export function PersonCard({ person }: { person: Person }) {
 
   return (
     <article className="group overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-tealstone/55 hover:shadow-xl">
-      <div className="h-52 overflow-hidden bg-slate-100 sm:h-48">
+      <div className="h-48 overflow-hidden bg-slate-100 sm:h-44">
         {person.avatar ? (
           <img
             src={`${import.meta.env.BASE_URL}${person.avatar}`}
@@ -29,6 +29,9 @@ export function PersonCard({ person }: { person: Person }) {
         {person.affiliation && (
           <p className="mt-1 text-sm text-slate-500">{textOf(person.affiliation, i18n.language)}</p>
         )}
+        {person.education && (
+          <p className="mt-1 text-sm text-slate-500">{textOf(person.education, i18n.language)}</p>
+        )}
         {person.period && (
           <p className="mt-1 text-sm text-slate-500">{textOf(person.period, i18n.language)}</p>
         )}
@@ -37,7 +40,7 @@ export function PersonCard({ person }: { person: Person }) {
         )}
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {person.research.slice(0, 3).map((area) => (
+          {person.research.map((area) => (
             <span
               key={textOf(area, i18n.language)}
               className="rounded border border-slate-200 px-2.5 py-1 text-xs text-slate-600"
@@ -55,15 +58,6 @@ export function PersonCard({ person }: { person: Person }) {
             >
               {t('actions.website')}
               <ArrowUpRight size={14} />
-            </a>
-          )}
-          {person.email && (
-            <a
-              href={`mailto:${person.email}`}
-              className="inline-flex items-center gap-1.5 rounded border border-slate-200 px-3 py-2 text-xs font-semibold text-ink transition hover:border-tealstone hover:text-tealstone"
-            >
-              <Mail size={14} />
-              {t('actions.email')}
             </a>
           )}
         </div>

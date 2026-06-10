@@ -24,7 +24,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
     }`;
 
   return (
-    <header className="relative z-30 border-b border-slate-200 bg-white/92 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
       <div className="relative mx-auto flex w-screen max-w-[100vw] items-center justify-between gap-3 px-4 py-2 sm:px-6 md:w-full md:max-w-7xl md:gap-4 lg:px-8">
         <button
           type="button"
@@ -35,13 +35,16 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
-        <NavLink to="/" className="flex min-w-0 flex-1 items-center justify-center md:shrink md:justify-start">
+        <a
+          href={site.sdsUrl}
+          className="flex min-w-0 flex-1 items-center justify-center md:shrink md:justify-start"
+        >
           <img
             src={`${import.meta.env.BASE_URL}${site.logo}`}
             alt="School of Data Science"
             className="h-auto w-[220px] max-w-full object-contain sm:h-16 sm:w-auto sm:max-w-none lg:h-[4.25rem]"
           />
-        </NavLink>
+        </a>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           {navItems.map((item) => (

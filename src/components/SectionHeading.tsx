@@ -4,15 +4,15 @@ export function SectionHeading({
   summary,
   light = false,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   summary?: string;
   light?: boolean;
 }) {
   return (
     <div className="min-w-0 max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-normal text-copper">{eyebrow}</p>
-      <h2 className={`mt-2 break-all text-2xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink'}`}>
+      {eyebrow && <p className="text-sm font-semibold uppercase tracking-normal text-copper">{eyebrow}</p>}
+      <h2 className={`${eyebrow ? 'mt-2' : ''} break-all text-2xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink'}`}>
         {title}
       </h2>
       {summary && (

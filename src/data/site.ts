@@ -15,6 +15,7 @@ export type Person = {
   affiliation?: LocalizedText;
   period?: LocalizedText;
   advisor?: LocalizedText;
+  education?: LocalizedText;
   research: LocalizedText[];
   bio: LocalizedText;
 };
@@ -53,13 +54,14 @@ export const site = {
     zh: '数据科学学院 CS 理论研究组',
   },
   tagline: {
-    en: 'A community that advances the theoretical foundation of computation.',
-    zh: '推动计算理论基础发展的学术共同体。',
+    en: 'Committed to advancing theoretical foundations and their applications.',
+    zh: '致力推动理论基础研究的发展与应用。',
   },
   description: {
     en: 'Our goal is to bring together researchers working on algorithms, combinatorial and discrete structures, optimization, and the theoretical foundations of data science.',
     zh: '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。',
   },
+  sdsUrl: 'https://sds.cuhk.edu.cn/',
   email: 'sds_theory@outlook.com',
   github: 'https://github.com/sds-theory',
   logo: 'images/sds-logo.png',
@@ -68,12 +70,12 @@ export const site = {
 
 export const proposalIntro = {
   title: {
-    en: 'A lightweight academic platform for theory',
-    zh: '面向理论研究的轻量学术平台',
+    en: 'About Us',
+    zh: '关于我们',
   },
   body: {
     en: 'Our goal is to bring together researchers working on algorithms, combinatorial and discrete structures, optimization, and the theoretical foundations of data science. Through shared activities and visible academic presence, the group also aims to strengthen the theoretical research atmosphere and reputation of the School and the University more broadly.\n\nWe aim to provide a lightweight academic platform for intellectual exchange and collaboration across related areas, grounded in rigorous algorithmic thinking and mathematical approaches to computation. At the same time, it should fully respect the independence of each member in shaping research directions, managing projects, supervising students, and developing external collaborations.',
-    zh: '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。通过共同的学术活动和更清晰的学术呈现，研究组也希望进一步加强学院乃至大学整体的理论研究氛围与学术声誉。\n\n我们希望提供一个轻量的学术平台，促进相关方向之间的思想交流与合作，并以严谨的算法思维和面向计算的数学方法为基础。同时，研究组也应充分尊重每位成员在塑造研究方向、管理项目、指导学生以及发展外部合作方面的独立性。',
+    zh: '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。通过共同的学术活动和更清晰的学术呈现，研究组也会进一步加强学院乃至大学整体的理论研究氛围与学术声誉。\n\n我们希望提供一个轻量的学术平台，促进相关方向之间的思想交流与合作，并以严谨的算法思维和面向计算的数学方法为基础。同时，研究组也会充分尊重每位成员在塑造研究方向、管理项目、指导学生以及发展外部合作方面的独立性。',
   },
 };
 
@@ -119,11 +121,13 @@ export const faculty: Person[] = [
     website: 'https://chenjb1997.github.io/',
     profile: 'https://sds.cuhk.edu.cn/teacher/2145',
     office: { en: 'Daoyuan Building 517b', zh: '道远楼 517b' },
+    education: { en: 'Ph.D., University of Waterloo', zh: '博士，滑铁卢大学' },
     research: [
-      { en: 'Graph algorithms and data structures', zh: '图论算法与数据结构' },
+      { en: 'Graph algorithms', zh: '图论算法' },
+      { en: 'Data structures', zh: '数据结构' },
       { en: 'Large-scale data management', zh: '大规模数据管理' },
       { en: 'Data mining', zh: '数据挖掘' },
-      { en: 'Machine learning and AI', zh: '机器学习与人工智能' },
+      { en: 'Artificial intelligence', zh: '人工智能' },
     ],
     bio: {
       en: 'His research focuses on designing, analyzing, and implementing efficient graph algorithms and data structures with theoretical guarantees, with extensions to large-scale data management, data mining, machine learning, and artificial intelligence.',
@@ -140,13 +144,13 @@ export const faculty: Person[] = [
     email: 'lintao@cuhk.edu.cn',
     website: 'https://tao-l.github.io/',
     profile: 'https://sds.cuhk.edu.cn/teacher/2240',
+    education: { en: 'Ph.D., Harvard University', zh: '博士，哈佛大学' },
     research: [
       { en: 'Economics and computation', zh: '经济与计算' },
       { en: 'Mechanism design', zh: '机制设计' },
       { en: 'Information design', zh: '信息设计' },
       { en: 'Algorithmic game theory', zh: '算法博弈论' },
       { en: 'Machine learning', zh: '机器学习' },
-      { en: 'Theoretical computer science', zh: '理论计算机科学' },
     ],
     bio: {
       en: 'His research focuses on economics, machine learning, and theoretical computer science, especially mechanism design and information design for learning decision-makers.',
@@ -156,17 +160,17 @@ export const faculty: Person[] = [
   {
     name: { en: 'Aditi Dudeja', zh: 'Aditi Dudeja' },
     title: { en: 'Assistant Professor', zh: '助理教授' },
-    role: { en: 'Founding Member', zh: '创始成员' },
+    role: { en: 'Member', zh: '成员' },
     initials: 'AD',
     avatar: 'images/faculty-aditi-dudeja.jpg',
     avatarPosition: '50% 12%',
     website: 'https://aditidudeja.github.io',
     profile: 'https://sds.cuhk.edu.cn/teacher/2338',
+    education: { en: 'Ph.D., Rutgers University', zh: '博士，罗格斯大学' },
     research: [
-      { en: 'Theoretical computer science', zh: '理论计算机科学' },
-      { en: 'Streaming graph algorithms', zh: '流式图算法' },
+      { en: 'Streaming algorithms', zh: '流式算法' },
       { en: 'Dynamic graph algorithms', zh: '动态图算法' },
-      { en: 'Online graph problems', zh: '在线图问题' },
+      { en: 'Online algorithms', zh: '在线算法' },
     ],
     bio: {
       en: 'Her research focuses on graph problems in streaming, dynamic, and online settings. She was previously a postdoctoral researcher in the Big Data Algorithms Group at the University of Salzburg.',
@@ -186,9 +190,10 @@ export const students: Person[] = [
     period: { en: 'Fall 2026 - present', zh: '2026 年秋季至今' },
     advisor: { en: 'Advisor: Jingbang Chen', zh: '导师：陈靖邦' },
     research: [
-      { en: 'Algorithms', zh: '算法' },
-      { en: 'Graph data', zh: '图数据' },
-      { en: 'Theoretical computer science', zh: '理论计算机科学' },
+      { en: 'Graph theory', zh: '图论' },
+      { en: 'Data structures', zh: '数据结构' },
+      { en: 'Online algorithms', zh: '在线算法' },
+      { en: 'Convex optimization', zh: '凸优化' },
     ],
     bio: {
       en: 'B.S. at Peking University. ICPC Gold and NOI Silver.',
@@ -208,17 +213,29 @@ export const news: NewsItem[] = [
       zh: 'SDS CS 理论研究组网站正式上线，将作为展示成员、学生、活动、新闻和联系方式的公开主页。',
     },
   },
+  {
+    date: '2026-05-19',
+    title: {
+      en: 'Three papers by Professor Tao Lin accepted to EC 2026',
+      zh: '林涛教授三篇著作被 EC 2026 录用',
+    },
+    summary: {
+      en: 'Professor Tao Lin has three works accepted to the 27th ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
+      zh: '林涛教授三篇著作《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 the 27th ACM Conference on Economics and Computation (EC 2026) 录用。',
+    },
+  },
 ];
 
 export const prospective = {
   title: {
     en: 'Prospective Graduate Students',
-    zh: 'Prospective Graduate Students',
+    zh: '研究生申请',
   },
   body: {
-    en: 'Students interested in algorithms, combinatorial structures, optimization, and the theoretical foundations of data science are welcome to follow our seminars and reading groups. For graduate study, please contact individual faculty members according to their research directions.',
-    zh: '欢迎对算法、组合结构、优化以及数据科学理论基础感兴趣的同学关注我们的讨论班和读书会。关于研究生申请，请根据研究方向联系相应教师。',
+    en: 'If you are interested in applying to our graduate program, please see the graduate studies section on the admissions page.',
+    zh: '如果你有兴趣申请我们的研究生项目，请查看招生页面中的研究生项目介绍。',
   },
+  url: 'https://sds.cuhk.edu.cn/phd-programmes-CSE',
 };
 
 export const contact = {

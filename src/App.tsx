@@ -22,7 +22,7 @@ function AppShell() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f9faf7] text-slate-800 transition-colors duration-300">
+    <div className="min-h-screen bg-[#f9faf7] text-slate-800 transition-colors duration-300">
       <Header onToggleLanguage={toggleLanguage} />
       <Routes>
         <Route path="/" element={<Home />} />

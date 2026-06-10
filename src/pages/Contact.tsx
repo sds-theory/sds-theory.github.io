@@ -11,7 +11,6 @@ export function Contact() {
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow={t('nav.contact')}
             title={textOf(contact.title, i18n.language)}
             summary={textOf(contact.body, i18n.language)}
           />
