@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="SDS Theory Group is an academic community for algorithms, combinatorial structures, optimization, and theoretical foundations of data science."
+      content="SDS CS Theory Group is an academic community for algorithms, combinatorial structures, optimization, and theoretical foundations of data science."
     />
-    <title>SDS Theory Group</title>
-    <script type="module" crossorigin src="/assets/index-BPZ0oFF9.js"></script>
+    <title>SDS CS Theory Group</title>
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem('gh-pages-redirect');
+        if (!redirect) return;
+        sessionStorage.removeItem('gh-pages-redirect');
+        history.replaceState(null, '', redirect);
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CFwlpm-N.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DVT5iF68.css">
   </head>
   <body>
