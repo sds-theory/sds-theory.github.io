@@ -7,6 +7,7 @@ export type Person = {
   role: LocalizedText;
   initials: string;
   avatar?: string;
+  avatarPosition?: string;
   email?: string;
   website?: string;
   profile?: string;
@@ -44,20 +45,20 @@ export const textOf = (value: LocalizedText, language: string) => value[localeOf
 
 export const site = {
   name: {
-    en: 'SDS Theory Group',
-    zh: 'SDS 理论组',
+    en: 'SDS CS Theory Group',
+    zh: 'SDS CS 理论研究组',
   },
   longName: {
-    en: 'Theory Group, School of Data Science',
-    zh: '数据科学学院理论组',
+    en: 'CS Theory Group, School of Data Science',
+    zh: '数据科学学院 CS 理论研究组',
   },
   tagline: {
-    en: 'Building a community that advances the theoretical foundations of computation.',
-    zh: '建设推动计算理论基础发展的学术共同体。',
+    en: 'A community that advances the theoretical foundation of computation.',
+    zh: '推动计算理论基础发展的学术共同体。',
   },
   description: {
-    en: 'The SDS Theory Group is a lightweight academic platform for faculty members, students, postdoctoral researchers, and visitors whose research connects algorithms, combinatorial structures, optimization, and the theoretical foundations of data science.',
-    zh: 'SDS 理论组是一个轻量学术平台，连接从事算法、组合结构、优化以及数据科学理论基础研究的教师、学生、博士后与访问学者。',
+    en: 'Our goal is to bring together researchers working on algorithms, combinatorial and discrete structures, optimization, and the theoretical foundations of data science.',
+    zh: '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。',
   },
   email: 'sds_theory@outlook.com',
   github: 'https://github.com/sds-theory',
@@ -67,31 +68,31 @@ export const site = {
 
 export const proposalIntro = {
   title: {
-    en: 'A lightweight academic platform',
-    zh: '轻量、灵活、可持续的学术平台',
+    en: 'A lightweight academic platform for theory',
+    zh: '面向理论研究的轻量学术平台',
   },
   body: {
-    en: 'Rather than functioning as an administrative center, the group serves as a common platform for regular seminars, reading groups, research discussions, visitor activities, and interdisciplinary collaborations.',
-    zh: '理论组并非新的行政中心，而是一个共同学术平台，用于支持定期讨论班、学生读书会、科研讨论、访问交流和跨方向合作。',
+    en: 'Our goal is to bring together researchers working on algorithms, combinatorial and discrete structures, optimization, and the theoretical foundations of data science. Through shared activities and visible academic presence, the group also aims to strengthen the theoretical research atmosphere and reputation of the School and the University more broadly.\n\nWe aim to provide a lightweight academic platform for intellectual exchange and collaboration across related areas, grounded in rigorous algorithmic thinking and mathematical approaches to computation. At the same time, it should fully respect the independence of each member in shaping research directions, managing projects, supervising students, and developing external collaborations.',
+    zh: '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。通过共同的学术活动和更清晰的学术呈现，研究组也希望进一步加强学院乃至大学整体的理论研究氛围与学术声誉。\n\n我们希望提供一个轻量的学术平台，促进相关方向之间的思想交流与合作，并以严谨的算法思维和面向计算的数学方法为基础。同时，研究组也应充分尊重每位成员在塑造研究方向、管理项目、指导学生以及发展外部合作方面的独立性。',
   },
 };
 
 export const missionPoints: LocalizedText[] = [
   {
-    en: 'Make theory-related research in the School more visible.',
-    zh: '提升学院理论相关研究的可见度。',
+    en: 'Algorithms, complexity, and rigorous computation.',
+    zh: '算法、复杂性与严谨计算。',
   },
   {
-    en: 'Support regular intellectual exchange among faculty members and students.',
-    zh: '支持教师与学生之间稳定、持续的学术交流。',
+    en: 'Combinatorial and discrete structures.',
+    zh: '组合与离散结构。',
   },
   {
-    en: 'Create opportunities for collaboration while preserving the independence of each PI.',
-    zh: '创造合作机会，同时尊重和保留每位 PI 的独立研究方向。',
+    en: 'Optimization and mathematical approaches to computation.',
+    zh: '优化与面向计算的数学方法。',
   },
   {
-    en: 'Provide a welcoming environment for visitors and potential collaborators.',
-    zh: '为访问学者和潜在合作者提供开放友好的学术环境。',
+    en: 'Theoretical foundations of data science.',
+    zh: '数据科学理论基础。',
   },
 ];
 
@@ -113,6 +114,7 @@ export const faculty: Person[] = [
     role: { en: 'Founding Member / Coordinator', zh: '创始成员 / 协调人' },
     initials: 'JC',
     avatar: 'images/faculty-jingbang-chen.png',
+    avatarPosition: '50% 18%',
     email: 'chenjb@cuhk.edu.cn',
     website: 'https://chenjb1997.github.io/',
     profile: 'https://sds.cuhk.edu.cn/teacher/2145',
@@ -134,6 +136,7 @@ export const faculty: Person[] = [
     role: { en: 'Founding Member / Coordinator', zh: '创始成员 / 协调人' },
     initials: 'TL',
     avatar: 'images/faculty-tao-lin.png',
+    avatarPosition: '50% 20%',
     email: 'lintao@cuhk.edu.cn',
     website: 'https://tao-l.github.io/',
     profile: 'https://sds.cuhk.edu.cn/teacher/2240',
@@ -156,6 +159,7 @@ export const faculty: Person[] = [
     role: { en: 'Founding Member', zh: '创始成员' },
     initials: 'AD',
     avatar: 'images/faculty-aditi-dudeja.jpg',
+    avatarPosition: '50% 12%',
     website: 'https://aditidudeja.github.io',
     profile: 'https://sds.cuhk.edu.cn/teacher/2338',
     research: [
@@ -177,6 +181,7 @@ export const students: Person[] = [
     title: { en: 'Ph.D. Student', zh: '博士生' },
     role: { en: 'Student Member', zh: '学生成员' },
     initials: 'TZ',
+    website: 'https://chenjb1997.github.io/',
     affiliation: { en: 'CUHK-Shenzhen', zh: '香港中文大学（深圳）' },
     period: { en: 'Fall 2026 - present', zh: '2026 年秋季至今' },
     advisor: { en: 'Advisor: Jingbang Chen', zh: '导师：陈靖邦' },
@@ -199,8 +204,8 @@ export const news: NewsItem[] = [
     date: '2026-06-11',
     title: { en: 'Website officially launched', zh: '网站正式上线' },
     summary: {
-      en: 'The SDS Theory Group website is now live as a public home for members, students, events, news, and contact information.',
-      zh: 'SDS 理论组网站正式上线，将作为展示成员、学生、活动、新闻和联系方式的公开主页。',
+      en: 'The SDS CS Theory Group website is now live as a public home for members, students, events, news, and contact information.',
+      zh: 'SDS CS 理论研究组网站正式上线，将作为展示成员、学生、活动、新闻和联系方式的公开主页。',
     },
   },
 ];
@@ -222,7 +227,7 @@ export const contact = {
     zh: '联系我们',
   },
   body: {
-    en: 'For visits, seminar invitations, academic collaboration, student activities, or general questions about the SDS Theory Group, please contact us by email.',
-    zh: '如有访问交流、报告邀请、学术合作、学生活动或其他关于 SDS 理论组的问题，欢迎通过邮件联系我们。',
+    en: 'For visits, seminar invitations, academic collaboration, student activities, or general questions about the SDS CS Theory Group, please contact us by email.',
+    zh: '如有访问交流、报告邀请、学术合作、学生活动或其他关于 SDS CS 理论研究组的问题，欢迎通过邮件联系我们。',
   },
 };

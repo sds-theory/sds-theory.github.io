@@ -1,6 +1,6 @@
-# SDS Theory Group Website
+# SDS CS Theory Group Website
 
-Website source for the SDS Theory Group.
+Website source for the SDS CS Theory Group.
 
 ## Local Development
 
@@ -43,7 +43,6 @@ Current pages:
 Implemented site behavior:
 
 - Language defaults to the user's browser/system language, with a manual English/Chinese toggle.
-- Light/dark mode defaults to the system color scheme, with a manual toggle.
 - Events include Google Calendar links and downloadable `.ics` files.
 - The mobile layout uses a compact navigation menu and responsive cards.
 

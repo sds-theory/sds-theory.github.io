@@ -24,21 +24,14 @@ i18n.use(initReactI18next).init({
           contactUs: 'Contact us',
           addGoogle: 'Google Calendar',
           addIcs: 'Download .ics',
-          website: 'Website',
-          profile: 'SDS profile',
+          website: 'Mainpage',
           office: 'Office',
         },
-        theme: {
-          light: 'Light mode',
-          dark: 'Dark mode',
-          switchLight: 'Switch to light mode',
-          switchDark: 'Switch to dark mode',
-        },
         home: {
-          introEyebrow: 'About',
-          introTitle: 'A lightweight academic platform',
+          introEyebrow: 'About Us',
+          introTitle: 'A shared home for rigorous computation',
           introBody:
-            'The group makes theory-related research more visible, supports regular intellectual exchange, and creates opportunities for collaboration across related areas.',
+            'Our goal is to bring together researchers working on algorithms, combinatorial and discrete structures, optimization, and the theoretical foundations of data science.',
           prospectiveEyebrow: 'Admissions',
           eventsEyebrow: 'Calendar',
           eventsTitle: 'Upcoming Events',
@@ -50,10 +43,10 @@ i18n.use(initReactI18next).init({
         people: {
           facultyTitle: 'Faculty',
           facultyIntro:
-            'Faculty cards can include research areas, homepage links, office information, and contact details.',
+            'Founding members and coordinators of the SDS CS Theory Group.',
           studentsTitle: 'Students',
           studentsIntro:
-            'Student cards are designed for graduate students, coordinators, visitors, and alumni.',
+            'Graduate students and visitors connected with the group.',
           research: 'Research',
         },
         events: {
@@ -70,7 +63,7 @@ i18n.use(initReactI18next).init({
           status: 'Status',
         },
         footer: {
-          line: 'Theory Group, School of Data Science',
+          line: 'SDS CS Theory Group',
         },
         contact: {
           title: 'Contact Us',
@@ -98,21 +91,14 @@ i18n.use(initReactI18next).init({
           contactUs: '联系我们',
           addGoogle: '加入 Google 日历',
           addIcs: '下载 .ics',
-          website: '主页',
-          profile: 'SDS 主页',
+          website: 'Mainpage',
           office: '办公室',
-        },
-        theme: {
-          light: '浅色模式',
-          dark: '深色模式',
-          switchLight: '切换到浅色模式',
-          switchDark: '切换到深色模式',
         },
         home: {
           introEyebrow: '关于我们',
-          introTitle: '轻量、灵活、可持续的学术平台',
+          introTitle: '面向严谨计算研究的共同平台',
           introBody:
-            '理论组旨在提升学院理论相关研究的可见度，支持稳定的学术交流，并创造跨相关方向合作的机会。',
+            '我们的目标是汇聚从事算法、组合与离散结构、优化以及数据科学理论基础研究的学者。',
           prospectiveEyebrow: '招生与交流',
           eventsEyebrow: '日历',
           eventsTitle: '近期活动',
@@ -123,9 +109,9 @@ i18n.use(initReactI18next).init({
         },
         people: {
           facultyTitle: '教师',
-          facultyIntro: '教师卡片可展示研究方向、个人主页、办公室和联系方式。',
+          facultyIntro: 'SDS CS 理论研究组的创始成员与协调人。',
           studentsTitle: '学生',
-          studentsIntro: '学生页面可展示研究生、学生协调人、访问学生与校友。',
+          studentsIntro: '与研究组相关的研究生与访问学生。',
           research: '研究方向',
         },
         events: {
@@ -141,7 +127,7 @@ i18n.use(initReactI18next).init({
           status: '状态',
         },
         footer: {
-          line: '数据科学学院理论组',
+          line: 'SDS CS 理论研究组',
         },
         contact: {
           title: '联系我们',

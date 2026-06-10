@@ -7,8 +7,8 @@ export function Contact() {
   const { i18n, t } = useTranslation();
 
   return (
-    <main className="min-h-screen bg-[#f9faf7] dark:bg-black">
-      <section className="border-b border-slate-200 bg-white dark:border-white/10 dark:bg-[#090b0d]">
+    <main className="min-h-screen bg-[#f9faf7]">
+      <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow={t('nav.contact')}
@@ -19,11 +19,11 @@ export function Contact() {
       </section>
       <section>
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="max-w-2xl rounded border border-slate-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
+          <div className="max-w-2xl rounded border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-normal text-copper">{t('contact.emailLabel')}</p>
             <a
               href={`mailto:${site.email}`}
-              className="mt-4 inline-flex items-center gap-3 text-2xl font-semibold text-ink transition hover:text-tealstone dark:text-white"
+              className="mt-4 inline-flex items-center gap-3 text-2xl font-semibold text-ink transition hover:text-tealstone"
             >
               <Mail size={24} />
               {site.email}

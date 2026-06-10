@@ -10,13 +10,13 @@ export function SectionHeading({
   light?: boolean;
 }) {
   return (
-    <div className="max-w-3xl">
+    <div className="min-w-0 max-w-3xl">
       <p className="text-sm font-semibold uppercase tracking-normal text-copper">{eyebrow}</p>
-      <h2 className={`mt-2 text-3xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink dark:text-white'}`}>
+      <h2 className={`mt-2 break-all text-2xl font-semibold sm:text-4xl ${light ? 'text-white' : 'text-ink'}`}>
         {title}
       </h2>
       {summary && (
-        <p className={`mt-4 text-base leading-7 ${light ? 'text-white/68' : 'text-slate-600 dark:text-slate-300'}`}>
+        <p className={`mt-4 text-base leading-7 ${light ? 'text-white/68' : 'text-slate-600'}`}>
           {summary}
         </p>
       )}
