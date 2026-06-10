@@ -91,11 +91,17 @@ export function Events() {
           </div>
 
           <div>
-            <SectionHeading eyebrow={t('events.details')} title={selected ? textOf(selected.title, i18n.language) : t('events.details')} />
-            <div className="mt-6">
-              {selected && <EventCard event={selected} />}
-            </div>
-            <div className="mt-8 grid gap-3">
+            <SectionHeading
+              eyebrow={t('events.details')}
+              title={selected ? textOf(selected.title, i18n.language) : t('events.details')}
+              summary={!selected ? t('events.empty') : undefined}
+            />
+            {selected && (
+              <div className="mt-6">
+                <EventCard event={selected} />
+              </div>
+            )}
+            {events.length > 0 && <div className="mt-8 grid gap-3">
               {events.map((event) => (
                 <button
                   key={event.id}
@@ -118,7 +124,7 @@ export function Events() {
                   </p>
                 </button>
               ))}
-            </div>
+            </div>}
           </div>
         </div>
       </section>

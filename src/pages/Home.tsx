@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { EventCard } from '../components/EventCard';
 import { SectionHeading } from '../components/SectionHeading';
-import { events, news, prospective, researchAreas, site, textOf } from '../data/site';
+import { events, missionPoints, news, prospective, proposalIntro, researchAreas, site, textOf } from '../data/site';
 
 export function Home() {
   const { i18n, t } = useTranslation();
@@ -24,6 +24,11 @@ export function Home() {
 
         <div className="mx-auto grid min-h-[calc(100vh-4.25rem)] max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
           <div className="max-w-3xl animate-rise">
+            <img
+              src={`${import.meta.env.BASE_URL}${site.logo}`}
+              alt="SDS"
+              className="mb-8 h-12 w-auto rounded bg-white/94 p-2"
+            />
             <div className="inline-flex items-center gap-2 rounded border border-white/14 bg-white/8 px-3 py-2 text-sm text-white/78 backdrop-blur">
               <Sparkles size={16} className="text-copper" />
               {textOf(site.longName, i18n.language)}
@@ -55,8 +60,28 @@ export function Home() {
 
       <section className="bg-white dark:bg-[#090b0d]">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <SectionHeading eyebrow={t('home.introEyebrow')} title={t('home.introTitle')} summary={t('home.introBody')} />
+          <SectionHeading
+            eyebrow={t('home.introEyebrow')}
+            title={textOf(proposalIntro.title, i18n.language)}
+            summary={textOf(proposalIntro.body, i18n.language)}
+          />
           <div className="grid gap-3 sm:grid-cols-2">
+            {missionPoints.map((point) => (
+              <div
+                key={textOf(point, i18n.language)}
+                className="rounded border border-slate-200 bg-[#f9faf7] p-4 text-sm font-medium text-ink transition hover:-translate-y-0.5 hover:border-tealstone dark:border-white/10 dark:bg-white/[0.05] dark:text-white"
+              >
+                {textOf(point, i18n.language)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f9faf7] dark:bg-black">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow={t('home.areasEyebrow')} title={t('home.areasTitle')} />
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {researchAreas.map((area) => (
               <div
                 key={textOf(area, i18n.language)}
@@ -103,11 +128,17 @@ export function Home() {
               <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {upcoming.map((event) => (
-              <EventCard key={event.id} event={event} compact />
-            ))}
-          </div>
+          {upcoming.length > 0 ? (
+            <div className="mt-10 grid gap-5 lg:grid-cols-2">
+              {upcoming.map((event) => (
+                <EventCard key={event.id} event={event} compact />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10 rounded border border-slate-200 bg-[#f9faf7] p-6 text-sm text-slate-600 dark:border-white/10 dark:bg-white/[0.05] dark:text-slate-300">
+              {t('events.empty')}
+            </div>
+          )}
         </div>
       </section>
 

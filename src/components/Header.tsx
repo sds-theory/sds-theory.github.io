@@ -9,6 +9,7 @@ const navItems = [
   { to: '/faculty', key: 'faculty' },
   { to: '/students', key: 'students' },
   { to: '/events', key: 'events' },
+  { to: '/contact', key: 'contact' },
 ];
 
 export function Header({
@@ -34,8 +35,12 @@ export function Header({
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/86 backdrop-blur-xl dark:border-white/10 dark:bg-[#050607]/86">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <NavLink to="/" className="flex min-w-0 items-center gap-3">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded border border-copper/60 bg-copper/15 text-sm font-semibold text-copper">
-            SDS
+          <span className="grid h-10 w-20 shrink-0 place-items-center rounded border border-slate-200 bg-white px-2 dark:border-white/10">
+            <img
+              src={`${import.meta.env.BASE_URL}${site.logo}`}
+              alt="SDS"
+              className="max-h-7 w-full object-contain"
+            />
           </span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-semibold text-ink dark:text-white">
@@ -61,7 +66,7 @@ export function Header({
             onClick={onToggleLanguage}
             className="inline-flex h-10 w-10 items-center justify-center rounded border border-slate-200 text-slate-700 transition hover:border-tealstone hover:text-tealstone dark:border-white/10 dark:text-slate-200"
             aria-label="Switch language"
-            title={i18n.language.startsWith('zh') ? 'English' : '中文'}
+            title={i18n.language.startsWith('zh') ? 'English' : 'Chinese'}
           >
             <Languages size={18} />
           </button>
@@ -107,7 +112,7 @@ export function Header({
               className="inline-flex flex-1 items-center justify-center gap-2 rounded border border-slate-200 px-3 py-2 text-sm font-semibold text-ink dark:border-white/10 dark:text-white"
             >
               <Languages size={16} />
-              {i18n.language.startsWith('zh') ? 'English' : '中文'}
+              {i18n.language.startsWith('zh') ? 'English' : 'Chinese'}
             </button>
             <button
               type="button"

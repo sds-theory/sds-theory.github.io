@@ -13,6 +13,7 @@ i18n.use(initReactI18next).init({
           faculty: 'Faculty',
           students: 'Students',
           events: 'Events',
+          contact: 'Contact',
         },
         actions: {
           email: 'Email',
@@ -20,6 +21,7 @@ i18n.use(initReactI18next).init({
           learnMore: 'Learn more',
           viewEvents: 'View events',
           viewCalendar: 'View calendar',
+          contactUs: 'Contact us',
           addGoogle: 'Google Calendar',
           addIcs: 'Download .ics',
           website: 'Website',
@@ -34,9 +36,9 @@ i18n.use(initReactI18next).init({
         },
         home: {
           introEyebrow: 'About',
-          introTitle: 'A lightweight platform for theory at SDS',
+          introTitle: 'A lightweight academic platform',
           introBody:
-            'The group is intended to make theory-related research more visible, support regular intellectual exchange, and create opportunities for collaboration while preserving each PI’s academic independence.',
+            'The group makes theory-related research more visible, supports regular intellectual exchange, and creates opportunities for collaboration across related areas.',
           prospectiveEyebrow: 'Admissions',
           eventsEyebrow: 'Calendar',
           eventsTitle: 'Upcoming Events',
@@ -60,6 +62,7 @@ i18n.use(initReactI18next).init({
             'Seminars, reading groups, internal research discussions, visitors, and theory days can all be maintained from one event data file.',
           calendar: 'Calendar',
           details: 'Event Details',
+          empty: 'No events have been announced yet. Please check back later.',
           speaker: 'Speaker',
           location: 'Location',
           host: 'Host',
@@ -68,6 +71,12 @@ i18n.use(initReactI18next).init({
         },
         footer: {
           line: 'Theory Group, School of Data Science',
+        },
+        contact: {
+          title: 'Contact Us',
+          intro:
+            'For visits, collaboration, seminar invitations, student activities, or general questions, please contact the group by email.',
+          emailLabel: 'Group email',
         },
       },
     },
@@ -78,6 +87,7 @@ i18n.use(initReactI18next).init({
           faculty: '教师',
           students: '学生',
           events: '活动',
+          contact: '联系',
         },
         actions: {
           email: '邮件',
@@ -85,6 +95,7 @@ i18n.use(initReactI18next).init({
           learnMore: '了解更多',
           viewEvents: '查看活动',
           viewCalendar: '查看日历',
+          contactUs: '联系我们',
           addGoogle: '加入 Google 日历',
           addIcs: '下载 .ics',
           website: '主页',
@@ -99,9 +110,9 @@ i18n.use(initReactI18next).init({
         },
         home: {
           introEyebrow: '关于我们',
-          introTitle: '面向 SDS 理论研究的轻量学术平台',
+          introTitle: '轻量、灵活、可持续的学术平台',
           introBody:
-            '理论组旨在提升学院理论相关研究的可见度，支持稳定的学术交流，并创造跨方向合作机会，同时保留每位 PI 在研究方向、学生指导和项目管理上的独立性。',
+            '理论组旨在提升学院理论相关研究的可见度，支持稳定的学术交流，并创造跨相关方向合作的机会。',
           prospectiveEyebrow: '招生与交流',
           eventsEyebrow: '日历',
           eventsTitle: '近期活动',
@@ -122,6 +133,7 @@ i18n.use(initReactI18next).init({
           intro: '讨论班、读书会、内部讨论、访问交流和 Theory Days 都可以从同一个活动数据文件维护。',
           calendar: '日历',
           details: '活动详情',
+          empty: '目前还没有公布活动，请稍后查看。',
           speaker: '报告人',
           location: '地点',
           host: 'Host',
@@ -130,6 +142,11 @@ i18n.use(initReactI18next).init({
         },
         footer: {
           line: '数据科学学院理论组',
+        },
+        contact: {
+          title: '联系我们',
+          intro: '如有访问交流、学术合作、报告邀请、学生活动或其他问题，欢迎通过邮件联系理论组。',
+          emailLabel: '理论组邮箱',
         },
       },
     },

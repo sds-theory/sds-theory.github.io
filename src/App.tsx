@@ -7,6 +7,7 @@ import { Events } from './pages/Events';
 import { Faculty } from './pages/Faculty';
 import { Home } from './pages/Home';
 import { Students } from './pages/Students';
+import { Contact } from './pages/Contact';
 
 function getInitialMode(): 'light' | 'dark' {
   const stored = localStorage.getItem('color-mode');
@@ -63,6 +64,7 @@ function AppShell() {
         <Route path="/faculty" element={<Faculty />} />
         <Route path="/students" element={<Students />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <footer className="border-t border-slate-200 bg-white py-8 dark:border-white/10 dark:bg-[#050607]">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 text-sm text-slate-500 dark:text-slate-400 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
