@@ -6,8 +6,8 @@ export function PersonCard({ person }: { person: Person }) {
   const { i18n, t } = useTranslation();
 
   return (
-    <article className="group overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-tealstone/55 hover:shadow-xl">
-      <div className="h-48 overflow-hidden bg-slate-100 sm:h-44">
+    <article className="group flex h-full flex-col overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-tealstone/55 hover:shadow-xl">
+      <div className="h-48 flex-none overflow-hidden bg-slate-100 sm:h-44">
         {person.avatar ? (
           <img
             src={`${import.meta.env.BASE_URL}${person.avatar}`}
@@ -22,7 +22,7 @@ export function PersonCard({ person }: { person: Person }) {
         )}
       </div>
 
-      <div className="p-4">
+      <div className="flex flex-1 flex-col p-4">
         <p className="text-xs font-semibold uppercase tracking-normal text-copper">{textOf(person.role, i18n.language)}</p>
         <h3 className="mt-2 text-xl font-semibold text-ink">{textOf(person.name, i18n.language)}</h3>
         <p className="mt-1 text-sm text-slate-500">{textOf(person.title, i18n.language)}</p>
@@ -50,7 +50,7 @@ export function PersonCard({ person }: { person: Person }) {
           ))}
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-auto flex flex-wrap gap-2 pt-5">
           {person.website && (
             <a
               href={person.website}

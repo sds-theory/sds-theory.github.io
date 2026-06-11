@@ -177,6 +177,30 @@ export const faculty: Person[] = [
       zh: '研究方向是流式、动态和在线场景下的图问题。此前曾在萨尔茨堡大学大数据算法研究组从事博士后研究。',
     },
   },
+  {
+    name: { en: 'Konstantinos Courcoubetis', zh: 'Konstantinos Courcoubetis' },
+    title: { en: 'Presidential Chair Professor', zh: '校长讲座教授' },
+    role: { en: 'Member', zh: '成员' },
+    initials: 'KC',
+    avatar: 'images/faculty-konstantinos-courcoubetis.jpg',
+    avatarPosition: '50% 18%',
+    website: 'https://sds.cuhk.edu.cn/teacher/473',
+    profile: 'https://sds.cuhk.edu.cn/teacher/473',
+    education: {
+      en: 'Ph.D., University of California, Berkeley',
+      zh: '博士，加利福尼亚大学伯克利分校',
+    },
+    research: [
+      { en: 'Network economics', zh: '网络经济学' },
+      { en: 'Sharing economy and mobility', zh: '共享经济与移动性' },
+      { en: 'Resource sharing and auctions', zh: '资源共享与拍卖' },
+      { en: 'Smart grids and energy systems', zh: '智能电网与能源系统' },
+    ],
+    bio: {
+      en: 'His research interests include economics and performance analysis of networks and internet technologies, sharing economy and mobility, regulation policy, smart grids and energy systems, resource sharing and auctions.',
+      zh: '研究方向包括网络和互联网技术的经济与性能分析、共享经济与移动性、监管政策、智能电网和能源系统、资源共享与拍卖。',
+    },
+  },
 ];
 
 export const students: Person[] = [
@@ -186,8 +210,7 @@ export const students: Person[] = [
     role: { en: 'Student Member', zh: '学生成员' },
     initials: 'TZ',
     website: 'https://chenjb1997.github.io/',
-    affiliation: { en: 'CUHK-Shenzhen', zh: '香港中文大学（深圳）' },
-    period: { en: 'Fall 2026 - present', zh: '2026 年秋季至今' },
+    period: { en: '2026 - present', zh: '2026 至今' },
     advisor: { en: 'Advisor: Jingbang Chen', zh: '导师：陈靖邦' },
     research: [
       { en: 'Graph theory', zh: '图论' },
@@ -196,8 +219,27 @@ export const students: Person[] = [
       { en: 'Convex optimization', zh: '凸优化' },
     ],
     bio: {
-      en: 'B.S. at Peking University. ICPC Gold and NOI Silver.',
-      zh: '本科毕业于北京大学。曾获 ICPC 金牌、NOI 银牌。',
+      en: 'Ph.D. student advised by Jingbang Chen.',
+      zh: '陈靖邦指导的博士生。',
+    },
+  },
+  {
+    name: { en: 'Mingjie Wang', zh: '汪明杰' },
+    title: { en: 'Ph.D. Student', zh: '博士生' },
+    role: { en: 'Student Member', zh: '学生成员' },
+    initials: 'MW',
+    avatar: 'images/student-mingjie-wang.jpg',
+    avatarPosition: '50% 16%',
+    website: 'https://sds.cuhk.edu.cn/en/node/1206',
+    profile: 'https://sds.cuhk.edu.cn/en/node/1206',
+    period: { en: '2023 - present', zh: '2023 至今' },
+    advisor: { en: 'Advisor: Konstantinos Courcoubetis', zh: '导师：Konstantinos Courcoubetis' },
+    research: [
+      { en: 'Operations research', zh: '运筹' },
+    ],
+    bio: {
+      en: 'Ph.D. student advised by Konstantinos Courcoubetis.',
+      zh: 'Konstantinos Courcoubetis 指导的博士生。',
     },
   },
 ];
@@ -222,6 +264,28 @@ export const news: NewsItem[] = [
     summary: {
       en: 'Professor Tao Lin has three works accepted to the 27th ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
       zh: '林涛教授三篇论文《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 the 27th ACM Conference on Economics and Computation (EC 2026) 录用。',
+    },
+  },
+  {
+    date: '2026-05-01',
+    title: {
+      en: 'One paper by Aditi Dudeja accepted to CCC 2026',
+      zh: 'Aditi Dudeja 一篇论文被 CCC 2026 录用',
+    },
+    summary: {
+      en: 'Aditi Dudeja’s paper "Frontier Space-time Algorithms Using Only Full Memory" has been accepted to the Computational Complexity Conference 2026 (CCC 2026).',
+      zh: 'Aditi Dudeja 一篇论文《Frontier Space-time Algorithms Using Only Full Memory》被 the Computational Complexity Conference 2026 (CCC 2026) 录用。',
+    },
+  },
+  {
+    date: '2026-04-29',
+    title: {
+      en: 'One paper by Aditi Dudeja accepted to PODC 2026',
+      zh: 'Aditi Dudeja 一篇论文被 PODC 2026 录用',
+    },
+    summary: {
+      en: 'Aditi Dudeja’s paper "Distributed Stochastic Graph Algorithms" has been accepted to the 2026 ACM Symposium on Principles of Distributed Computing (PODC 2026).',
+      zh: 'Aditi Dudeja 一篇论文《Distributed Stochastic Graph Algorithms》被 the 2026 ACM Symposium on Principles of Distributed Computing (PODC 2026) 录用。',
     },
   },
 ];

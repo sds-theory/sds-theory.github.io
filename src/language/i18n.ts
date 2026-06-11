@@ -129,7 +129,7 @@ i18n.use(initReactI18next).init({
           status: '状态',
         },
         footer: {
-          line: '2026 至今，版权所有 SDS CS 理论研究组。',
+          line: '2026 至今，版权归 SDS CS 理论研究组所有。',
         },
         contact: {
           title: '联系我们',

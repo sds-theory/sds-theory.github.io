@@ -14,7 +14,7 @@ export function Faculty() {
         </div>
       </section>
       <section>
-        <div className="mx-auto grid max-w-4xl gap-5 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-4 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {faculty.map((person) => (
             <PersonCard key={person.initials} person={person} />
           ))}
