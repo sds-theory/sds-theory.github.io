@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import {
   colleagueRecruitment,
@@ -373,7 +374,7 @@ export function Home() {
         </div>
       </section>
 
-      {isSdsModalOpen && (
+      {isSdsModalOpen && createPortal(
         <div
           className="modal-backdrop fixed inset-0 z-50 overflow-y-auto bg-white/72 px-4 py-6 backdrop-blur-sm sm:py-10"
           onMouseDown={() => setIsSdsModalOpen(false)}
@@ -466,7 +467,8 @@ export function Home() {
               </div>
             </section>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </main>
   );

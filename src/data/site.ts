@@ -448,7 +448,7 @@ export const communityGroups: EcosystemItem[] = [
   {
     title: { en: 'Student Members', zh: '学生成员' },
     body: {
-      en: 'Ph.D., M.Phil., research assistant, undergraduate research, and visiting students connected with the group.',
+      en: 'Ph.D., M.Phil., research assistants, undergraduate researchers, and visiting students connected with the group.',
       zh: '与研究组相关的博士生、硕士生、研究助理、本科科研学生与访问学生。',
     },
   },

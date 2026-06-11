@@ -66,7 +66,7 @@ i18n.use(initReactI18next).init({
           emptyCategory: 'To be updated.',
           studentsTitle: 'Students',
           studentsIntro:
-            'Ph.D., M.Phil., research assistant, undergraduate research, and visiting students connected with the group.',
+            'Ph.D., M.Phil., research assistants, undergraduate researchers, and visiting students connected with the group.',
           research: 'Research',
         },
         events: {
