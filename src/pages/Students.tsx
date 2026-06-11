@@ -16,7 +16,7 @@ export function Students() {
       <section>
         <div className="mx-auto grid max-w-4xl gap-5 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8">
           {students.map((person) => (
-            <PersonCard key={person.initials} person={person} />
+            <PersonCard key={person.initials} person={person} showWebsite={false} />
           ))}
         </div>
       </section>

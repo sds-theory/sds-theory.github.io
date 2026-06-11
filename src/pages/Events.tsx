@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EventCard } from '../components/EventCard';
 import { SectionHeading } from '../components/SectionHeading';
-import { events, textOf } from '../data/site';
+import { eventTracks, events, textOf } from '../data/site';
 
 function monthDays(reference: Date) {
   const year = reference.getFullYear();
@@ -23,7 +23,7 @@ export function Events() {
   const { i18n, t } = useTranslation();
   const [selectedId, setSelectedId] = useState(events[0]?.id ?? '');
   const selected = events.find((event) => event.id === selectedId) ?? events[0];
-  const firstEventDate = useMemo(() => new Date(events[0]?.start ?? Date.now()), []);
+  const firstEventDate = useMemo(() => new Date(events[0]?.start ?? '2026-09-01T00:00:00+08:00'), []);
   const days = useMemo(() => monthDays(firstEventDate), [firstEventDate]);
   const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
 
@@ -92,12 +92,22 @@ export function Events() {
 
           <div>
             <SectionHeading
-              title={selected ? textOf(selected.title, i18n.language) : t('events.details')}
-              summary={!selected ? t('events.empty') : undefined}
+              title={selected ? textOf(selected.title, i18n.language) : t('events.launchTitle')}
+              summary={!selected ? t('events.intro') : undefined}
             />
             {selected && (
               <div className="mt-6">
                 <EventCard event={selected} />
+              </div>
+            )}
+            {!selected && (
+              <div className="mt-6 grid gap-3">
+                {eventTracks.map((track) => (
+                  <article key={textOf(track.title, i18n.language)} className="rounded border border-slate-200 bg-white p-4 shadow-sm">
+                    <h3 className="text-base font-semibold text-ink">{textOf(track.title, i18n.language)}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(track.body, i18n.language)}</p>
+                  </article>
+                ))}
               </div>
             )}
             {events.length > 0 && <div className="mt-8 grid gap-3">

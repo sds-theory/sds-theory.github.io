@@ -36,6 +36,19 @@
     }
   }
 
+  @keyframes page-language-enter {
+    from {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(18px) scale(0.988);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+
   @keyframes rise {
     from {
       opacity: 0;
@@ -44,6 +57,43 @@
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes hero-title-enter {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateX(-64px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes hero-subtitle-enter {
+    from {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateX(-42px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes hero-about-enter {
+    from {
+      opacity: 0;
+      transform: translateY(34px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -59,17 +109,195 @@
     }
   }
 
+  @keyframes grid-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 48px 48px, 48px 48px;
+    }
+  }
+
+  @keyframes ribbon-scan {
+    from {
+      transform: translateX(-35%);
+    }
+    to {
+      transform: translateX(35%);
+    }
+  }
+
+  @keyframes card-rise {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes reveal-left-enter {
+    from {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateX(-74px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes card-pop-enter {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(54px) scale(0.92);
+    }
+    68% {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(-8px) scale(1.018);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes modal-backdrop-enter {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(4px);
+    }
+  }
+
+  @keyframes modal-panel-enter {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
   main > section {
     animation: page-enter 420ms ease-out both;
+  }
+
+  .page-language-enter {
+    animation: page-language-enter 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-rise {
     animation: rise 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  .hero-title-in {
+    animation: hero-title-enter 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-subtitle-in {
+    animation: hero-subtitle-enter 820ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
+  }
+
+  .hero-about-in {
+    animation: hero-about-enter 820ms cubic-bezier(0.16, 1, 0.3, 1) 340ms both;
+  }
+
   .animated-surface {
     background-size: 180% 180%;
     animation: shimmer 9s ease infinite;
+  }
+
+  .soft-grid {
+    background-image:
+      linear-gradient(rgba(47, 111, 115, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47, 111, 115, 0.09) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(125, 211, 205, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125, 211, 205, 0.12) 1px, transparent 1px);
+  }
+
+  .math-ribbon {
+    overflow: hidden;
+  }
+
+  .math-ribbon::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 70%;
+    background: linear-gradient(90deg, transparent, #2f6f73, #b66a35, transparent);
+    animation: ribbon-scan 4.8s ease-in-out infinite alternate;
+  }
+
+  .motion-card {
+    animation: card-rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .reveal-left {
+    opacity: 0;
+  }
+
+  .reveal-left.is-visible {
+    animation: reveal-left-enter 820ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .pop-card {
+    opacity: 0;
+    transform: translateY(54px) scale(0.92);
+  }
+
+  .pop-card.is-visible {
+    animation: card-pop-enter 880ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .modal-backdrop {
+    animation: modal-backdrop-enter 280ms ease-out both;
+  }
+
+  .modal-panel {
+    animation: modal-panel-enter 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .lift-card {
+    transition:
+      transform 260ms ease,
+      box-shadow 260ms ease,
+      border-color 260ms ease,
+      background-color 260ms ease;
+  }
+
+  .lift-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(47, 111, 115, 0.45);
+    box-shadow: 0 22px 60px rgba(23, 32, 42, 0.11);
+  }
+
+  .sticky-block {
+    position: sticky;
+    top: 7rem;
+  }
+
+  @media (max-width: 1023px) {
+    .sticky-block {
+      position: static;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -78,9 +306,27 @@
     }
 
     main > section,
+    .page-language-enter,
     .animate-rise,
-    .animated-surface {
+    .hero-title-in,
+    .hero-subtitle-in,
+    .hero-about-in,
+    .animated-surface,
+    .soft-grid,
+    .math-ribbon::before,
+    .motion-card,
+    .reveal-left.is-visible,
+    .pop-card.is-visible,
+    .modal-backdrop,
+    .modal-panel {
       animation: none;
     }
+
+    .reveal-left,
+    .pop-card {
+      opacity: 1;
+      transform: none;
+    }
+
   }
 }

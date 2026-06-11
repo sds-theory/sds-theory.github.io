@@ -9,6 +9,8 @@ const navItems = [
   { to: '/faculty', key: 'faculty' },
   { to: '/students', key: 'students' },
   { to: '/events', key: 'events' },
+  { to: '/recruit', key: 'recruit' },
+  { to: '/collaborate', key: 'collaborate' },
   { to: '/contact', key: 'contact' },
 ];
 
@@ -28,7 +30,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
       <div className="relative mx-auto flex w-screen max-w-[100vw] items-center justify-between gap-3 px-4 py-2 sm:px-6 md:w-full md:max-w-7xl md:gap-4 lg:px-8">
         <button
           type="button"
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded border border-ink bg-ink text-white shadow-sm md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded border border-ink bg-ink text-white shadow-sm lg:hidden"
           onClick={() => setIsOpen((value) => !value)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
@@ -37,7 +39,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
 
         <a
           href={site.sdsUrl}
-          className="flex min-w-0 flex-1 items-center justify-center md:shrink md:justify-start"
+          className="flex min-w-0 flex-1 items-center justify-center lg:shrink lg:justify-start"
         >
           <img
             src={`${import.meta.env.BASE_URL}${site.logo}`}
@@ -46,7 +48,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
           />
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to} className={linkClass}>
               {t(`nav.${item.key}`)}
@@ -54,7 +56,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           <button
             type="button"
             onClick={onToggleLanguage}
@@ -69,7 +71,7 @@ export function Header({ onToggleLanguage }: { onToggleLanguage: () => void }) {
       </div>
 
       {isOpen && (
-        <div className="border-t border-slate-200 px-4 pb-4 md:hidden">
+        <div className="border-t border-slate-200 px-4 pb-4 lg:hidden">
           <nav className="grid gap-1 py-3" aria-label="Mobile navigation">
             {navItems.map((item) => (
               <NavLink

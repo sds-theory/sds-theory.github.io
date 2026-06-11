@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Person, textOf } from '../data/site';
 
-export function PersonCard({ person }: { person: Person }) {
+export function PersonCard({ person, showWebsite = true }: { person: Person; showWebsite?: boolean }) {
   const { i18n, t } = useTranslation();
 
   return (
@@ -50,8 +50,8 @@ export function PersonCard({ person }: { person: Person }) {
           ))}
         </div>
 
-        <div className="mt-auto flex flex-wrap gap-2 pt-5">
-          {person.website && (
+        <div className="mt-auto flex flex-wrap justify-center gap-2 pt-5">
+          {showWebsite && person.website && (
             <a
               href={person.website}
               className="inline-flex items-center gap-1.5 rounded bg-ink px-3 py-2 text-xs font-semibold text-white transition hover:bg-tealstone"
