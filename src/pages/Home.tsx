@@ -165,7 +165,8 @@ export function Home() {
               <p className="hero-subtitle-in mt-4 max-w-4xl text-xl font-semibold leading-8 text-white sm:text-2xl">
                 {isChinese ? (
                   <>
-                    以严谨的算法与数学方法，探索数据、学习、优化
+                    <span className="block sm:inline">以严谨的算法与数学方法，</span>
+                    <span className="block sm:inline">探索数据、学习、优化</span>
                     <span className="block">与决策系统的理论基础。</span>
                   </>
                 ) : (

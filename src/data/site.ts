@@ -222,8 +222,8 @@ export const homepagePillars: HomepagePillar[] = [
       zh: '理论研究的沃土',
     },
     subtitle: {
-      en: 'Computer science support and real settings',
-      zh: '计算机方向与真实场景',
+      en: "Rooted in the School's interdisciplinary ecosystem",
+      zh: '扎根学院交叉学科生态',
     },
     description: {
       en: 'SDS connects computer science, statistics, operations research, AI, machine learning, big data, and decision systems, giving theory a broad data-science setting.',
@@ -258,12 +258,12 @@ export const homepagePillars: HomepagePillar[] = [
       zh: '扎实的研究团队',
     },
     subtitle: {
-      en: 'International perspective and complementary depth',
-      zh: '国际视野与互补背景',
+      en: 'Solid backgrounds and international perspective',
+      zh: '坚实背景与国际视野',
     },
     description: {
-      en: 'Members bring rigorous theory training and international perspective across algorithms, optimization, learning theory, economics and computation, data management, and discrete mathematics.',
-      zh: '研究团队成员具备严谨的理论训练与国际化视野。研究方向覆盖算法、优化、学习理论、经济学与计算、数据管理和离散数学等领域。',
+      en: 'Members bring rigorous theory training and international perspective, with diverse but complementary research focuses that connect mathematical and algorithmic thinking to foundational questions in data science.',
+      zh: '研究团队成员具备严谨的理论训练与国际化视野，研究背景多元、侧重不同，并共同将数学与算法思维连接到数据科学中的基础问题。',
     },
     points: [
       {
@@ -274,10 +274,10 @@ export const homepagePillars: HomepagePillar[] = [
         },
       },
       {
-        title: { en: 'Complementary theoretical backgrounds', zh: '互补的理论背景' },
+        title: { en: 'Solid and complementary theoretical backgrounds', zh: '坚实而互补的理论背景' },
         body: {
-          en: 'The team spans traditional algorithms, optimization, machine learning, economics, and data management, linking foundational theory with data-science problems.',
-          zh: '团队研究方向覆盖传统算法、优化、机器学习、经济学、数据管理等领域，形成从基础理论到数据科学问题的互补支撑。',
+          en: 'Research directions span traditional algorithms, optimization, machine learning, economics, and data management, linking foundational theory with data-science problems.',
+          zh: '研究方向覆盖传统算法、优化、机器学习、经济学、数据管理等领域，形成从基础理论到数据科学问题的互补支撑。',
         },
       },
     ],
@@ -293,8 +293,8 @@ export const homepagePillars: HomepagePillar[] = [
       zh: '以人为本的科研训练',
     },
     subtitle: {
-      en: 'From problem solving to research taste',
-      zh: '从解题能力到研究品味',
+      en: 'From strong problem solving to research maturity',
+      zh: '从问题求解走向研究成熟',
     },
     description: {
       en: 'Close advising, sustained discussion, and real research problems help students develop rigorous habits and independent taste, growing into young scholars who identify problems, distill questions, and advance research.',
@@ -328,8 +328,8 @@ export const homepagePillars: HomepagePillar[] = [
       zh: '活跃的理论研究氛围',
     },
     subtitle: {
-      en: 'Regular exchange and open collaboration',
-      zh: '常态交流与开放合作',
+      en: 'Open exchange and sustained encounters',
+      zh: '开放交流与持续碰撞',
     },
     description: {
       en: 'Theory grows through discussion. Seminars, reading groups, student meetings, visitor talks, informal problem sessions, and cross-area collaborations build a steady academic rhythm.',
