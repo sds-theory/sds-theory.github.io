@@ -267,9 +267,9 @@ export const homepagePillars: HomepagePillar[] = [
     },
     points: [
       {
-        title: { en: 'Oversea training and international perspective', zh: '海外训练与国际视野' },
+        title: { en: 'Overseas training and international perspective', zh: '海外训练与国际视野' },
         body: {
-          en: 'Members hold Ph.D. degrees from well-known universities and have oversea teaching or research experience. They follow advanced international research practices and connect to the research frontier.',
+          en: 'Members hold Ph.D. degrees from well-known universities and have overseas teaching or research experience. They follow advanced international research practices and connect to the research frontier.',
           zh: '成员均拥有名校博士学位及海外高校执教或研究经历，熟悉国际先进研究范式，并与国际研究前沿保持紧密联系。',
         },
       },
