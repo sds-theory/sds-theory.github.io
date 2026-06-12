@@ -2,6 +2,7 @@ import {
   ArrowRight,
   BookOpen,
   CalendarDays,
+  ChevronDown,
   ExternalLink,
   Newspaper,
   X,
@@ -109,6 +110,7 @@ function ActionLink({
 export function Home() {
   const { i18n, t } = useTranslation();
   const [isSdsModalOpen, setIsSdsModalOpen] = useState(false);
+  const [expandedPointIds, setExpandedPointIds] = useState<string[]>([]);
   const isChinese = i18n.language.startsWith('zh');
   const languageKey = isChinese ? 'zh' : 'en';
   const whyReveal = useRevealOnView<HTMLElement>(languageKey);
@@ -138,6 +140,10 @@ export function Home() {
       document.removeEventListener('keydown', closeOnEscape);
     };
   }, [isSdsModalOpen]);
+
+  useEffect(() => {
+    setExpandedPointIds([]);
+  }, [languageKey]);
 
   return (
     <main>
@@ -205,7 +211,7 @@ export function Home() {
               return (
                 <article
                   key={`${pillar.id}-${languageKey}`}
-                  className={`pop-card lift-card group relative flex min-h-[430px] flex-col overflow-hidden rounded border border-slate-200 bg-[#fbfefd] p-5 shadow-sm ${
+                  className={`pop-card lift-card group relative flex min-h-[380px] flex-col overflow-hidden rounded border border-slate-200 bg-[#fbfefd] p-5 shadow-sm ${
                     whyReveal.isVisible ? 'is-visible' : ''
                   }`}
                   style={{ transitionDelay: `${index * 95}ms`, animationDelay: `${index * 95}ms` }}
@@ -239,15 +245,48 @@ export function Home() {
                   </div>
 
                   <div className={`relative z-10 ${isChinese ? 'mt-5' : 'mt-3'} space-y-3`}>
-                    {pillar.points.map((point) => (
-                      <div key={textOf(point.title, i18n.language)} className="rounded border border-slate-200 bg-white/85 p-3">
-                        <div className="flex items-center gap-2.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-copper/70" />
-                          <p className="text-sm font-semibold text-ink">{textOf(point.title, i18n.language)}</p>
-                        </div>
-                        <p className="mt-2 text-xs leading-5 text-slate-600">{textOf(point.body, i18n.language)}</p>
-                      </div>
-                    ))}
+                    {pillar.points.map((point, pointIndex) => {
+                      const pointId = `${pillar.id}-${pointIndex}`;
+                      const isExpanded = expandedPointIds.includes(pointId);
+
+                      return (
+                        <button
+                          key={textOf(point.title, i18n.language)}
+                          type="button"
+                          aria-expanded={isExpanded}
+                          onClick={() =>
+                            setExpandedPointIds((current) =>
+                              current.includes(pointId)
+                                ? current.filter((id) => id !== pointId)
+                                : [...current, pointId],
+                            )
+                          }
+                          className={`group/point w-full rounded border p-3 text-left transition duration-300 hover:-translate-y-0.5 hover:border-tealstone/50 hover:bg-white hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tealstone/40 ${
+                            isExpanded ? 'border-tealstone/45 bg-white shadow-sm' : 'border-slate-200 bg-white/85'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2.5">
+                              <span className="h-1.5 w-1.5 flex-none rounded-full bg-copper/70" />
+                              <p className="text-sm font-semibold text-ink">{textOf(point.title, i18n.language)}</p>
+                            </div>
+                            <ChevronDown
+                              size={15}
+                              className={`flex-none text-copper transition duration-300 group-hover/point:rotate-180 ${
+                                isExpanded ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
+                          <p
+                            className={`overflow-hidden text-xs leading-5 text-slate-600 transition-all duration-300 ease-out group-hover/point:mt-2 group-hover/point:max-h-32 group-hover/point:opacity-100 group-focus-visible/point:mt-2 group-focus-visible/point:max-h-32 group-focus-visible/point:opacity-100 ${
+                              isExpanded ? 'mt-2 max-h-32 opacity-100' : 'mt-0 max-h-0 opacity-0'
+                            }`}
+                          >
+                            {textOf(point.body, i18n.language)}
+                          </p>
+                        </button>
+                      );
+                    })}
                   </div>
 
                   <div className="relative z-10 mt-auto flex flex-wrap justify-center gap-4 pt-6">
