@@ -715,6 +715,17 @@ export const eventTracks: CollaborationItem[] = [
 
 export const news: NewsItem[] = [
   {
+    date: '2026-06-26',
+    title: {
+      en: 'One paper by Prof. Jingbang Chen accepted to ESA 2026',
+      zh: '陈靖邦教授一篇论文被 ESA 2026 录用',
+    },
+    summary: {
+      en: 'Prof. Jingbang Chen’s paper "Nearly Optimal Internal Dictionary Matching" has been accepted to the European Symposium on Algorithms (ESA 2026).',
+      zh: '陈靖邦教授一篇论文《Nearly Optimal Internal Dictionary Matching》被 European Symposium on Algorithms (ESA 2026) 录用。',
+    },
+  },
+  {
     date: '2026-06-11',
     title: { en: 'Website officially launched', zh: '网站正式上线' },
     summary: {
