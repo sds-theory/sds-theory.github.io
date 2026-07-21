@@ -38,6 +38,8 @@ export type NewsItem = {
   date: string;
   title: LocalizedText;
   summary: LocalizedText;
+  image?: string;
+  imageAlt?: LocalizedText;
 };
 
 export type HomeCta = {
@@ -623,7 +625,26 @@ export const faculty: Person[] = [
       zh: '研究方向包括网络和互联网技术的经济与性能分析、共享经济与移动性、监管政策、智能电网和能源系统、资源共享与拍卖。',
     },
   },
+  {
+    name: { en: 'Hao Wu', zh: '吴昊' },
+    title: { en: 'William T. Tutte Postdoctoral Fellow', zh: 'William T. Tutte 博士后研究员' },
+    role: { en: 'Member', zh: '成员' },
+    initials: 'HW',
+    website: 'https://sites.google.com/view/haowu/home',
+    education: { en: 'Ph.D., University of Melbourne', zh: '博士，墨尔本大学' },
+    research: [
+      { en: 'Sketching algorithms', zh: '草图算法' },
+      { en: 'Graph algorithms', zh: '图算法' },
+      { en: 'Differentially private algorithms', zh: '差分隐私算法' },
+    ],
+    bio: {
+      en: 'Ph.D., University of Melbourne. His research interests include sketching algorithms, graph algorithms, and differentially private algorithms.',
+      zh: '博士，墨尔本大学。研究方向包括草图算法、图算法与差分隐私算法。',
+    },
+  },
 ];
+
+export const affiliatedFaculty: Person[] = [];
 
 export const students: Person[] = [
   {
@@ -714,6 +735,22 @@ export const eventTracks: CollaborationItem[] = [
 ];
 
 export const news: NewsItem[] = [
+  {
+    date: '2026-07-31',
+    title: {
+      en: 'SDS Topical Seminar by Prof. Yaonan Jin',
+      zh: 'SDS Topical Seminar：Yaonan Jin 教授报告',
+    },
+    summary: {
+      en: 'Prof. Yaonan Jin from HKUST will give a topical seminar titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM - 12:00 PM, in 401 Meeting Room, Dao Yuan Building.',
+      zh: '香港科技大学 Yaonan Jin 教授将于 2026 年 7 月 31 日 11:00-12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
+    },
+    image: 'images/seminar-yaonan-jin-2026-07-31.jpg',
+    imageAlt: {
+      en: 'Poster for the SDS Topical Seminar by Yaonan Jin',
+      zh: 'Yaonan Jin 教授 SDS Topical Seminar 海报',
+    },
+  },
   {
     date: '2026-06-26',
     title: {

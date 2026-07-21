@@ -110,6 +110,11 @@ function ActionLink({
 export function Home() {
   const { i18n, t } = useTranslation();
   const [isSdsModalOpen, setIsSdsModalOpen] = useState(false);
+  const [selectedNewsImage, setSelectedNewsImage] = useState<{
+    src: string;
+    alt: string;
+    title: string;
+  } | null>(null);
   const [expandedPointIds, setExpandedPointIds] = useState<string[]>([]);
   const isChinese = i18n.language.startsWith('zh');
   const languageKey = isChinese ? 'zh' : 'en';
@@ -121,7 +126,7 @@ export function Home() {
   const recentNews = news.slice(0, 5);
 
   useEffect(() => {
-    if (!isSdsModalOpen) {
+    if (!isSdsModalOpen && !selectedNewsImage) {
       return undefined;
     }
 
@@ -129,6 +134,7 @@ export function Home() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsSdsModalOpen(false);
+        setSelectedNewsImage(null);
       }
     };
 
@@ -139,7 +145,7 @@ export function Home() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener('keydown', closeOnEscape);
     };
-  }, [isSdsModalOpen]);
+  }, [isSdsModalOpen, selectedNewsImage]);
 
   useEffect(() => {
     setExpandedPointIds([]);
@@ -369,20 +375,46 @@ export function Home() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {recentNews.map((item, index) => (
-              <article
-                key={`${item.date}-${textOf(item.title, i18n.language)}`}
-                className="motion-card lift-card rounded border border-slate-200 bg-[#fbfefd] p-4 shadow-sm"
-                style={{ animationDelay: `${index * 70}ms` }}
-              >
-                <div className="flex items-center gap-2 text-sm font-semibold text-copper">
-                  <Newspaper size={16} />
-                  {item.date}
-                </div>
-                <h3 className="mt-3 text-lg font-semibold text-ink">{textOf(item.title, i18n.language)}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
-              </article>
-            ))}
+            {recentNews.map((item, index) => {
+              const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
+              const newsTitle = textOf(item.title, i18n.language);
+              const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;
+              const cardClassName = 'motion-card lift-card block w-full rounded border border-slate-200 bg-[#fbfefd] p-4 text-left shadow-sm';
+              const cardContent = (
+                <>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-copper">
+                    <Newspaper size={16} />
+                    {item.date}
+                  </div>
+                  <h3 className="mt-3 flex items-start gap-2 text-lg font-semibold text-ink">
+                    <span>{newsTitle}</span>
+                    {imageHref && <ExternalLink className="mt-1 flex-none text-tealstone" size={16} />}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
+                </>
+              );
+
+              return imageHref ? (
+                <button
+                  key={`${item.date}-${newsTitle}`}
+                  type="button"
+                  aria-label={newsImageAlt}
+                  onClick={() => setSelectedNewsImage({ src: imageHref, alt: newsImageAlt, title: newsTitle })}
+                  className={cardClassName}
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  {cardContent}
+                </button>
+              ) : (
+                <article
+                  key={`${item.date}-${newsTitle}`}
+                  className={cardClassName}
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  {cardContent}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -412,6 +444,43 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {selectedNewsImage && createPortal(
+        <div
+          className="modal-backdrop fixed inset-0 z-50 overflow-y-auto bg-ink/45 px-4 py-6 backdrop-blur-sm sm:py-10"
+          onMouseDown={() => setSelectedNewsImage(null)}
+        >
+          <div className="flex min-h-full items-center justify-center">
+            <section
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedNewsImage.title}
+              className="modal-panel relative w-full max-w-4xl overflow-hidden rounded border border-white/80 bg-white shadow-2xl shadow-ink/30"
+              onMouseDown={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between gap-4 border-b border-slate-200 px-4 py-3 sm:px-5">
+                <h2 className="text-base font-semibold text-ink sm:text-lg">{selectedNewsImage.title}</h2>
+                <button
+                  type="button"
+                  aria-label={isChinese ? '关闭' : 'Close'}
+                  onClick={() => setSelectedNewsImage(null)}
+                  className="grid h-9 w-9 flex-none place-items-center rounded-full border border-slate-200 bg-white text-ink shadow-sm transition hover:-translate-y-0.5 hover:border-tealstone hover:text-tealstone"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <div className="max-h-[82vh] overflow-auto bg-[#f6fbfa] p-3 sm:p-5">
+                <img
+                  src={selectedNewsImage.src}
+                  alt={selectedNewsImage.alt}
+                  className="mx-auto h-auto max-h-[78vh] w-auto max-w-full rounded shadow-lg"
+                />
+              </div>
+            </section>
+          </div>
+        </div>,
+        document.body,
+      )}
 
       {isSdsModalOpen && createPortal(
         <div

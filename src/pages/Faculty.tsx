@@ -5,7 +5,8 @@ import { communityGroups, faculty, textOf } from '../data/site';
 export function Faculty() {
   const { i18n, t } = useTranslation();
   const memberCategories = communityGroups.filter((group) => group.title.en !== 'Student Members');
-  const emptyCategories = memberCategories.slice(1);
+  const coreCategory = memberCategories[0];
+  const emptyCategories = memberCategories.filter((group) => group.title.en !== coreCategory.title.en);
 
   return (
     <main className="min-h-screen bg-[#f9faf7]">
@@ -24,7 +25,7 @@ export function Faculty() {
       </section>
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div>
-          <h2 className="text-2xl font-semibold text-ink">{textOf(memberCategories[0].title, i18n.language)}</h2>
+          <h2 className="text-2xl font-semibold text-ink">{textOf(coreCategory.title, i18n.language)}</h2>
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {faculty.map((person) => (
