@@ -1,6 +1,8 @@
-import { CalendarPlus, Clock, Download, MapPin, UserRound } from 'lucide-react';
+import { CalendarPlus, Clock, Download, ExternalLink, Image, MapPin, UserRound } from 'lucide-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { textOf, TheoryEvent } from '../data/site';
+import { ImageModal } from './ImageModal';
 
 function formatDateRange(event: TheoryEvent, language: string) {
   const locale = language.startsWith('zh') ? 'zh-CN' : 'en-US';
@@ -59,6 +61,9 @@ function icsDataUrl(event: TheoryEvent, language: string) {
 
 export function EventCard({ event, compact = false }: { event: TheoryEvent; compact?: boolean }) {
   const { i18n, t } = useTranslation();
+  const [isPosterOpen, setIsPosterOpen] = useState(false);
+  const posterSrc = event.poster ? `${import.meta.env.BASE_URL}${event.poster}` : undefined;
+  const posterAlt = event.posterAlt ? textOf(event.posterAlt, i18n.language) : textOf(event.title, i18n.language);
 
   return (
     <article className="rounded border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-copper/60 hover:shadow-xl">
@@ -79,13 +84,31 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
         </span>
         <span className="flex items-start gap-2">
           <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
-          {textOf(event.speaker, i18n.language)}
+          {event.speakerUrl ? (
+            <a
+              href={event.speakerUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 font-medium text-ink underline decoration-slate-300 underline-offset-4 transition hover:text-tealstone"
+            >
+              {textOf(event.speaker, i18n.language)}
+              <ExternalLink size={13} />
+            </a>
+          ) : (
+            textOf(event.speaker, i18n.language)
+          )}
           {event.affiliation ? `, ${textOf(event.affiliation, i18n.language)}` : ''}
         </span>
         <span className="flex items-start gap-2">
           <MapPin size={16} className="mt-0.5 shrink-0 text-tealstone" />
           {textOf(event.location, i18n.language)}
         </span>
+        {event.host && (
+          <span className="flex items-start gap-2">
+            <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
+            {t('events.host')}: {textOf(event.host, i18n.language)}
+          </span>
+        )}
       </div>
 
       {!compact && (
@@ -93,6 +116,16 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
       )}
 
       <div className="mt-5 flex flex-wrap gap-2">
+        {posterSrc && (
+          <button
+            type="button"
+            onClick={() => setIsPosterOpen(true)}
+            className="inline-flex items-center gap-1.5 rounded border border-slate-200 px-3 py-2 text-xs font-semibold text-ink transition hover:border-copper hover:text-copper"
+          >
+            <Image size={14} />
+            {t('actions.viewPoster')}
+          </button>
+        )}
         <a
           href={googleCalendarUrl(event, i18n.language)}
           target="_blank"
@@ -111,6 +144,16 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
           {t('actions.addIcs')}
         </a>
       </div>
+
+      {isPosterOpen && posterSrc && (
+        <ImageModal
+          src={posterSrc}
+          alt={posterAlt}
+          title={textOf(event.title, i18n.language)}
+          closeLabel={i18n.language.startsWith('zh') ? '关闭' : 'Close'}
+          onClose={() => setIsPosterOpen(false)}
+        />
+      )}
     </article>
   );
 }

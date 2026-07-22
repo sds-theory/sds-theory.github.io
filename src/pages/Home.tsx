@@ -11,6 +11,8 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { EventCard } from '../components/EventCard';
+import { ImageModal } from '../components/ImageModal';
 import {
   colleagueRecruitment,
   eventTracks,
@@ -126,7 +128,7 @@ export function Home() {
   const recentNews = news.slice(0, 5);
 
   useEffect(() => {
-    if (!isSdsModalOpen && !selectedNewsImage) {
+    if (!isSdsModalOpen) {
       return undefined;
     }
 
@@ -134,7 +136,6 @@ export function Home() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsSdsModalOpen(false);
-        setSelectedNewsImage(null);
       }
     };
 
@@ -145,7 +146,7 @@ export function Home() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener('keydown', closeOnEscape);
     };
-  }, [isSdsModalOpen, selectedNewsImage]);
+  }, [isSdsModalOpen]);
 
   useEffect(() => {
     setExpandedPointIds([]);
@@ -374,23 +375,25 @@ export function Home() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="mt-5 border-y border-slate-200">
             {recentNews.map((item, index) => {
               const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
               const newsTitle = textOf(item.title, i18n.language);
               const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;
-              const cardClassName = 'motion-card lift-card block w-full rounded border border-slate-200 bg-[#fbfefd] p-4 text-left shadow-sm';
+              const cardClassName = 'motion-card group block w-full border-b border-slate-200 px-2 py-5 text-left transition last:border-b-0 hover:bg-[#f6fbfa] sm:grid sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6 sm:px-4';
               const cardContent = (
                 <>
                   <div className="flex items-center gap-2 text-sm font-semibold text-copper">
                     <Newspaper size={16} />
                     {item.date}
                   </div>
-                  <h3 className="mt-3 flex items-start gap-2 text-lg font-semibold text-ink">
-                    <span>{newsTitle}</span>
-                    {imageHref && <ExternalLink className="mt-1 flex-none text-tealstone" size={16} />}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
+                  <div className="mt-2 min-w-0 sm:mt-0">
+                    <h3 className="flex items-start gap-2 text-lg font-semibold text-ink">
+                      <span>{newsTitle}</span>
+                      {imageHref && <ExternalLink className="mt-1 flex-none text-tealstone" size={16} />}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
+                  </div>
                 </>
               );
 
@@ -429,7 +432,21 @@ export function Home() {
             </div>
           )}
 
-          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {events.length > 0 && (
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {events.map((event, index) => (
+                <div
+                  key={event.id}
+                  className="motion-card"
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  <EventCard event={event} compact />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className={`${events.length > 0 ? 'mt-6' : 'mt-4'} grid gap-4 md:grid-cols-2 lg:grid-cols-3`}>
             {eventTracks.map((track, index) => (
               <article key={textOf(track.title, i18n.language)} className="motion-card lift-card rounded border border-slate-200 bg-white p-4 shadow-sm" style={{ animationDelay: `${index * 70}ms` }}>
                 <div className="flex items-start gap-3">
@@ -445,41 +462,14 @@ export function Home() {
         </div>
       </section>
 
-      {selectedNewsImage && createPortal(
-        <div
-          className="modal-backdrop fixed inset-0 z-50 overflow-y-auto bg-ink/45 px-4 py-6 backdrop-blur-sm sm:py-10"
-          onMouseDown={() => setSelectedNewsImage(null)}
-        >
-          <div className="flex min-h-full items-center justify-center">
-            <section
-              role="dialog"
-              aria-modal="true"
-              aria-label={selectedNewsImage.title}
-              className="modal-panel relative w-full max-w-4xl overflow-hidden rounded border border-white/80 bg-white shadow-2xl shadow-ink/30"
-              onMouseDown={(event) => event.stopPropagation()}
-            >
-              <div className="flex items-center justify-between gap-4 border-b border-slate-200 px-4 py-3 sm:px-5">
-                <h2 className="text-base font-semibold text-ink sm:text-lg">{selectedNewsImage.title}</h2>
-                <button
-                  type="button"
-                  aria-label={isChinese ? '关闭' : 'Close'}
-                  onClick={() => setSelectedNewsImage(null)}
-                  className="grid h-9 w-9 flex-none place-items-center rounded-full border border-slate-200 bg-white text-ink shadow-sm transition hover:-translate-y-0.5 hover:border-tealstone hover:text-tealstone"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-              <div className="max-h-[82vh] overflow-auto bg-[#f6fbfa] p-3 sm:p-5">
-                <img
-                  src={selectedNewsImage.src}
-                  alt={selectedNewsImage.alt}
-                  className="mx-auto h-auto max-h-[78vh] w-auto max-w-full rounded shadow-lg"
-                />
-              </div>
-            </section>
-          </div>
-        </div>,
-        document.body,
+      {selectedNewsImage && (
+        <ImageModal
+          src={selectedNewsImage.src}
+          alt={selectedNewsImage.alt}
+          title={selectedNewsImage.title}
+          closeLabel={isChinese ? '关闭' : 'Close'}
+          onClose={() => setSelectedNewsImage(null)}
+        />
       )}
 
       {isSdsModalOpen && createPortal(

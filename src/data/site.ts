@@ -26,12 +26,15 @@ export type TheoryEvent = {
   type: LocalizedText;
   status: LocalizedText;
   speaker: LocalizedText;
+  speakerUrl?: string;
   affiliation?: LocalizedText;
   location: LocalizedText;
   start: string;
   end: string;
   abstract: LocalizedText;
   host?: LocalizedText;
+  poster?: string;
+  posterAlt?: LocalizedText;
 };
 
 export type NewsItem = {
@@ -627,7 +630,7 @@ export const faculty: Person[] = [
   },
   {
     name: { en: 'Hao Wu', zh: '吴昊' },
-    title: { en: 'William T. Tutte Postdoctoral Fellow', zh: 'William T. Tutte 博士后研究员' },
+    title: { en: 'Assistant Professor (joining January 2027)', zh: '助理教授（2027年1月加入）' },
     role: { en: 'Member', zh: '成员' },
     initials: 'HW',
     website: 'https://sites.google.com/view/haowu/home',
@@ -687,14 +690,46 @@ export const students: Person[] = [
   },
 ];
 
-export const events: TheoryEvent[] = [];
+export const events: TheoryEvent[] = [
+  {
+    id: '2026-07-31-yaonan-jin-local-search-clustering',
+    title: {
+      en: 'Local Search for Clustering in Almost-Linear Time',
+      zh: 'Local Search for Clustering in Almost-Linear Time',
+    },
+    type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
+    status: { en: 'Upcoming', zh: '即将举行' },
+    speaker: { en: 'Prof. Yaonan Jin', zh: '金耀楠教授' },
+    speakerUrl: 'https://yj10027.github.io/',
+    affiliation: {
+      en: 'Hong Kong University of Science and Technology',
+      zh: '香港科技大学',
+    },
+    location: {
+      en: 'Room 401, Dao Yuan Building',
+      zh: '道远楼 401 会议室',
+    },
+    start: '2026-07-31T11:00:00+08:00',
+    end: '2026-07-31T12:00:00+08:00',
+    abstract: {
+      en: 'This talk presents the first local search algorithm for Euclidean clustering that achieves an O(1)-approximation in almost-linear time. It develops a new one-swap local search framework and an efficient approximate nearest-neighbor data structure, with applications to k-means and other metric clustering settings.',
+      zh: '本报告介绍首个在近线性时间内为欧氏聚类取得 O(1) 近似比的局部搜索算法。工作提出新的单交换局部搜索框架和高效的近似最近邻数据结构，并应用于 k-means 及其他度量聚类问题。',
+    },
+    host: { en: 'Prof. Tao Lin', zh: '林涛教授' },
+    poster: 'images/seminar-yaonan-jin-2026-07-31.jpg',
+    posterAlt: {
+      en: 'Poster for the SDS Topical Seminar by Yaonan Jin',
+      zh: '金耀楠教授 SDS 专题报告海报',
+    },
+  },
+];
 
 export const eventTracks: CollaborationItem[] = [
   {
     title: { en: 'SDS Theory Seminar', zh: 'SDS Theory Seminar' },
     body: {
-      en: 'The SDS Theory Seminar will be launched in Fall 2026. We welcome seminar suggestions and visitor proposals.',
-      zh: 'SDS Theory Seminar 计划于 2026 年秋季启动，欢迎报告推荐、访问交流与合作建议。',
+      en: 'The SDS Theory Seminar hosts research talks and discussions in algorithms and the theoretical foundations of data science.',
+      zh: 'SDS Theory Seminar 围绕算法与数据科学理论基础开展学术报告和研究交流。',
     },
   },
   {
@@ -739,16 +774,16 @@ export const news: NewsItem[] = [
     date: '2026-07-31',
     title: {
       en: 'SDS Topical Seminar by Prof. Yaonan Jin',
-      zh: 'SDS Topical Seminar：Yaonan Jin 教授报告',
+      zh: 'SDS Topical Seminar：金耀楠教授报告',
     },
     summary: {
       en: 'Prof. Yaonan Jin from HKUST will give a topical seminar titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM - 12:00 PM, in 401 Meeting Room, Dao Yuan Building.',
-      zh: '香港科技大学 Yaonan Jin 教授将于 2026 年 7 月 31 日 11:00-12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
+      zh: '香港科技大学金耀楠教授将于 2026 年 7 月 31 日 11:00-12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
     },
     image: 'images/seminar-yaonan-jin-2026-07-31.jpg',
     imageAlt: {
       en: 'Poster for the SDS Topical Seminar by Yaonan Jin',
-      zh: 'Yaonan Jin 教授 SDS Topical Seminar 海报',
+      zh: '金耀楠教授 SDS Topical Seminar 海报',
     },
   },
   {

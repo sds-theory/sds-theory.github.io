@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EventCard } from '../components/EventCard';
 import { SectionHeading } from '../components/SectionHeading';
-import { eventTracks, events, textOf } from '../data/site';
+import { eventTracks, events, textOf, type TheoryEvent } from '../data/site';
 
 function monthDays(reference: Date) {
   const year = reference.getFullYear();
@@ -17,6 +17,16 @@ function monthDays(reference: Date) {
     day.setDate(start.getDate() + index);
     return day;
   });
+}
+
+function compactSpeaker(event: TheoryEvent, language: string) {
+  return textOf(event.speaker, language)
+    .replace(/^Prof\.\s*/, '')
+    .replace(/\s*教授$/, '');
+}
+
+function compactEventType(event: TheoryEvent, language: string) {
+  return textOf(event.type, language).replace(/^SDS\s*/, '');
 }
 
 export function Events() {
@@ -37,7 +47,7 @@ export function Events() {
 
       <section>
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div className="rounded border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="min-w-0 rounded border border-slate-200 bg-white p-4 shadow-sm">
             <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-normal text-copper">{t('events.calendar')}</p>
@@ -50,47 +60,62 @@ export function Events() {
               </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-500">
-              {Array.from({ length: 7 }, (_, index) => {
-                const day = new Date(2026, 1, index + 1);
-                return <div key={index}>{new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(day)}</div>;
-              })}
-            </div>
-            <div className="mt-2 grid grid-cols-7 gap-1">
-              {days.map((day) => {
-                const dayEvents = events.filter((event) => {
-                  const eventDate = new Date(event.start);
-                  return (
-                    eventDate.getFullYear() === day.getFullYear() &&
-                    eventDate.getMonth() === day.getMonth() &&
-                    eventDate.getDate() === day.getDate()
-                  );
-                });
-                const isCurrentMonth = day.getMonth() === firstEventDate.getMonth();
-                return (
-                  <button
-                    key={day.toISOString()}
-                    type="button"
-                    onClick={() => dayEvents[0] && setSelectedId(dayEvents[0].id)}
-                    className={`min-h-20 rounded border p-2 text-left transition ${
-                      dayEvents.length
-                        ? 'border-copper/50 bg-copper/10 text-ink hover:-translate-y-0.5'
-                        : 'border-slate-200 bg-[#f9faf7] text-slate-400'
-                    } ${isCurrentMonth ? '' : 'opacity-45'}`}
-                  >
-                    <span className="text-xs font-semibold">{day.getDate()}</span>
-                    {dayEvents.map((event) => (
-                      <span key={event.id} className="mt-1 block truncate text-xs font-semibold text-copper">
-                        {textOf(event.type, i18n.language)}
-                      </span>
-                    ))}
-                  </button>
-                );
-              })}
+            <div className="-mx-1 mt-4 overflow-x-auto pb-2">
+              <div className="min-w-[35rem] px-1">
+                <div className="grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-500">
+                  {Array.from({ length: 7 }, (_, index) => {
+                    const day = new Date(2026, 1, index + 1);
+                    return <div key={index}>{new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(day)}</div>;
+                  })}
+                </div>
+                <div className="mt-2 grid grid-cols-7 gap-1">
+                  {days.map((day) => {
+                    const dayEvents = events.filter((event) => {
+                      const eventDate = new Date(event.start);
+                      return (
+                        eventDate.getFullYear() === day.getFullYear() &&
+                        eventDate.getMonth() === day.getMonth() &&
+                        eventDate.getDate() === day.getDate()
+                      );
+                    });
+                    const isCurrentMonth = day.getMonth() === firstEventDate.getMonth();
+                    const isSelectedDay = dayEvents.some((event) => event.id === selectedId);
+                    const eventLabel = dayEvents
+                      .map((event) => `${textOf(event.speaker, i18n.language)}: ${textOf(event.title, i18n.language)}`)
+                      .join('; ');
+                    return (
+                      <button
+                        key={day.toISOString()}
+                        type="button"
+                        aria-label={eventLabel || String(day.getDate())}
+                        title={eventLabel || undefined}
+                        onClick={() => dayEvents[0] && setSelectedId(dayEvents[0].id)}
+                        className={`min-h-24 rounded border p-2 text-left transition ${
+                          dayEvents.length
+                            ? 'border-copper/50 bg-copper/10 text-ink hover:-translate-y-0.5'
+                            : 'border-slate-200 bg-[#f9faf7] text-slate-400'
+                        } ${isSelectedDay ? 'ring-2 ring-tealstone/55' : ''} ${isCurrentMonth ? '' : 'opacity-45'}`}
+                      >
+                        <span className="text-xs font-semibold">{day.getDate()}</span>
+                        {dayEvents.map((event) => (
+                          <span key={event.id} className="mt-1.5 block">
+                            <span className="block whitespace-nowrap text-[10px] font-semibold leading-4 text-ink">
+                              {compactSpeaker(event, i18n.language)}
+                            </span>
+                            <span className="block text-[10px] leading-4 text-copper">
+                              {compactEventType(event, i18n.language)}
+                            </span>
+                          </span>
+                        ))}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <SectionHeading
               title={selected ? textOf(selected.title, i18n.language) : t('events.launchTitle')}
               summary={!selected ? t('events.intro') : undefined}
