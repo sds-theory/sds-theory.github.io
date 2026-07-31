@@ -35,12 +35,22 @@ export type TheoryEvent = {
   host?: LocalizedText;
   poster?: string;
   posterAlt?: LocalizedText;
+  photos?: EventPhoto[];
+};
+
+export type EventPhoto = {
+  src: string;
+  width: number;
+  height: number;
+  alt: LocalizedText;
+  caption?: LocalizedText;
 };
 
 export type NewsItem = {
   date: string;
   title: LocalizedText;
   summary: LocalizedText;
+  eventId?: string;
   image?: string;
   imageAlt?: LocalizedText;
 };
@@ -698,7 +708,7 @@ export const events: TheoryEvent[] = [
       zh: 'Local Search for Clustering in Almost-Linear Time',
     },
     type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
-    status: { en: 'Upcoming', zh: '即将举行' },
+    status: { en: 'Completed', zh: '已结束' },
     speaker: { en: 'Prof. Yaonan Jin', zh: '金耀楠教授' },
     speakerUrl: 'https://yj10027.github.io/',
     affiliation: {
@@ -721,6 +731,34 @@ export const events: TheoryEvent[] = [
       en: 'Poster for the SDS Topical Seminar by Yaonan Jin',
       zh: '金耀楠教授 SDS 专题报告海报',
     },
+    photos: [
+      {
+        src: 'images/events/2026-07-31-yaonan-jin/seminar-discussion.jpg',
+        width: 1800,
+        height: 1350,
+        alt: {
+          en: 'Prof. Yaonan Jin speaking with participants during the seminar',
+          zh: '金耀楠教授在专题报告现场与师生交流',
+        },
+        caption: {
+          en: 'Seminar discussion and exchange',
+          zh: '现场讨论与交流',
+        },
+      },
+      {
+        src: 'images/events/2026-07-31-yaonan-jin/seminar-presentation.jpg',
+        width: 1280,
+        height: 1707,
+        alt: {
+          en: 'Prof. Yaonan Jin presenting Local Search for Clustering in Almost-Linear Time',
+          zh: '金耀楠教授作 Local Search for Clustering in Almost-Linear Time 专题报告',
+        },
+        caption: {
+          en: 'Prof. Yaonan Jin presenting the seminar',
+          zh: '金耀楠教授作学术报告',
+        },
+      },
+    ],
   },
 ];
 
@@ -772,13 +810,14 @@ export const eventTracks: CollaborationItem[] = [
 export const news: NewsItem[] = [
   {
     date: '2026-07-31',
+    eventId: '2026-07-31-yaonan-jin-local-search-clustering',
     title: {
       en: 'SDS Topical Seminar by Prof. Yaonan Jin',
       zh: 'SDS Topical Seminar：金耀楠教授报告',
     },
     summary: {
-      en: 'Prof. Yaonan Jin from HKUST will give a topical seminar titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM - 12:00 PM, in 401 Meeting Room, Dao Yuan Building.',
-      zh: '香港科技大学金耀楠教授将于 2026 年 7 月 31 日 11:00-12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
+      en: 'Prof. Yaonan Jin from HKUST gave a topical seminar titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, in Room 401, Dao Yuan Building.',
+      zh: '香港科技大学金耀楠教授于 2026 年 7 月 31 日在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
     },
     image: 'images/seminar-yaonan-jin-2026-07-31.jpg',
     imageAlt: {

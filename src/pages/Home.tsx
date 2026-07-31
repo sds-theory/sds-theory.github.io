@@ -4,6 +4,7 @@ import {
   CalendarDays,
   ChevronDown,
   ExternalLink,
+  Images,
   Newspaper,
   X,
 } from 'lucide-react';
@@ -12,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { EventCard } from '../components/EventCard';
-import { ImageModal } from '../components/ImageModal';
+import { EventMediaModal } from '../components/EventMediaModal';
+import { getEventMediaItems, type EventMediaItem } from '../components/eventMedia';
 import {
   colleagueRecruitment,
   eventTracks,
@@ -112,10 +114,9 @@ function ActionLink({
 export function Home() {
   const { i18n, t } = useTranslation();
   const [isSdsModalOpen, setIsSdsModalOpen] = useState(false);
-  const [selectedNewsImage, setSelectedNewsImage] = useState<{
-    src: string;
-    alt: string;
+  const [selectedNewsMedia, setSelectedNewsMedia] = useState<{
     title: string;
+    items: EventMediaItem[];
   } | null>(null);
   const [expandedPointIds, setExpandedPointIds] = useState<string[]>([]);
   const isChinese = i18n.language.startsWith('zh');
@@ -380,6 +381,12 @@ export function Home() {
               const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
               const newsTitle = textOf(item.title, i18n.language);
               const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;
+              const linkedEvent = item.eventId ? events.find((event) => event.id === item.eventId) : undefined;
+              const mediaItems = linkedEvent
+                ? getEventMediaItems(linkedEvent, i18n.language, t('events.poster'))
+                : imageHref
+                  ? [{ src: imageHref, alt: newsImageAlt, label: t('events.poster') }]
+                  : [];
               const cardClassName = 'motion-card group block w-full border-b border-slate-200 px-2 py-5 text-left transition last:border-b-0 hover:bg-[#f6fbfa] sm:grid sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6 sm:px-4';
               const cardContent = (
                 <>
@@ -390,19 +397,19 @@ export function Home() {
                   <div className="mt-2 min-w-0 sm:mt-0">
                     <h3 className="flex items-start gap-2 text-lg font-semibold text-ink">
                       <span>{newsTitle}</span>
-                      {imageHref && <ExternalLink className="mt-1 flex-none text-tealstone" size={16} />}
+                      {mediaItems.length > 0 && <Images className="mt-1 flex-none text-tealstone" size={17} />}
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
                   </div>
                 </>
               );
 
-              return imageHref ? (
+              return mediaItems.length > 0 ? (
                 <button
                   key={`${item.date}-${newsTitle}`}
                   type="button"
-                  aria-label={newsImageAlt}
-                  onClick={() => setSelectedNewsImage({ src: imageHref, alt: newsImageAlt, title: newsTitle })}
+                  aria-label={`${t('actions.viewMedia')}: ${newsTitle}`}
+                  onClick={() => setSelectedNewsMedia({ title: newsTitle, items: mediaItems })}
                   className={cardClassName}
                   style={{ animationDelay: `${index * 70}ms` }}
                 >
@@ -462,13 +469,14 @@ export function Home() {
         </div>
       </section>
 
-      {selectedNewsImage && (
-        <ImageModal
-          src={selectedNewsImage.src}
-          alt={selectedNewsImage.alt}
-          title={selectedNewsImage.title}
+      {selectedNewsMedia && (
+        <EventMediaModal
+          title={selectedNewsMedia.title}
+          items={selectedNewsMedia.items}
           closeLabel={isChinese ? '关闭' : 'Close'}
-          onClose={() => setSelectedNewsImage(null)}
+          previousLabel={t('events.previousMedia')}
+          nextLabel={t('events.nextMedia')}
+          onClose={() => setSelectedNewsMedia(null)}
         />
       )}
 

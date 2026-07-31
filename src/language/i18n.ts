@@ -36,6 +36,7 @@ i18n.use(initReactI18next).init({
           addGoogle: 'Google Calendar',
           addIcs: 'Download .ics',
           viewPoster: 'View poster',
+          viewMedia: 'Poster & photos',
           website: 'Mainpage',
           office: 'Office',
         },
@@ -73,7 +74,7 @@ i18n.use(initReactI18next).init({
         events: {
           title: 'Activities',
           intro:
-            'Explore upcoming seminars, visitor talks, reading groups, and other theory activities.',
+            'Explore seminars, visitor talks, reading groups, and other theory activities.',
           calendar: 'Calendar',
           details: 'Event Details',
           launchTitle: 'Seminars and Visitors',
@@ -83,6 +84,11 @@ i18n.use(initReactI18next).init({
           host: 'Host',
           time: 'Time',
           status: 'Status',
+          gallery: 'Event photos',
+          photoCount: '{{count}} photos',
+          poster: 'Seminar poster',
+          previousMedia: 'Previous image',
+          nextMedia: 'Next image',
         },
         footer: {
           line: '2026 - Now, all rights reserved to SDS CS Theory Group.',
@@ -125,6 +131,7 @@ i18n.use(initReactI18next).init({
           addGoogle: '加入 Google 日历',
           addIcs: '下载 .ics',
           viewPoster: '查看海报',
+          viewMedia: '海报与照片',
           website: '个人主页',
           office: '办公室',
         },
@@ -158,7 +165,7 @@ i18n.use(initReactI18next).init({
         },
         events: {
           title: '活动',
-          intro: '查看近期学术报告、访问交流、读书会与其他理论研究活动。',
+          intro: '浏览学术报告、访问交流、读书会与其他理论研究活动。',
           calendar: '日历',
           details: '活动详情',
           launchTitle: '讨论班与访问交流',
@@ -168,6 +175,11 @@ i18n.use(initReactI18next).init({
           host: '主持人',
           time: '时间',
           status: '状态',
+          gallery: '活动照片',
+          photoCount: '{{count}} 张照片',
+          poster: '活动海报',
+          previousMedia: '上一张',
+          nextMedia: '下一张',
         },
         footer: {
           line: '2026 至今，版权归 SDS CS 理论研究组所有。',

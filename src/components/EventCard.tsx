@@ -1,8 +1,10 @@
-import { CalendarPlus, Clock, Download, ExternalLink, Image, MapPin, UserRound } from 'lucide-react';
+import { CalendarPlus, Clock, Download, ExternalLink, Images, MapPin, UserRound } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { textOf, TheoryEvent } from '../data/site';
-import { ImageModal } from './ImageModal';
+import { EventGallery } from './EventGallery';
+import { EventMediaModal } from './EventMediaModal';
+import { getEventMediaItems } from './eventMedia';
 
 function formatDateRange(event: TheoryEvent, language: string) {
   const locale = language.startsWith('zh') ? 'zh-CN' : 'en-US';
@@ -61,9 +63,8 @@ function icsDataUrl(event: TheoryEvent, language: string) {
 
 export function EventCard({ event, compact = false }: { event: TheoryEvent; compact?: boolean }) {
   const { i18n, t } = useTranslation();
-  const [isPosterOpen, setIsPosterOpen] = useState(false);
-  const posterSrc = event.poster ? `${import.meta.env.BASE_URL}${event.poster}` : undefined;
-  const posterAlt = event.posterAlt ? textOf(event.posterAlt, i18n.language) : textOf(event.title, i18n.language);
+  const [isMediaOpen, setIsMediaOpen] = useState(false);
+  const mediaItems = getEventMediaItems(event, i18n.language, t('events.poster'));
 
   return (
     <article className="rounded border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-copper/60 hover:shadow-xl">
@@ -74,6 +75,12 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
         <span className="rounded bg-tealstone/10 px-2.5 py-1 text-xs font-semibold text-tealstone">
           {textOf(event.status, i18n.language)}
         </span>
+        {event.photos?.length ? (
+          <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+            <Images size={13} />
+            {t('events.photoCount', { count: event.photos.length })}
+          </span>
+        ) : null}
       </div>
 
       <h3 className="mt-4 text-xl font-semibold text-ink">{textOf(event.title, i18n.language)}</h3>
@@ -116,14 +123,14 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
       )}
 
       <div className="mt-5 flex flex-wrap gap-2">
-        {posterSrc && (
+        {mediaItems.length > 0 && (
           <button
             type="button"
-            onClick={() => setIsPosterOpen(true)}
+            onClick={() => setIsMediaOpen(true)}
             className="inline-flex items-center gap-1.5 rounded border border-slate-200 px-3 py-2 text-xs font-semibold text-ink transition hover:border-copper hover:text-copper"
           >
-            <Image size={14} />
-            {t('actions.viewPoster')}
+            <Images size={14} />
+            {mediaItems.length > 1 ? t('actions.viewMedia') : t('actions.viewPoster')}
           </button>
         )}
         <a
@@ -145,13 +152,22 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
         </a>
       </div>
 
-      {isPosterOpen && posterSrc && (
-        <ImageModal
-          src={posterSrc}
-          alt={posterAlt}
+      {!compact && event.photos?.length ? (
+        <EventGallery
+          eventTitle={textOf(event.title, i18n.language)}
+          photos={event.photos}
+          mediaItems={mediaItems}
+        />
+      ) : null}
+
+      {isMediaOpen && mediaItems.length > 0 && (
+        <EventMediaModal
+          items={mediaItems}
           title={textOf(event.title, i18n.language)}
           closeLabel={i18n.language.startsWith('zh') ? '关闭' : 'Close'}
-          onClose={() => setIsPosterOpen(false)}
+          previousLabel={t('events.previousMedia')}
+          nextLabel={t('events.nextMedia')}
+          onClose={() => setIsMediaOpen(false)}
         />
       )}
     </article>
