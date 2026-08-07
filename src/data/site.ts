@@ -8,7 +8,6 @@ export type Person = {
   initials: string;
   avatar?: string;
   avatarPosition?: string;
-  avatarFit?: 'contain' | 'cover';
   email?: string;
   website?: string;
   profile?: string;
@@ -645,8 +644,7 @@ export const faculty: Person[] = [
     role: { en: 'Member', zh: '成员' },
     initials: 'MB',
     avatar: 'images/faculty-miha-bresar.jpg',
-    avatarPosition: '50% 28%',
-    avatarFit: 'cover',
+    avatarPosition: '50% 50%',
     website: 'https://sites.google.com/view/mihabresar',
     profile: 'https://sds.cuhk.edu.cn/teacher/2238',
     education: { en: 'Ph.D., University of Warwick', zh: '博士，华威大学' },

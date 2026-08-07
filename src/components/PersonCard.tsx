@@ -12,9 +12,7 @@ export function PersonCard({ person, showWebsite = true }: { person: Person; sho
           <img
             src={`${import.meta.env.BASE_URL}${person.avatar}`}
             alt={textOf(person.name, i18n.language)}
-            className={`h-full w-full transition duration-500 group-hover:scale-105 ${
-              person.avatarFit === 'cover' ? 'object-cover' : 'object-contain'
-            }`}
+            className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
             style={{ objectPosition: person.avatarPosition ?? '50% 18%' }}
           />
         ) : (
