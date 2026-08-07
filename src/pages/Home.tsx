@@ -123,8 +123,8 @@ export function Home() {
   const languageKey = isChinese ? 'zh' : 'en';
   const whyReveal = useRevealOnView<HTMLElement>(languageKey);
   const titleLines = isChinese
-    ? ['SDS CS', '理论研究组']
-    : ['SDS CS', 'Theory Group'];
+    ? ['SDS', '理论研究组']
+    : ['SDS', 'Theory Group'];
   const subtitleLines = textOf(site.tagline, i18n.language).split(' for ');
   const recentNews = news.slice(0, 5);
 
@@ -519,8 +519,8 @@ export function Home() {
                     </h2>
                     <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
                       {isChinese
-                        ? 'SDS CS 理论研究组扎根于数据科学学院的交叉学科生态。计算机科学、统计学、运筹优化、机器学习、人工智能和决策分析等方向在这里自然交汇，为面向现代数据与决策系统的理论研究提供土壤。'
-                        : 'The SDS CS Theory Group is embedded in the School of Data Science, where computer science, statistics, operations research, machine learning, artificial intelligence, and decision analytics meet around modern data and decision systems.'}
+                        ? 'SDS 理论研究组扎根于数据科学学院的交叉学科生态。计算机科学、统计学、运筹优化、机器学习、人工智能和决策分析等方向在这里自然交汇，为面向现代数据与决策系统的理论研究提供土壤。'
+                        : 'The SDS Theory Group is embedded in the School of Data Science, where computer science, statistics, operations research, machine learning, artificial intelligence, and decision analytics meet around modern data and decision systems.'}
                     </p>
                   </div>
 

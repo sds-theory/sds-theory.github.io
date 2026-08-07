@@ -8,6 +8,7 @@ export type Person = {
   initials: string;
   avatar?: string;
   avatarPosition?: string;
+  avatarFit?: 'contain' | 'cover';
   email?: string;
   website?: string;
   profile?: string;
@@ -114,12 +115,12 @@ export const textOf = (value: LocalizedText, language: string) => value[localeOf
 
 export const site = {
   name: {
-    en: 'SDS CS Theory Group',
-    zh: 'SDS CS 理论研究组',
+    en: 'SDS Theory Group',
+    zh: 'SDS 理论研究组',
   },
   longName: {
-    en: 'CS Theory Group, School of Data Science',
-    zh: '数据科学学院 CS 理论研究组',
+    en: 'Theory Group, School of Data Science',
+    zh: '数据科学学院理论研究组',
   },
   tagline: {
     en: 'Rigorous algorithmic and mathematical foundations for data, learning, optimization, and decision systems.',
@@ -379,8 +380,8 @@ export const proposalIntro = {
     zh: '关于我们',
   },
   body: {
-    en: 'The SDS CS Theory Group is a focused academic community within the School of Data Science, bringing rigorous algorithmic, mathematical, and economic perspectives to problems arising from data, learning, optimization, and decision-making.\n\nWe aim to provide a lightweight academic platform for intellectual exchange and collaboration across related areas. The group respects the independence of each member in shaping research directions, managing projects, supervising students, and developing external collaborations.',
-    zh: 'SDS CS 理论研究组是数据科学学院内聚焦理论计算机科学与算法基础的学术共同体，致力于将严谨的算法、数学与经济学视角引入数据、学习、优化与决策系统中的核心问题。\n\n我们希望提供一个轻量的学术平台，促进相关方向之间的思想交流与合作。同时，研究组也尊重每位成员在塑造研究方向、管理项目、指导学生以及发展外部合作方面的独立性。',
+    en: 'The SDS Theory Group is a focused academic community within the School of Data Science, bringing rigorous algorithmic, mathematical, and economic perspectives to problems arising from data, learning, optimization, and decision-making.\n\nWe aim to provide a lightweight academic platform for intellectual exchange and collaboration across related areas. The group respects the independence of each member in shaping research directions, managing projects, supervising students, and developing external collaborations.',
+    zh: 'SDS 理论研究组是数据科学学院内聚焦理论计算机科学与算法基础的学术共同体，致力于将严谨的算法、数学与经济学视角引入数据、学习、优化与决策系统中的核心问题。\n\n我们希望提供一个轻量的学术平台，促进相关方向之间的思想交流与合作。同时，研究组也尊重每位成员在塑造研究方向、管理项目、指导学生以及发展外部合作方面的独立性。',
   },
 };
 
@@ -639,6 +640,29 @@ export const faculty: Person[] = [
     },
   },
   {
+    name: { en: 'Miha Brešar', zh: 'Miha Brešar' },
+    title: { en: 'Assistant Professor', zh: '助理教授' },
+    role: { en: 'Member', zh: '成员' },
+    initials: 'MB',
+    avatar: 'images/faculty-miha-bresar.jpg',
+    avatarPosition: '50% 28%',
+    avatarFit: 'cover',
+    website: 'https://sites.google.com/view/mihabresar',
+    profile: 'https://sds.cuhk.edu.cn/teacher/2238',
+    education: { en: 'Ph.D., University of Warwick', zh: '博士，华威大学' },
+    research: [
+      { en: 'Probability theory', zh: '概率论' },
+      { en: 'Markov processes', zh: '马尔可夫过程' },
+      { en: 'Stochastic analysis', zh: '随机分析' },
+      { en: 'Stochastic algorithms', zh: '随机算法' },
+      { en: 'MCMC and diffusion models', zh: 'MCMC 与扩散模型' },
+    ],
+    bio: {
+      en: 'Ph.D. in Statistics from the University of Warwick. His research focuses on probability theory, Markov processes, stochastic analysis, and the stability and convergence of stochastic algorithms.',
+      zh: '博士，华威大学统计学。研究方向包括概率论、马尔可夫过程、随机分析，以及随机算法的稳定性与收敛性。',
+    },
+  },
+  {
     name: { en: 'Hao Wu', zh: '吴昊' },
     title: { en: 'Assistant Professor (joining January 2027)', zh: '助理教授（2027年1月加入）' },
     role: { en: 'Member', zh: '成员' },
@@ -840,8 +864,8 @@ export const news: NewsItem[] = [
     date: '2026-06-11',
     title: { en: 'Website officially launched', zh: '网站正式上线' },
     summary: {
-      en: 'The SDS CS Theory Group website is now live as a public home for members, students, events, news, and contact information.',
-      zh: 'SDS CS 理论研究组网站正式上线，将作为展示成员、学生、活动、新闻和联系方式的公开主页。',
+      en: 'The SDS Theory Group website is now live as a public home for members, students, events, news, and contact information.',
+      zh: 'SDS 理论研究组网站正式上线，将作为展示成员、学生、活动、新闻和联系方式的公开主页。',
     },
   },
   {
@@ -1049,7 +1073,7 @@ export const contact = {
     zh: '联系我们',
   },
   body: {
-    en: 'For visits, seminar invitations, academic collaboration, student activities, or general questions about the SDS CS Theory Group, please contact us by email.',
-    zh: '如有访问交流、报告邀请、学术合作、学生活动或其他关于 SDS CS 理论研究组的问题，欢迎通过邮件联系我们。',
+    en: 'For visits, seminar invitations, academic collaboration, student activities, or general questions about the SDS Theory Group, please contact us by email.',
+    zh: '如有访问交流、报告邀请、学术合作、学生活动或其他关于 SDS 理论研究组的问题，欢迎通过邮件联系我们。',
   },
 };

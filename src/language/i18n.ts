@@ -53,7 +53,7 @@ i18n.use(initReactI18next).init({
           areasEyebrow: 'Research',
           areasTitle: 'Research Areas',
           ecosystemTitle: 'Ecosystem at a Glance',
-          whyTitle: 'Why SDS CS Theory Group?',
+          whyTitle: 'Why SDS Theory Group?',
           trainingTitle: 'Interested in Joining Us?',
           trainingSubtitle:
             'For students who enjoy proofs, algorithms, abstraction, and deep problem solving.',
@@ -62,7 +62,7 @@ i18n.use(initReactI18next).init({
         people: {
           facultyTitle: 'Members',
           facultyIntro:
-            'Faculty members and coordinators of the SDS CS Theory Group.',
+            'Faculty members and coordinators of the SDS Theory Group.',
           communityTitle: 'Member Categories',
           facultyMembers: 'Core Faculty',
           emptyCategory: 'To be updated.',
@@ -91,7 +91,7 @@ i18n.use(initReactI18next).init({
           nextMedia: 'Next image',
         },
         footer: {
-          line: '2026 - Now, all rights reserved to SDS CS Theory Group.',
+          line: '2026 - Now, all rights reserved to SDS Theory Group.',
         },
         contact: {
           title: 'Contact Us',
@@ -148,14 +148,14 @@ i18n.use(initReactI18next).init({
           areasEyebrow: '研究方向',
           areasTitle: '研究方向',
           ecosystemTitle: '生态概览',
-          whyTitle: '为什么选择 SDS CS 理论研究组？',
+          whyTitle: '为什么选择 SDS 理论研究组？',
           trainingTitle: '如果你对我们感兴趣',
           trainingSubtitle: '我们欢迎热爱证明、算法、抽象与深度问题求解的学生。',
           activitiesTitle: '学术活动',
         },
         people: {
           facultyTitle: '成员',
-          facultyIntro: 'SDS CS 理论研究组的教师成员与协调人。',
+          facultyIntro: 'SDS 理论研究组的教师成员与协调人。',
           communityTitle: '成员类别',
           facultyMembers: '核心教师',
           emptyCategory: '待更新',
@@ -182,7 +182,7 @@ i18n.use(initReactI18next).init({
           nextMedia: '下一张',
         },
         footer: {
-          line: '2026 至今，版权归 SDS CS 理论研究组所有。',
+          line: '2026 至今，版权归 SDS 理论研究组所有。',
         },
         contact: {
           title: '联系我们',

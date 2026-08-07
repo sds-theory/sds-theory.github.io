@@ -45,7 +45,7 @@ function icsDataUrl(event: TheoryEvent, language: string) {
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//SDS CS Theory Group//Events//EN',
+    'PRODID:-//SDS Theory Group//Events//EN',
     'BEGIN:VEVENT',
     `UID:${event.id}@sds-theory`,
     `DTSTAMP:${format(new Date().toISOString())}`,

@@ -1,6 +1,6 @@
-# SDS CS Theory Group Website
+# SDS Theory Group Website
 
-Website source for the SDS CS Theory Group.
+Website source for the SDS Theory Group.
 
 ## Local Development
 
@@ -61,4 +61,4 @@ After pushing to GitHub:
 
 ## Project Notes
 
-The first version is based on the proposal for establishing an SDS CS Theory Group. It intentionally keeps the operation lightweight: public pages for people, research directions, seminars, reading groups, visitors or events, selected publications, and contact information.
+The first version is based on the proposal for establishing an SDS Theory Group. It intentionally keeps the operation lightweight: public pages for people, research directions, seminars, reading groups, visitors or events, selected publications, and contact information.
