@@ -831,6 +831,17 @@ export const eventTracks: CollaborationItem[] = [
 
 export const news: NewsItem[] = [
   {
+    date: '2026-09-07',
+    title: {
+      en: 'One paper by Prof. Jingbang Chen accepted to ISAAC 2026',
+      zh: '陈靖邦教授一篇论文被 ISAAC 2026 录用',
+    },
+    summary: {
+      en: 'Prof. Jingbang Chen’s paper "Faster Distance Oracles for Dynamic Interval Graphs" has been accepted to the International Symposium on Algorithms and Computation (ISAAC 2026).',
+      zh: '陈靖邦教授一篇论文《Faster Distance Oracles for Dynamic Interval Graphs》被 International Symposium on Algorithms and Computation (ISAAC 2026) 录用。',
+    },
+  },
+  {
     date: '2026-07-31',
     eventId: '2026-07-31-yaonan-jin-local-search-clustering',
     title: {
