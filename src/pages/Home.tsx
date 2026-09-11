@@ -126,7 +126,6 @@ export function Home() {
     ? ['SDS', '理论研究组']
     : ['SDS', 'Theory Group'];
   const subtitleLines = textOf(site.tagline, i18n.language).split(' for ');
-  const recentNews = news.slice(0, 5);
 
   useEffect(() => {
     if (!isSdsModalOpen) {
@@ -377,7 +376,7 @@ export function Home() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
           <div className="mt-5 border-y border-slate-200">
-            {recentNews.map((item, index) => {
+            {news.map((item, index) => {
               const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
               const newsTitle = textOf(item.title, i18n.language);
               const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;

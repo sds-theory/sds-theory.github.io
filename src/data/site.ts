@@ -831,6 +831,17 @@ export const eventTracks: CollaborationItem[] = [
 
 export const news: NewsItem[] = [
   {
+    date: '2026-09-10',
+    title: {
+      en: 'One paper by Prof. Jingbang Chen accepted to ICDE 2027',
+      zh: '陈靖邦教授一篇论文被 ICDE 2027 录用',
+    },
+    summary: {
+      en: 'Prof. Jingbang Chen’s paper "Scalable Algorithm for Dynamic Quasi-clique Detection" has been accepted to the IEEE International Conference on Data Engineering (ICDE 2027).',
+      zh: '陈靖邦教授一篇论文《Scalable Algorithm for Dynamic Quasi-clique Detection》被 IEEE International Conference on Data Engineering (ICDE 2027) 录用。',
+    },
+  },
+  {
     date: '2026-09-07',
     title: {
       en: 'One paper by Prof. Jingbang Chen accepted to ISAAC 2026',
