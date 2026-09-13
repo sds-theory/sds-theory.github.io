@@ -720,6 +720,25 @@ export const students: Person[] = [
       zh: 'Konstantinos Courcoubetis 指导的博士生。',
     },
   },
+  {
+    name: { en: 'M.Hossein Ghasemi', zh: 'M.Hossein Ghasemi' },
+    title: { en: 'Ph.D. Student', zh: '博士生' },
+    role: { en: 'Student Member', zh: '学生成员' },
+    initials: 'MHG',
+    avatar: 'images/student-m-hossein-ghasemi.jpg',
+    avatarPosition: '50% 50%',
+    period: { en: '2026 - present', zh: '2026 至今' },
+    advisor: { en: 'Advisor: Aditi Dudeja', zh: '导师：Aditi Dudeja' },
+    research: [
+      { en: 'Algorithmic game theory', zh: '算法博弈论' },
+      { en: 'Graph theory', zh: '图论' },
+      { en: 'Online algorithms', zh: '在线算法' },
+    ],
+    bio: {
+      en: 'Ph.D. student advised by Aditi Dudeja.',
+      zh: 'Aditi Dudeja 指导的博士生。',
+    },
+  },
 ];
 
 export const events: TheoryEvent[] = [
