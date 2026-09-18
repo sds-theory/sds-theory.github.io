@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sds-theory.github.io/sitemap.xml
