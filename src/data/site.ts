@@ -852,6 +852,17 @@ export const news: NewsItem[] = [
   {
     date: '2026-09-10',
     title: {
+      en: 'One paper by Prof. Tao Lin accepted to WINE 2026',
+      zh: '林涛教授一篇论文被 WINE 2026 录用',
+    },
+    summary: {
+      en: 'Prof. Tao Lin’s paper "Does AI Help or Harm? Endogenous Information Acquisition with AI Advice" has been accepted to the Conference on Web and Internet Economics (WINE 2026).',
+      zh: '林涛教授一篇论文《Does AI Help or Harm? Endogenous Information Acquisition with AI Advice》被 Conference on Web and Internet Economics (WINE 2026) 录用。',
+    },
+  },
+  {
+    date: '2026-09-10',
+    title: {
       en: 'One paper by Prof. Jingbang Chen accepted to ICDE 2027',
       zh: '陈靖邦教授一篇论文被 ICDE 2027 录用',
     },
