@@ -3,22 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SDS Theory Group is an academic community for algorithms, combinatorial structures, optimization, and theoretical foundations of data science."
-    />
-    <title>SDS Theory Group</title>
-    <script>
-      (function () {
-        var redirect = sessionStorage.getItem('gh-pages-redirect');
-        if (!redirect) return;
-        sessionStorage.removeItem('gh-pages-redirect');
-        history.replaceState(null, '', redirect);
-      })();
-    </script>
+    <!--page-head-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" data-language="en"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

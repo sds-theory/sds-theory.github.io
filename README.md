@@ -22,8 +22,25 @@ The site uses Vite, React, TypeScript, Tailwind, `react-router-dom`, `react-i18n
 
 ```bash
 npm run build
+npm run test:seo
 npm run preview
 ```
+
+The build prerenders the seven public pages into static HTML, including their
+content, titles, descriptions, and canonical URLs. It also generates
+`sitemap.xml`, `robots.txt`, a real `404.html`, and the `/join-us/` redirect.
+GitHub Pages serves each page from its own directory, so direct links and
+refreshes work without a JavaScript 404 redirect. React hydrates the generated
+English content and then restores the visitor's preferred language.
+
+Page metadata and the list of pages to prerender live in `src/data/seo.ts`.
+Add new public routes there as well as in `src/App.tsx`. Run `npm run build`
+before deploying; publishing only `vite build` output skips prerendering.
+
+After deployment, verify `https://sds-theory.github.io/` in Google Search Console,
+submit `https://sds-theory.github.io/sitemap.xml`, and use URL Inspection to
+request indexing. Search Console verification requires the site owner's Google
+account. Crawling and indexing remain under Google's control.
 
 ## Content Updates
 

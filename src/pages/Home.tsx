@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ExternalLink,
   Images,
+  Maximize2,
   Newspaper,
   X,
 } from 'lucide-react';
@@ -57,7 +58,7 @@ function useRevealOnView<T extends HTMLElement>(resetKey: string) {
           observer.disconnect();
         }
       },
-      { rootMargin: '0px 0px -16% 0px', threshold: 0.18 },
+      { rootMargin: '0px 0px -24px 0px', threshold: 0.1 },
     );
 
     observer.observe(node);
@@ -114,17 +115,20 @@ function ActionLink({
 export function Home() {
   const { i18n, t } = useTranslation();
   const [isSdsModalOpen, setIsSdsModalOpen] = useState(false);
-  const [selectedNewsMedia, setSelectedNewsMedia] = useState<{
+  const [selectedMedia, setSelectedMedia] = useState<{
     title: string;
     items: EventMediaItem[];
   } | null>(null);
   const [expandedPointIds, setExpandedPointIds] = useState<string[]>([]);
   const isChinese = i18n.language.startsWith('zh');
   const languageKey = isChinese ? 'zh' : 'en';
-  const whyReveal = useRevealOnView<HTMLElement>(languageKey);
-  const titleLines = isChinese
-    ? ['SDS', '理论研究组']
-    : ['SDS', 'Theory Group'];
+  const whyReveal = useRevealOnView<HTMLHeadingElement>(languageKey);
+  const groupPhotoSrc = `${import.meta.env.BASE_URL}images/group-photo-2026-09-2400.webp`;
+  const groupPhotoSmallSrc = `${import.meta.env.BASE_URL}images/group-photo-2026-09-960.webp`;
+  const groupPhotoTitle = isChinese ? '研究组合照' : 'Group Photo';
+  const groupPhotoAlt = isChinese
+    ? 'SDS 理论研究组成员聚餐合照'
+    : 'SDS Theory Group members gathered for a meal';
   const subtitleLines = textOf(site.tagline, i18n.language).split(' for ');
 
   useEffect(() => {
@@ -154,54 +158,63 @@ export function Home() {
 
   return (
     <main>
-      <section className="relative isolate overflow-hidden bg-[#060a0b] text-white">
-        <div className="absolute inset-0 -z-10">
+      <section className="overflow-hidden bg-[#101719] text-white" aria-labelledby="home-title">
+        <div className="relative mx-auto aspect-[3/2] max-w-[1920px] overflow-hidden sm:aspect-[12/5] sm:max-h-[520px]">
           <img
-            src={`${import.meta.env.BASE_URL}images/theory-hero.png`}
-            alt=""
-            className="h-full w-full object-cover opacity-[0.34] mix-blend-screen"
+            src={groupPhotoSrc}
+            srcSet={`${groupPhotoSmallSrc} 960w, ${groupPhotoSrc} 2400w`}
+            sizes="(min-width: 1920px) 1920px, 100vw"
+            alt={groupPhotoAlt}
+            width={2400}
+            height={1600}
+            loading="eager"
+            className="absolute inset-0 h-full w-full object-cover object-center sm:object-[50%_25%]"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(3,7,8,0.98)_0%,rgba(7,15,17,0.95)_48%,rgba(28,74,75,0.72)_100%)]" />
-          <div className="soft-grid hero-grid absolute inset-0" />
-          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-tealstone/70 to-transparent" />
-        </div>
-
-        <div className="mx-auto min-h-[350px] max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-          <div className="grid min-h-[260px] items-center">
-            <div key={`hero-copy-${languageKey}`} className="max-w-5xl translate-y-5">
-              <h1 className="hero-title-in max-w-5xl text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
-                {titleLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </h1>
-              <p className="hero-subtitle-in mt-4 max-w-4xl text-xl font-semibold leading-8 text-white sm:text-2xl">
-                {isChinese ? (
-                  <>
-                    <span className="block sm:inline">以严谨的算法与数学方法，</span>
-                    <span className="block sm:inline">探索数据、学习、优化</span>
-                    <span className="block">与决策系统的理论基础。</span>
-                  </>
-                ) : (
-                  <>
-                    {subtitleLines[0]} for
-                    <span className="block text-white">{subtitleLines.slice(1).join(' for ')}</span>
-                  </>
-                )}
-              </p>
-              <p className="hero-about-in mt-4 max-w-4xl border-l border-tealstone/70 pl-5 text-sm leading-6 text-slate-300">
-                {textOf(heroIntro, i18n.language)}
-              </p>
-            </div>
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#101719]/95 via-[#101719]/40 to-transparent" />
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            aria-label={isChinese ? '查看完整合照' : 'View full group photo'}
+            title={isChinese ? '查看完整合照' : 'View full group photo'}
+            onClick={() => setSelectedMedia({
+              title: groupPhotoTitle,
+              items: [{ src: groupPhotoSrc, alt: groupPhotoAlt, label: groupPhotoTitle }],
+            })}
+            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded border border-white/50 bg-white/90 text-ink shadow-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink sm:right-6 sm:top-6"
+          >
+            <Maximize2 size={18} />
+          </button>
+          <div className="absolute inset-x-0 bottom-5 mx-auto max-w-7xl px-4 sm:bottom-6 sm:px-6 lg:px-8">
+            <h1 id="home-title" key={`hero-title-${languageKey}`} className="hero-title-in text-3xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
+              SDS <span className="inline-block">{isChinese ? '理论研究组' : 'Theory Group'}</span>
+            </h1>
           </div>
+        </div>
+        <div key={`hero-copy-${languageKey}`} className="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-12 lg:px-8 lg:py-6">
+          <p className="hero-subtitle-in text-lg font-medium leading-7 text-white sm:text-xl sm:leading-8">
+            {isChinese ? (
+              <>
+                <span className="block">以严谨的算法与数学方法，</span>
+                <span className="block sm:inline">探索数据、学习、优化</span>
+                <span className="block sm:inline">与决策系统的理论基础。</span>
+              </>
+            ) : (
+              <>
+                {subtitleLines[0]} for
+                <span className="block">{subtitleLines.slice(1).join(' for ')}</span>
+              </>
+            )}
+          </p>
+          <p className="hero-about-in border-l border-tealstone/70 pl-5 text-sm leading-6 text-slate-300">
+            {textOf(heroIntro, i18n.language)}
+          </p>
         </div>
       </section>
 
-      <section ref={whyReveal.ref} className="bg-[#f2f8f7]" id="why">
+      <section className="bg-[#f2f8f7]" id="why">
         <div className="mx-auto max-w-7xl px-4 pb-11 pt-5 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
-            <h2 className={`reveal-left text-3xl font-semibold text-ink sm:text-4xl ${whyReveal.isVisible ? 'is-visible' : ''}`}>
+            <h2 ref={whyReveal.ref} className={`reveal-left text-3xl font-semibold text-ink sm:text-4xl ${whyReveal.isVisible ? 'is-visible' : ''}`}>
               {t('home.whyTitle')}
             </h2>
           </div>
@@ -408,7 +421,7 @@ export function Home() {
                   key={`${item.date}-${newsTitle}`}
                   type="button"
                   aria-label={`${t('actions.viewMedia')}: ${newsTitle}`}
-                  onClick={() => setSelectedNewsMedia({ title: newsTitle, items: mediaItems })}
+                  onClick={() => setSelectedMedia({ title: newsTitle, items: mediaItems })}
                   className={cardClassName}
                   style={{ animationDelay: `${index * 70}ms` }}
                 >
@@ -468,14 +481,14 @@ export function Home() {
         </div>
       </section>
 
-      {selectedNewsMedia && (
+      {selectedMedia && (
         <EventMediaModal
-          title={selectedNewsMedia.title}
-          items={selectedNewsMedia.items}
+          title={selectedMedia.title}
+          items={selectedMedia.items}
           closeLabel={isChinese ? '关闭' : 'Close'}
           previousLabel={t('events.previousMedia')}
           nextLabel={t('events.nextMedia')}
-          onClose={() => setSelectedNewsMedia(null)}
+          onClose={() => setSelectedMedia(null)}
         />
       )}
 

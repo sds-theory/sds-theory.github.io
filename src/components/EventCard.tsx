@@ -11,15 +11,18 @@ function formatDateRange(event: TheoryEvent, language: string) {
   const start = new Date(event.start);
   const end = new Date(event.end);
   const date = new Intl.DateTimeFormat(locale, {
+    timeZone: 'Asia/Shanghai',
     year: 'numeric',
     month: 'short',
     day: 'numeric',
     weekday: 'short',
   }).format(start);
   const time = `${new Intl.DateTimeFormat(locale, {
+    timeZone: 'Asia/Shanghai',
     hour: '2-digit',
     minute: '2-digit',
   }).format(start)}-${new Intl.DateTimeFormat(locale, {
+    timeZone: 'Asia/Shanghai',
     hour: '2-digit',
     minute: '2-digit',
   }).format(end)}`;
@@ -48,7 +51,7 @@ function icsDataUrl(event: TheoryEvent, language: string) {
     'PRODID:-//SDS Theory Group//Events//EN',
     'BEGIN:VEVENT',
     `UID:${event.id}@sds-theory`,
-    `DTSTAMP:${format(new Date().toISOString())}`,
+    `DTSTAMP:${format(event.start)}`,
     `DTSTART:${format(event.start)}`,
     `DTEND:${format(event.end)}`,
     `SUMMARY:${textOf(event.title, language)}`,

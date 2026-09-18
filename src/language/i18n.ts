@@ -1,8 +1,19 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-const storedLanguage = localStorage.getItem('language');
-const systemLanguage = navigator.language?.startsWith('zh') ? 'zh' : 'en';
+export function preferredLanguage() {
+  if (typeof window === 'undefined') return 'en';
+  try {
+    const stored = localStorage.getItem('language');
+    if (stored === 'en' || stored === 'zh') return stored;
+  } catch {
+    // Browser preferences still work when storage is unavailable.
+  }
+  return navigator.language?.startsWith('zh') ? 'zh' : 'en';
+}
+
+const root = typeof document === 'undefined' ? null : document.getElementById('root');
+const initialLanguage = root?.childElementCount ? root.dataset.language : preferredLanguage();
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -192,7 +203,8 @@ i18n.use(initReactI18next).init({
       },
     },
   },
-  lng: storedLanguage ?? systemLanguage,
+  lng: initialLanguage ?? 'en',
+  initAsync: false,
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,

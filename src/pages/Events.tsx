@@ -6,17 +6,26 @@ import { SectionHeading } from '../components/SectionHeading';
 import { eventTracks, events, textOf, type TheoryEvent } from '../data/site';
 
 function monthDays(reference: Date) {
-  const year = reference.getFullYear();
-  const month = reference.getMonth();
-  const first = new Date(year, month, 1);
+  const year = reference.getUTCFullYear();
+  const month = reference.getUTCMonth();
+  const first = new Date(Date.UTC(year, month, 1));
   const start = new Date(first);
-  start.setDate(first.getDate() - first.getDay());
+  start.setUTCDate(first.getUTCDate() - first.getUTCDay());
 
   return Array.from({ length: 42 }, (_, index) => {
     const day = new Date(start);
-    day.setDate(start.getDate() + index);
+    day.setUTCDate(start.getUTCDate() + index);
     return day;
   });
+}
+
+// Calendar cells represent dates at the venue, independently of the viewer's time zone.
+function calendarDate(start: string) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Shanghai', year: 'numeric', month: 'numeric', day: 'numeric',
+  }).formatToParts(new Date(start));
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+  return new Date(Date.UTC(Number(values.year), Number(values.month) - 1, Number(values.day)));
 }
 
 function compactSpeaker(event: TheoryEvent, language: string) {
@@ -33,7 +42,7 @@ export function Events() {
   const { i18n, t } = useTranslation();
   const [selectedId, setSelectedId] = useState(events[0]?.id ?? '');
   const selected = events.find((event) => event.id === selectedId) ?? events[0];
-  const firstEventDate = useMemo(() => new Date(events[0]?.start ?? '2026-09-01T00:00:00+08:00'), []);
+  const firstEventDate = useMemo(() => calendarDate(events[0]?.start ?? '2026-09-01T00:00:00+08:00'), []);
   const days = useMemo(() => monthDays(firstEventDate), [firstEventDate]);
   const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
 
@@ -52,7 +61,7 @@ export function Events() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-normal text-copper">{t('events.calendar')}</p>
                 <h2 className="mt-1 text-2xl font-semibold text-ink">
-                  {new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(firstEventDate)}
+                  {new Intl.DateTimeFormat(locale, { timeZone: 'UTC', month: 'long', year: 'numeric' }).format(firstEventDate)}
                 </h2>
               </div>
               <div className="grid h-11 w-11 place-items-center rounded bg-tealstone text-white">
@@ -64,21 +73,19 @@ export function Events() {
               <div className="min-w-[35rem] px-1">
                 <div className="grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-500">
                   {Array.from({ length: 7 }, (_, index) => {
-                    const day = new Date(2026, 1, index + 1);
-                    return <div key={index}>{new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(day)}</div>;
+                    const day = new Date(Date.UTC(2026, 1, index + 1));
+                    return <div key={index}>{new Intl.DateTimeFormat(locale, { timeZone: 'UTC', weekday: 'short' }).format(day)}</div>;
                   })}
                 </div>
                 <div className="mt-2 grid grid-cols-7 gap-1">
                   {days.map((day) => {
                     const dayEvents = events.filter((event) => {
-                      const eventDate = new Date(event.start);
+                      const eventDate = calendarDate(event.start);
                       return (
-                        eventDate.getFullYear() === day.getFullYear() &&
-                        eventDate.getMonth() === day.getMonth() &&
-                        eventDate.getDate() === day.getDate()
+                        eventDate.getTime() === day.getTime()
                       );
                     });
-                    const isCurrentMonth = day.getMonth() === firstEventDate.getMonth();
+                    const isCurrentMonth = day.getUTCMonth() === firstEventDate.getUTCMonth();
                     const isSelectedDay = dayEvents.some((event) => event.id === selectedId);
                     const eventLabel = dayEvents
                       .map((event) => `${textOf(event.speaker, i18n.language)}: ${textOf(event.title, i18n.language)}`)
@@ -87,7 +94,7 @@ export function Events() {
                       <button
                         key={day.toISOString()}
                         type="button"
-                        aria-label={eventLabel || String(day.getDate())}
+                        aria-label={eventLabel || String(day.getUTCDate())}
                         title={eventLabel || undefined}
                         onClick={() => dayEvents[0] && setSelectedId(dayEvents[0].id)}
                         className={`min-h-24 rounded border p-2 text-left transition ${
@@ -96,7 +103,7 @@ export function Events() {
                             : 'border-slate-200 bg-[#f9faf7] text-slate-400'
                         } ${isSelectedDay ? 'ring-2 ring-tealstone/55' : ''} ${isCurrentMonth ? '' : 'opacity-45'}`}
                       >
-                        <span className="text-xs font-semibold">{day.getDate()}</span>
+                        <span className="text-xs font-semibold">{day.getUTCDate()}</span>
                         {dayEvents.map((event) => (
                           <span key={event.id} className="mt-1.5 block">
                             <span className="block whitespace-nowrap text-[10px] font-semibold leading-4 text-ink">
@@ -150,6 +157,7 @@ export function Events() {
                   <p className="text-sm font-semibold text-ink">{textOf(event.title, i18n.language)}</p>
                   <p className="mt-1 text-xs text-slate-500">
                     {new Intl.DateTimeFormat(locale, {
+                      timeZone: 'Asia/Shanghai',
                       month: 'short',
                       day: 'numeric',
                       hour: '2-digit',

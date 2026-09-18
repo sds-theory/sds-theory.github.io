@@ -9,15 +9,26 @@ import { Students } from './pages/Students';
 import { Contact } from './pages/Contact';
 import { Recruit } from './pages/Recruit';
 import { Collaborate } from './pages/Collaborate';
+import { NotFound } from './pages/NotFound';
+import { PageMetadata } from './components/PageMetadata';
+import { preferredLanguage } from './language/i18n';
 
-function AppShell() {
+export function AppShell() {
   const { i18n, t } = useTranslation();
   const location = useLocation();
   const languageKey = i18n.language.startsWith('zh') ? 'zh' : 'en';
 
   useEffect(() => {
+    void i18n.changeLanguage(preferredLanguage());
+  }, [i18n]);
+
+  useEffect(() => {
     document.documentElement.lang = i18n.language.startsWith('zh') ? 'zh-CN' : 'en';
-    localStorage.setItem('language', i18n.language.startsWith('zh') ? 'zh' : 'en');
+    try {
+      localStorage.setItem('language', i18n.language.startsWith('zh') ? 'zh' : 'en');
+    } catch {
+      // Switching languages does not require browser storage.
+    }
   }, [i18n.language]);
 
   const toggleLanguage = () => {
@@ -26,6 +37,7 @@ function AppShell() {
 
   return (
     <div className="min-h-screen bg-[#f9faf7] text-slate-800 transition-colors duration-300">
+      <PageMetadata />
       <Header onToggleLanguage={toggleLanguage} />
       <div key={`${location.pathname}-${languageKey}`} className="page-language-enter">
         <Routes>
@@ -37,6 +49,7 @@ function AppShell() {
           <Route path="/join-us" element={<Navigate to="/recruit" replace />} />
           <Route path="/collaborate" element={<Collaborate />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <footer className="border-t border-slate-200 bg-white py-8">
@@ -50,7 +63,7 @@ function AppShell() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AppShell />
     </BrowserRouter>
   );
