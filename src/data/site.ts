@@ -925,8 +925,8 @@ export const news: NewsItem[] = [
       zh: '林涛教授三篇论文被 EC 2026 录用',
     },
     summary: {
-      en: 'Prof. Tao Lin has three works accepted to the 27th ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
-      zh: '林涛教授三篇论文《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 the 27th ACM Conference on Economics and Computation (EC 2026) 录用。',
+      en: 'Prof. Tao Lin has three works accepted to ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
+      zh: '林涛教授三篇论文《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 ACM Conference on Economics and Computation (EC 2026) 录用。',
     },
   },
   {
@@ -936,8 +936,8 @@ export const news: NewsItem[] = [
       zh: 'Aditi Dudeja 教授一篇论文被 CCC 2026 录用',
     },
     summary: {
-      en: 'Prof. Aditi Dudeja’s paper "Frontier Space-time Algorithms Using Only Full Memory" has been accepted to the Computational Complexity Conference 2026 (CCC 2026).',
-      zh: 'Aditi Dudeja 教授一篇论文《Frontier Space-time Algorithms Using Only Full Memory》被 the Computational Complexity Conference 2026 (CCC 2026) 录用。',
+      en: 'Prof. Aditi Dudeja’s paper "Frontier Space-time Algorithms Using Only Full Memory" has been accepted to Computational Complexity Conference (CCC 2026).',
+      zh: 'Aditi Dudeja 教授一篇论文《Frontier Space-time Algorithms Using Only Full Memory》被 Computational Complexity Conference (CCC 2026) 录用。',
     },
   },
   {
@@ -947,8 +947,8 @@ export const news: NewsItem[] = [
       zh: 'Aditi Dudeja 教授一篇论文被 PODC 2026 录用',
     },
     summary: {
-      en: 'Prof. Aditi Dudeja’s paper "Distributed Stochastic Graph Algorithms" has been accepted to the 2026 ACM Symposium on Principles of Distributed Computing (PODC 2026).',
-      zh: 'Aditi Dudeja 教授一篇论文《Distributed Stochastic Graph Algorithms》被 the 2026 ACM Symposium on Principles of Distributed Computing (PODC 2026) 录用。',
+      en: 'Prof. Aditi Dudeja’s paper "Distributed Stochastic Graph Algorithms" has been accepted to ACM Symposium on Principles of Distributed Computing (PODC 2026).',
+      zh: 'Aditi Dudeja 教授一篇论文《Distributed Stochastic Graph Algorithms》被 ACM Symposium on Principles of Distributed Computing (PODC 2026) 录用。',
     },
   },
 ];
