@@ -1,4 +1,4 @@
-import { textOf, type TheoryEvent } from '../data/site';
+import { textOf, type TheoryEvent, type VisitRange } from '../data/site';
 
 // Calendar cells use venue-local dates represented as UTC midnight.
 export function calendarDate(value: string) {
@@ -10,7 +10,18 @@ export function calendarDate(value: string) {
 }
 
 export function seminarOccursOn(event: TheoryEvent, day: Date) {
-  return calendarDate(event.start).getTime() === day.getTime();
+  return event.kind !== 'visit' && calendarDate(event.start).getTime() === day.getTime();
+}
+
+export function eventCalendarDate(event: TheoryEvent) {
+  return event.kind === 'visit' ? new Date(`${event.visit.start}T00:00:00Z`) : calendarDate(event.start);
+}
+
+export function visitCalendarDates(visit: VisitRange) {
+  // All-day calendar exports have an exclusive end date.
+  const end = new Date(`${visit.end}T00:00:00Z`);
+  end.setUTCDate(end.getUTCDate() + 1);
+  return `${visit.start.replace(/-/g, '')}/${end.toISOString().slice(0, 10).replace(/-/g, '')}`;
 }
 
 export function visitOccursOn(event: TheoryEvent, day: Date) {
@@ -40,15 +51,12 @@ export function formatVisitRange(event: TheoryEvent, language: string) {
 export function visitIcsDataUrl(event: TheoryEvent, language: string) {
   if (!event.visit) return '';
   const escape = (value: string) => value.replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
-  const start = event.visit.start.replace(/-/g, '');
-  // iCalendar's all-day DTEND is exclusive; the website's visit end is inclusive.
-  const end = new Date(`${event.visit.end}T00:00:00Z`);
-  end.setUTCDate(end.getUTCDate() + 1);
+  const [start, end] = visitCalendarDates(event.visit).split('/');
   const title = `${language.startsWith('zh') ? '学术访问' : 'Research visit'}: ${textOf(event.speaker, language)}`;
   const lines = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SDS Theory Group//Events//EN',
     'BEGIN:VEVENT', `UID:${event.id}-visit@sds-theory`, `DTSTAMP:${start}T000000Z`,
-    `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end.toISOString().slice(0, 10).replace(/-/g, '')}`,
+    `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end}`,
     `SUMMARY:${escape(title)}`, `LOCATION:${escape('SDS, CUHK-Shenzhen')}`,
     ...(event.speakerUrl ? [`URL:${event.speakerUrl}`] : []),
     'END:VEVENT', 'END:VCALENDAR',

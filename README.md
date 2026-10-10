@@ -56,6 +56,10 @@ A seminar can include a `visit` range with inclusive venue-local dates, e.g.
 day alongside the timed seminar. The visit has a separate all-day `.ics` download;
 the seminar's Google Calendar and `.ics` links keep its original time slot.
 Link a news item with `eventId` to reuse the event's poster and photos.
+For a visit without a talk, set `kind: 'visit'` and provide only the `visit`
+date range, without timed `start`/`end` fields. It appears on each visit day,
+and both calendar exports use all-day dates. News linked to an event without
+media opens the corresponding entry in the activities calendar.
 
 Current pages:
 

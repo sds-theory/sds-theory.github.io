@@ -385,62 +385,6 @@ export function Home() {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
-          <div className="mt-5 border-y border-slate-200">
-            {news.map((item, index) => {
-              const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
-              const newsTitle = textOf(item.title, i18n.language);
-              const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;
-              const linkedEvent = item.eventId ? events.find((event) => event.id === item.eventId) : undefined;
-              const mediaItems = linkedEvent
-                ? getEventMediaItems(linkedEvent, i18n.language, t('events.poster'))
-                : imageHref
-                  ? [{ src: imageHref, alt: newsImageAlt, label: t('events.poster') }]
-                  : [];
-              const cardClassName = 'motion-card group block w-full border-b border-slate-200 px-2 py-5 text-left transition last:border-b-0 hover:bg-[#f6fbfa] sm:grid sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6 sm:px-4';
-              const cardContent = (
-                <>
-                  <div className="flex items-center gap-2 text-sm font-semibold text-copper">
-                    <Newspaper size={16} />
-                    {item.date}
-                  </div>
-                  <div className="mt-2 min-w-0 sm:mt-0">
-                    <h3 className="flex items-start gap-2 text-lg font-semibold text-ink">
-                      <span>{newsTitle}</span>
-                      {mediaItems.length > 0 && <Images className="mt-1 flex-none text-tealstone" size={17} />}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
-                  </div>
-                </>
-              );
-
-              return mediaItems.length > 0 ? (
-                <button
-                  key={`${item.date}-${newsTitle}`}
-                  type="button"
-                  aria-label={`${t('actions.viewMedia')}: ${newsTitle}`}
-                  onClick={() => setSelectedMedia({ title: newsTitle, items: mediaItems })}
-                  className={cardClassName}
-                  style={{ animationDelay: `${index * 70}ms` }}
-                >
-                  {cardContent}
-                </button>
-              ) : (
-                <article
-                  key={`${item.date}-${newsTitle}`}
-                  className={cardClassName}
-                  style={{ animationDelay: `${index * 70}ms` }}
-                >
-                  {cardContent}
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <section className="bg-[#f6fbfa]">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.activitiesTitle')}</h2>
@@ -477,6 +421,73 @@ export function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-semibold text-ink sm:text-4xl">{t('home.newsTitle')}</h2>
+          <div className="mt-5 border-y border-slate-200">
+            {news.map((item, index) => {
+              const imageHref = item.image ? `${import.meta.env.BASE_URL}${item.image}` : undefined;
+              const newsTitle = textOf(item.title, i18n.language);
+              const newsImageAlt = item.imageAlt ? textOf(item.imageAlt, i18n.language) : newsTitle;
+              const linkedEvent = item.eventId ? events.find((event) => event.id === item.eventId) : undefined;
+              const mediaItems = linkedEvent
+                ? getEventMediaItems(linkedEvent, i18n.language, t('events.poster'))
+                : imageHref
+                  ? [{ src: imageHref, alt: newsImageAlt, label: t('events.poster') }]
+                  : [];
+              const cardClassName = 'motion-card group block w-full border-b border-slate-200 px-2 py-5 text-left transition last:border-b-0 hover:bg-[#f6fbfa] sm:grid sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-6 sm:px-4';
+              const cardContent = (
+                <>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-copper">
+                    <Newspaper size={16} />
+                    {item.date}
+                  </div>
+                  <div className="mt-2 min-w-0 sm:mt-0">
+                    <h3 className="flex items-start gap-2 text-lg font-semibold text-ink">
+                      <span>{newsTitle}</span>
+                      {mediaItems.length > 0 && <Images className="mt-1 flex-none text-tealstone" size={17} />}
+                      {linkedEvent && mediaItems.length === 0 && <CalendarDays className="mt-1 flex-none text-tealstone" size={17} />}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{textOf(item.summary, i18n.language)}</p>
+                  </div>
+                </>
+              );
+
+              return mediaItems.length > 0 ? (
+                <button
+                  key={`${item.date}-${newsTitle}`}
+                  type="button"
+                  aria-label={`${t('actions.viewMedia')}: ${newsTitle}`}
+                  onClick={() => setSelectedMedia({ title: newsTitle, items: mediaItems })}
+                  className={cardClassName}
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  {cardContent}
+                </button>
+              ) : linkedEvent ? (
+                <Link
+                  key={`${item.date}-${newsTitle}`}
+                  to={`/events?event=${encodeURIComponent(linkedEvent.id)}`}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+                  className={cardClassName}
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  {cardContent}
+                </Link>
+              ) : (
+                <article
+                  key={`${item.date}-${newsTitle}`}
+                  className={cardClassName}
+                  style={{ animationDelay: `${index * 70}ms` }}
+                >
+                  {cardContent}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

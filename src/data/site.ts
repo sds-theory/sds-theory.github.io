@@ -20,6 +20,12 @@ export type Person = {
   bio: LocalizedText;
 };
 
+export type VisitRange = {
+  // Inclusive venue-local dates (YYYY-MM-DD).
+  start: string;
+  end: string;
+};
+
 export type TheoryEvent = {
   id: string;
   title: LocalizedText;
@@ -29,19 +35,15 @@ export type TheoryEvent = {
   speakerUrl?: string;
   affiliation?: LocalizedText;
   location: LocalizedText;
-  start: string;
-  end: string;
-  visit?: {
-    // Inclusive venue-local dates (YYYY-MM-DD).
-    start: string;
-    end: string;
-  };
   abstract: LocalizedText;
   host?: LocalizedText;
   poster?: string;
   posterAlt?: LocalizedText;
   photos?: EventPhoto[];
-};
+} & (
+  | { kind?: 'seminar'; start: string; end: string; visit?: VisitRange }
+  | { kind: 'visit'; visit: VisitRange; start?: never; end?: never }
+);
 
 export type EventPhoto = {
   src: string;
@@ -766,8 +768,8 @@ export const events: TheoryEvent[] = [
     end: '2026-10-15T12:00:00+08:00',
     visit: { start: '2026-10-15', end: '2026-10-16' },
     abstract: {
-      en: 'This talk studies clustering in evolving graphs as new edges and vertices arrive. A hierarchical data structure maintains the changing cluster structure with faster amortised update and query times, with experiments on synthetic and real-world datasets. The talk is based on joint work with Suranjan De and Steinar Laenen appearing at NeurIPS 2026. The seminar will be delivered in English. He Sun will visit the group on October 15-16, 2026.',
-      zh: '本报告研究在新边和新顶点不断加入时的动态图聚类问题，通过分层数据结构维护随时间变化的聚类结构，改进均摊更新与查询时间，并在合成及真实数据集上进行实验验证。报告基于与 Suranjan De、Steinar Laenen 合作、发表于 NeurIPS 2026 的工作，报告语言为英语。孙贺教授将于 2026 年 10 月 15–16 日访问研究组。',
+      en: 'This talk studies clustering in evolving graphs as new edges and vertices arrive. A hierarchical data structure maintains the changing cluster structure with faster amortised update and query times, with experiments on synthetic and real-world datasets. The talk is based on joint work with Suranjan De and Steinar Laenen appearing at NeurIPS 2026. The seminar will be delivered in English. He Sun will visit on October 15-16, 2026.',
+      zh: '本报告研究在新边和新顶点不断加入时的动态图聚类问题，通过分层数据结构维护随时间变化的聚类结构，改进均摊更新与查询时间，并在合成及真实数据集上进行实验验证。报告基于与 Suranjan De、Steinar Laenen 合作、发表于 NeurIPS 2026 的工作，报告语言为英语。孙贺教授将于 2026 年 10 月 15–16 日访问。',
     },
     host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
     poster: 'images/seminar-he-sun-2026-10-15.png',
@@ -775,6 +777,23 @@ export const events: TheoryEvent[] = [
       en: 'Poster for the SDS Topical Seminar by He Sun on October 15, 2026',
       zh: '孙贺教授 2026 年 10 月 15 日 SDS 专题报告海报',
     },
+  },
+  {
+    id: '2026-08-03-nairen-cao-visit',
+    kind: 'visit',
+    title: { en: 'Research visit by Prof. Nairen Cao', zh: '曹乃仁教授来访' },
+    type: { en: 'Research Visit', zh: '学术访问' },
+    status: { en: 'Completed', zh: '已结束' },
+    speaker: { en: 'Prof. Nairen Cao', zh: '曹乃仁教授' },
+    speakerUrl: 'https://nairenc.github.io/',
+    affiliation: { en: 'Shanghai University of Finance and Economics', zh: '上海财经大学' },
+    location: { en: 'School of Data Science, CUHK-Shenzhen', zh: '香港中文大学（深圳）数据科学学院' },
+    visit: { start: '2026-08-03', end: '2026-08-05' },
+    abstract: {
+      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics visited from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
+      zh: '上海财经大学曹乃仁教授于 2026 年 8 月 3–5 日访问，由 Aditi Dudeja 教授接待。',
+    },
+    host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
   },
   {
     id: '2026-07-31-yaonan-jin-local-search-clustering',
@@ -891,8 +910,8 @@ export const news: NewsItem[] = [
       zh: '孙贺教授将于 10 月 15–16 日来访并作 SDS 专题报告',
     },
     summary: {
-      en: 'Prof. He Sun, Director of the Center for Algorithms and Learning Theory at SIAT, Chinese Academy of Sciences, will visit the group on October 15-16, 2026. His talk, "Faster Dynamic Graph Clustering with Hierarchical Graph Contraction", will take place on October 15, 11:00 AM-12:00 PM (Beijing time), in Room 413, Zhi Xin Building, hosted by Prof. Aditi Dudeja.',
-      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心主任孙贺教授将于 2026 年 10 月 15–16 日访问研究组，并于 10 月 15 日北京时间 11:00–12:00 在致新楼 413 会议室作题为 “Faster Dynamic Graph Clustering with Hierarchical Graph Contraction” 的英语报告，由 Aditi Dudeja 教授主持。',
+      en: 'Prof. He Sun, Director of the Center for Algorithms and Learning Theory at SIAT, Chinese Academy of Sciences, will visit on October 15-16, 2026. His talk, "Faster Dynamic Graph Clustering with Hierarchical Graph Contraction", will take place on October 15, 11:00 AM-12:00 PM (Beijing time), in Room 413, Zhi Xin Building, hosted by Prof. Aditi Dudeja.',
+      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心主任孙贺教授将于 2026 年 10 月 15–16 日访问，并于 10 月 15 日北京时间 11:00–12:00 在致新楼 413 会议室作题为 “Faster Dynamic Graph Clustering with Hierarchical Graph Contraction” 的学术报告，由 Aditi Dudeja 教授主持。',
     },
   },
   {
@@ -929,6 +948,18 @@ export const news: NewsItem[] = [
     },
   },
   {
+    date: '2026-08-01',
+    eventId: '2026-08-03-nairen-cao-visit',
+    title: {
+      en: 'Prof. Nairen Cao to visit on August 3-5',
+      zh: '曹乃仁教授将于 8 月 3–5 日来访',
+    },
+    summary: {
+      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics will visit from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
+      zh: '上海财经大学曹乃仁教授将于 2026 年 8 月 3–5 日访问，由 Aditi Dudeja 教授接待。',
+    },
+  },
+  {
     date: '2026-07-31',
     eventId: '2026-07-31-yaonan-jin-local-search-clustering',
     title: {
@@ -936,8 +967,8 @@ export const news: NewsItem[] = [
       zh: 'SDS Topical Seminar：金耀楠教授报告',
     },
     summary: {
-      en: 'Prof. Yaonan Jin from HKUST gave a topical seminar titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, in Room 401, Dao Yuan Building.',
-      zh: '香港科技大学金耀楠教授于 2026 年 7 月 31 日在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的专题报告。',
+      en: 'Prof. Yaonan Jin from Hong Kong University of Science and Technology gave a research talk titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Tao Lin.',
+      zh: '香港科技大学金耀楠教授于 2026 年 7 月 31 日北京时间 11:00–12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的学术报告，由林涛教授主持。',
     },
     image: 'images/seminar-yaonan-jin-2026-07-31.jpg',
     imageAlt: {

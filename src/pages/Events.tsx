@@ -1,10 +1,11 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { EventCard } from '../components/EventCard';
 import { SectionHeading } from '../components/SectionHeading';
 import { eventTracks, events, textOf, type TheoryEvent } from '../data/site';
-import { calendarDate, formatVisitRange, seminarOccursOn, visitOccursOn } from '../lib/eventDates';
+import { eventCalendarDate, formatVisitRange, seminarOccursOn, visitOccursOn } from '../lib/eventDates';
 
 function monthDays(reference: Date) {
   const year = reference.getUTCFullYear();
@@ -28,17 +29,30 @@ function compactSpeaker(event: TheoryEvent, language: string) {
 
 export function Events() {
   const { i18n, t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedId = searchParams.get('event');
   const [selectedId, setSelectedId] = useState(events[0]?.id ?? '');
   const selected = events.find((event) => event.id === selectedId) ?? events[0];
-  const [visibleMonth, setVisibleMonth] = useState(() => calendarDate(events[0]?.start ?? '2026-09-01T00:00:00+08:00'));
+  const [visibleMonth, setVisibleMonth] = useState(() => events[0] ? eventCalendarDate(events[0]) : new Date('2026-09-01T00:00:00Z'));
   const days = useMemo(() => monthDays(visibleMonth), [visibleMonth]);
   const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
+
+  // Resolve deep links after hydration because the static page has no query-specific HTML.
+  useEffect(() => {
+    const requested = events.find((event) => event.id === requestedId);
+    if (requested) {
+      setSelectedId(requested.id);
+      setVisibleMonth(eventCalendarDate(requested));
+    }
+  }, [requestedId]);
+
   const changeMonth = (offset: number) => {
     setVisibleMonth((current) => new Date(Date.UTC(current.getUTCFullYear(), current.getUTCMonth() + offset, 1)));
   };
   const selectEvent = (event: TheoryEvent) => {
     setSelectedId(event.id);
-    setVisibleMonth(calendarDate(event.start));
+    setVisibleMonth(eventCalendarDate(event));
+    setSearchParams({ event: event.id }, { replace: true });
   };
 
   return (
@@ -70,7 +84,7 @@ export function Events() {
             </div>
 
             <div className="-mx-1 mt-4 overflow-x-auto pb-2">
-              <div className="min-w-[28rem] px-1">
+              <div className="min-w-[35rem] px-1">
                 <div className="grid grid-cols-7 gap-1 text-center text-xs font-semibold text-slate-500">
                   {Array.from({ length: 7 }, (_, index) => {
                     const day = new Date(Date.UTC(2026, 1, index + 1));
@@ -96,7 +110,7 @@ export function Events() {
                         {dayEvents.map((event) => {
                           const hasSeminar = seminarOccursOn(event, day);
                           const hasVisit = visitOccursOn(event, day);
-                          const time = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit' }).format(new Date(event.start));
+                          const time = event.kind === 'visit' ? '' : new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit' }).format(new Date(event.start));
                           const label = `${day.toISOString().slice(0, 10)}: ${compactSpeaker(event, i18n.language)}; ${hasVisit ? `${t('events.visit')}: ${formatVisitRange(event, i18n.language)}; ` : ''}${hasSeminar ? `${time} ${textOf(event.title, i18n.language)}` : ''}`;
                           return (
                             <button
@@ -105,7 +119,7 @@ export function Events() {
                               aria-label={label}
                               title={label}
                               aria-pressed={event.id === selectedId}
-                              onClick={() => setSelectedId(event.id)}
+                              onClick={() => selectEvent(event)}
                               className="mt-1 block w-full rounded px-1 py-1 text-left transition hover:bg-tealstone/10 focus-visible:outline-tealstone"
                             >
                               <span className="block whitespace-nowrap text-[10px] font-semibold leading-4 text-ink">
@@ -163,14 +177,14 @@ export function Events() {
                 >
                   <p className="text-sm font-semibold text-ink">{textOf(event.title, i18n.language)}</p>
                   <p className="mt-1 text-xs text-slate-500">
-                    {compactSpeaker(event, i18n.language)} · {' '}
-                    {new Intl.DateTimeFormat(locale, {
+                    {compactSpeaker(event, i18n.language)}
+                    {event.kind !== 'visit' && ` · ${new Intl.DateTimeFormat(locale, {
                       timeZone: 'Asia/Shanghai',
                       month: 'short',
                       day: 'numeric',
                       hour: '2-digit',
                       minute: '2-digit',
-                    }).format(new Date(event.start))}
+                    }).format(new Date(event.start))}`}
                   </p>
                   {event.visit && <p className="mt-1 text-xs font-medium text-tealstone">{t('events.visit')}: {formatVisitRange(event, i18n.language)}</p>}
                 </button>

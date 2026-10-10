@@ -5,9 +5,10 @@ import { textOf, TheoryEvent } from '../data/site';
 import { EventGallery } from './EventGallery';
 import { EventMediaModal } from './EventMediaModal';
 import { getEventMediaItems } from './eventMedia';
-import { formatVisitRange, visitIcsDataUrl } from '../lib/eventDates';
+import { formatVisitRange, visitCalendarDates, visitIcsDataUrl } from '../lib/eventDates';
 
 function formatDateRange(event: TheoryEvent, language: string) {
+  if (event.kind === 'visit') return formatVisitRange(event, language);
   const locale = language.startsWith('zh') ? 'zh-CN' : 'en-US';
   const start = new Date(event.start);
   const end = new Date(event.end);
@@ -36,7 +37,7 @@ function googleCalendarUrl(event: TheoryEvent, language: string) {
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: textOf(event.title, language),
-    dates: `${format(event.start)}/${format(event.end)}`,
+    dates: event.kind === 'visit' ? visitCalendarDates(event.visit) : `${format(event.start)}/${format(event.end)}`,
     details: textOf(event.abstract, language),
     location: textOf(event.location, language),
   });
@@ -45,6 +46,7 @@ function googleCalendarUrl(event: TheoryEvent, language: string) {
 }
 
 function icsDataUrl(event: TheoryEvent, language: string) {
+  if (event.kind === 'visit') return visitIcsDataUrl(event, language);
   const format = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
   const lines = [
     'BEGIN:VCALENDAR',
@@ -95,10 +97,12 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
             {t('events.visit')}: {formatVisitRange(event, i18n.language)}
           </span>
         )}
-        <span className="flex items-start gap-2">
-          <Clock size={16} className="mt-0.5 shrink-0 text-tealstone" />
-          <span>{formatDateRange(event, i18n.language)} ({t('events.beijingTime')})</span>
-        </span>
+        {event.kind !== 'visit' && (
+          <span className="flex items-start gap-2">
+            <Clock size={16} className="mt-0.5 shrink-0 text-tealstone" />
+            <span>{formatDateRange(event, i18n.language)} ({t('events.beijingTime')})</span>
+          </span>
+        )}
         <span className="flex items-start gap-2">
           <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
           {event.speakerUrl ? (
@@ -123,7 +127,7 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
         {event.host && (
           <span className="flex items-start gap-2">
             <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
-            {t('events.host')}: {textOf(event.host, i18n.language)}
+            {t(event.kind === 'visit' ? 'events.visitHost' : 'events.host')}: {textOf(event.host, i18n.language)}
           </span>
         )}
       </div>
@@ -160,7 +164,7 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
           <Download size={14} />
           {t('actions.addIcs')}
         </a>
-        {event.visit && (
+        {event.visit && event.kind !== 'visit' && (
           <a
             href={visitIcsDataUrl(event, i18n.language)}
             download={`${event.id}-visit.ics`}
