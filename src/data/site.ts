@@ -31,6 +31,11 @@ export type TheoryEvent = {
   location: LocalizedText;
   start: string;
   end: string;
+  visit?: {
+    // Inclusive venue-local dates (YYYY-MM-DD).
+    start: string;
+    end: string;
+  };
   abstract: LocalizedText;
   host?: LocalizedText;
   poster?: string;
@@ -743,6 +748,35 @@ export const students: Person[] = [
 
 export const events: TheoryEvent[] = [
   {
+    id: '2026-10-15-he-sun-dynamic-graph-clustering',
+    title: {
+      en: 'Faster Dynamic Graph Clustering with Hierarchical Graph Contraction',
+      zh: 'Faster Dynamic Graph Clustering with Hierarchical Graph Contraction',
+    },
+    type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
+    status: { en: 'Upcoming', zh: '即将举行' },
+    speaker: { en: 'Prof. He Sun', zh: '孙贺教授' },
+    speakerUrl: 'https://homepages.inf.ed.ac.uk/hsun4/',
+    affiliation: {
+      en: 'Center for Algorithms and Learning Theory, SIAT, Chinese Academy of Sciences',
+      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心',
+    },
+    location: { en: 'Room 413, Zhi Xin Building', zh: '致新楼 413 会议室' },
+    start: '2026-10-15T11:00:00+08:00',
+    end: '2026-10-15T12:00:00+08:00',
+    visit: { start: '2026-10-15', end: '2026-10-16' },
+    abstract: {
+      en: 'This talk studies clustering in evolving graphs as new edges and vertices arrive. A hierarchical data structure maintains the changing cluster structure with faster amortised update and query times, with experiments on synthetic and real-world datasets. The talk is based on joint work with Suranjan De and Steinar Laenen appearing at NeurIPS 2026. The seminar will be delivered in English. He Sun will visit the group on October 15-16, 2026.',
+      zh: '本报告研究在新边和新顶点不断加入时的动态图聚类问题，通过分层数据结构维护随时间变化的聚类结构，改进均摊更新与查询时间，并在合成及真实数据集上进行实验验证。报告基于与 Suranjan De、Steinar Laenen 合作、发表于 NeurIPS 2026 的工作，报告语言为英语。孙贺教授将于 2026 年 10 月 15–16 日访问研究组。',
+    },
+    host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
+    poster: 'images/seminar-he-sun-2026-10-15.png',
+    posterAlt: {
+      en: 'Poster for the SDS Topical Seminar by He Sun on October 15, 2026',
+      zh: '孙贺教授 2026 年 10 月 15 日 SDS 专题报告海报',
+    },
+  },
+  {
     id: '2026-07-31-yaonan-jin-local-search-clustering',
     title: {
       en: 'Local Search for Clustering in Almost-Linear Time',
@@ -850,6 +884,18 @@ export const eventTracks: CollaborationItem[] = [
 
 export const news: NewsItem[] = [
   {
+    date: '2026-10-10',
+    eventId: '2026-10-15-he-sun-dynamic-graph-clustering',
+    title: {
+      en: 'He Sun to visit on October 15-16 and give an SDS Topical Seminar',
+      zh: '孙贺教授将于 10 月 15–16 日来访并作 SDS 专题报告',
+    },
+    summary: {
+      en: 'Prof. He Sun, Director of the Center for Algorithms and Learning Theory at SIAT, Chinese Academy of Sciences, will visit the group on October 15-16, 2026. His talk, "Faster Dynamic Graph Clustering with Hierarchical Graph Contraction", will take place on October 15, 11:00 AM-12:00 PM (Beijing time), in Room 413, Zhi Xin Building, hosted by Prof. Aditi Dudeja.',
+      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心主任孙贺教授将于 2026 年 10 月 15–16 日访问研究组，并于 10 月 15 日北京时间 11:00–12:00 在致新楼 413 会议室作题为 “Faster Dynamic Graph Clustering with Hierarchical Graph Contraction” 的英语报告，由 Aditi Dudeja 教授主持。',
+    },
+  },
+  {
     date: '2026-09-10',
     title: {
       en: 'One paper by Prof. Tao Lin accepted to WINE 2026',
@@ -925,7 +971,7 @@ export const news: NewsItem[] = [
       zh: '林涛教授三篇论文被 EC 2026 录用',
     },
     summary: {
-      en: 'Prof. Tao Lin has three works accepted to ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
+      en: 'Prof. Tao Lin has three works accepted to the ACM Conference on Economics and Computation (EC 2026): "Information Design with Large Language Models", "The Price and Complexity of Explainable Information Design", and "Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials".',
       zh: '林涛教授三篇论文《Information Design with Large Language Models》《The Price and Complexity of Explainable Information Design》《Gradient Dynamics in First-Price Auctions: Iterative Strategy Elimination via Cubic Potentials》被 ACM Conference on Economics and Computation (EC 2026) 录用。',
     },
   },
@@ -936,7 +982,7 @@ export const news: NewsItem[] = [
       zh: 'Aditi Dudeja 教授一篇论文被 CCC 2026 录用',
     },
     summary: {
-      en: 'Prof. Aditi Dudeja’s paper "Frontier Space-time Algorithms Using Only Full Memory" has been accepted to Computational Complexity Conference (CCC 2026).',
+      en: 'Prof. Aditi Dudeja’s paper "Frontier Space-time Algorithms Using Only Full Memory" has been accepted to the Computational Complexity Conference (CCC 2026).',
       zh: 'Aditi Dudeja 教授一篇论文《Frontier Space-time Algorithms Using Only Full Memory》被 Computational Complexity Conference (CCC 2026) 录用。',
     },
   },
@@ -947,7 +993,7 @@ export const news: NewsItem[] = [
       zh: 'Aditi Dudeja 教授一篇论文被 PODC 2026 录用',
     },
     summary: {
-      en: 'Prof. Aditi Dudeja’s paper "Distributed Stochastic Graph Algorithms" has been accepted to ACM Symposium on Principles of Distributed Computing (PODC 2026).',
+      en: 'Prof. Aditi Dudeja’s paper "Distributed Stochastic Graph Algorithms" has been accepted to the ACM Symposium on Principles of Distributed Computing (PODC 2026).',
       zh: 'Aditi Dudeja 教授一篇论文《Distributed Stochastic Graph Algorithms》被 ACM Symposium on Principles of Distributed Computing (PODC 2026) 录用。',
     },
   },

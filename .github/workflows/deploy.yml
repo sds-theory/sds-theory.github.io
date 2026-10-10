@@ -30,6 +30,9 @@ jobs:
       - name: Check static pages and search metadata
         run: npm run test:seo
 
+      - name: Check event dates and calendar exports
+        run: npm run test:events
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:

@@ -8,6 +8,7 @@
     "build": "vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "test:seo": "node --test tests/seo.test.mjs",
+    "test:events": "node --test tests/events.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

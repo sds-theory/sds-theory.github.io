@@ -1,10 +1,11 @@
-import { CalendarPlus, Clock, Download, ExternalLink, Images, MapPin, UserRound } from 'lucide-react';
+import { CalendarDays, CalendarPlus, Clock, Download, ExternalLink, Images, MapPin, UserRound } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { textOf, TheoryEvent } from '../data/site';
 import { EventGallery } from './EventGallery';
 import { EventMediaModal } from './EventMediaModal';
 import { getEventMediaItems } from './eventMedia';
+import { formatVisitRange, visitIcsDataUrl } from '../lib/eventDates';
 
 function formatDateRange(event: TheoryEvent, language: string) {
   const locale = language.startsWith('zh') ? 'zh-CN' : 'en-US';
@@ -88,9 +89,15 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
 
       <h3 className="mt-4 text-xl font-semibold text-ink">{textOf(event.title, i18n.language)}</h3>
       <div className="mt-4 grid gap-2 text-sm text-slate-600">
+        {event.visit && (
+          <span className="flex items-start gap-2 font-medium text-tealstone">
+            <CalendarDays size={16} className="mt-0.5 shrink-0" />
+            {t('events.visit')}: {formatVisitRange(event, i18n.language)}
+          </span>
+        )}
         <span className="flex items-start gap-2">
           <Clock size={16} className="mt-0.5 shrink-0 text-tealstone" />
-          {formatDateRange(event, i18n.language)}
+          <span>{formatDateRange(event, i18n.language)} ({t('events.beijingTime')})</span>
         </span>
         <span className="flex items-start gap-2">
           <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
@@ -99,7 +106,7 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
               href={event.speakerUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-ink underline decoration-slate-300 underline-offset-4 transition hover:text-tealstone"
+              className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-medium text-ink underline decoration-slate-300 underline-offset-4 transition hover:text-tealstone"
             >
               {textOf(event.speaker, i18n.language)}
               <ExternalLink size={13} />
@@ -153,6 +160,16 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
           <Download size={14} />
           {t('actions.addIcs')}
         </a>
+        {event.visit && (
+          <a
+            href={visitIcsDataUrl(event, i18n.language)}
+            download={`${event.id}-visit.ics`}
+            className="inline-flex items-center gap-1.5 rounded border border-tealstone/40 px-3 py-2 text-xs font-semibold text-tealstone transition hover:border-tealstone hover:bg-tealstone/5"
+          >
+            <CalendarDays size={14} />
+            {t('events.addVisit')}
+          </a>
+        )}
       </div>
 
       {!compact && event.photos?.length ? (

@@ -23,6 +23,7 @@ The site uses Vite, React, TypeScript, Tailwind, `react-router-dom`, `react-i18n
 ```bash
 npm run build
 npm run test:seo
+npm run test:events
 npm run preview
 ```
 
@@ -49,6 +50,12 @@ Most first-version content lives in:
 - `src/data/site.ts`
 
 Update this file for members, research areas, seminar entries, news, events, contact email, and the GitHub link.
+
+A seminar can include a `visit` range with inclusive venue-local dates, e.g.
+`visit: { start: '2026-10-15', end: '2026-10-16' }`. The calendar marks every visit
+day alongside the timed seminar. The visit has a separate all-day `.ics` download;
+the seminar's Google Calendar and `.ics` links keep its original time slot.
+Link a news item with `eventId` to reuse the event's poster and photos.
 
 Current pages:
 
