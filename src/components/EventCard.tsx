@@ -105,20 +105,22 @@ export function EventCard({ event, compact = false }: { event: TheoryEvent; comp
         )}
         <span className="flex items-start gap-2">
           <UserRound size={16} className="mt-0.5 shrink-0 text-tealstone" />
-          {event.speakerUrl ? (
-            <a
-              href={event.speakerUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-medium text-ink underline decoration-slate-300 underline-offset-4 transition hover:text-tealstone"
-            >
-              {textOf(event.speaker, i18n.language)}
-              <ExternalLink size={13} />
-            </a>
-          ) : (
-            textOf(event.speaker, i18n.language)
-          )}
-          {event.affiliation ? `, ${textOf(event.affiliation, i18n.language)}` : ''}
+          <span className="min-w-0">
+            {event.speakerUrl ? (
+              <a
+                href={event.speakerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 whitespace-nowrap font-medium text-ink underline decoration-slate-300 underline-offset-4 transition hover:text-tealstone"
+              >
+                {textOf(event.speaker, i18n.language)}
+                <ExternalLink size={13} />
+              </a>
+            ) : (
+              textOf(event.speaker, i18n.language)
+            )}
+            {event.affiliation ? `, ${textOf(event.affiliation, i18n.language)}` : ''}
+          </span>
         </span>
         <span className="flex items-start gap-2">
           <MapPin size={16} className="mt-0.5 shrink-0 text-tealstone" />

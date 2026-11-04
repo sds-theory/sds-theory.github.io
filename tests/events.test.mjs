@@ -3,7 +3,11 @@ import { after, test } from 'node:test';
 import { access } from 'node:fs/promises';
 import { createServer } from 'vite';
 
-const vite = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
+const vite = await createServer({
+  server: { middlewareMode: true, hmr: false, watch: null },
+  optimizeDeps: { noDiscovery: true, include: [] },
+  appType: 'custom',
+});
 after(() => vite.close());
 const { events, news } = await vite.ssrLoadModule('/src/data/site.ts');
 const { calendarDate, eventCalendarDate, seminarOccursOn, visitOccursOn, formatVisitRange, visitCalendarDates, visitIcsDataUrl } = await vite.ssrLoadModule('/src/lib/eventDates.ts');
@@ -99,4 +103,70 @@ test('seminar and visitor news retain bilingual host information consistently', 
       assert.ok(!announcement.summary.zh.includes('英语报告'));
     }
   }
+});
+
+test('Shaofeng Jiang visits on November 9-10 with a seminar and poster on November 9', async () => {
+  const event = events.find((item) => item.id === '2026-11-09-shaofeng-jiang-consistent-hashing');
+  assert.ok(event);
+  assert.equal(event.start, '2026-11-09T11:00:00+08:00');
+  assert.equal(event.end, '2026-11-09T12:00:00+08:00');
+  assert.equal(event.title.en, 'Consistent Hashing and Its Applications');
+  assert.equal(event.speaker.zh, '姜少峰教授');
+  assert.equal(event.speakerUrl, 'https://www.shaofengjiang.cn/');
+  assert.equal(event.affiliation.zh, '北京大学前沿计算研究中心');
+  assert.equal(event.location.zh, '道远楼 401 会议室');
+  assert.deepEqual(event.host, { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' });
+  assert.equal(seminarOccursOn(event, day('2026-11-09')), true);
+  assert.equal(seminarOccursOn(event, day('2026-11-10')), false);
+  for (const date of ['2026-11-09', '2026-11-10']) assert.equal(visitOccursOn(event, day(date)), true);
+  for (const date of ['2026-11-08', '2026-11-11']) assert.equal(visitOccursOn(event, day(date)), false);
+  assert.equal(formatVisitRange(event, 'zh'), '2026年11月9–10日');
+  assert.equal(visitCalendarDates(event.visit), '20261109/20261111');
+  assert.ok(decodeURIComponent(visitIcsDataUrl(event, 'en')).includes('DTEND;VALUE=DATE:20261111'));
+  await access(new URL(`../public/${event.poster}`, import.meta.url));
+  const announcement = news.find((item) => item.eventId === event.id);
+  assert.equal(announcement.date, '2026-11-03');
+  for (const language of ['en', 'zh']) {
+    assert.ok(announcement.summary[language].includes(event.title[language]));
+    assert.ok(announcement.summary[language].includes(event.location[language]));
+    assert.ok(announcement.summary[language].includes(event.host[language]));
+  }
+});
+
+test('Joseph Sakos has only an October 26-28 visit and a linked bilingual news item', () => {
+  const event = events.find((item) => item.id === '2026-10-26-joseph-sakos-visit');
+  assert.ok(event);
+  assert.equal(event.kind, 'visit');
+  assert.equal(event.speaker.en, 'Joseph Sakos');
+  assert.equal(event.affiliation.en, 'Singapore University of Technology and Design');
+  assert.equal(event.speakerUrl, 'https://joseph-brainstorm.github.io/');
+  for (const field of ['start', 'end', 'poster', 'photos', 'host']) assert.equal(event[field], undefined);
+  for (const date of ['2026-10-26', '2026-10-27', '2026-10-28']) {
+    assert.equal(visitOccursOn(event, day(date)), true);
+    assert.equal(seminarOccursOn(event, day(date)), false);
+  }
+  for (const date of ['2026-10-25', '2026-10-29']) assert.equal(visitOccursOn(event, day(date)), false);
+  assert.equal(visitCalendarDates(event.visit), '20261026/20261029');
+  const ics = decodeURIComponent(visitIcsDataUrl(event, 'en'));
+  assert.ok(ics.includes('DTSTART;VALUE=DATE:20261026'));
+  assert.ok(ics.includes('DTEND;VALUE=DATE:20261029'));
+  const announcement = news.find((item) => item.eventId === event.id);
+  assert.equal(announcement.date, '2026-11-03');
+  assert.ok(announcement.summary.en.includes('visited from October 26 to 28, 2026'));
+  assert.ok(announcement.summary.zh.includes('2026 年 10 月 26–28 日访问'));
+  assert.ok(!/seminar|talk|报告/i.test(Object.values(announcement.summary).join(' ')));
+});
+
+test('new entries retain the earlier events and keep news and calendar entries ordered', () => {
+  for (const id of [
+    '2026-10-15-he-sun-dynamic-graph-clustering',
+    '2026-08-03-nairen-cao-visit',
+    '2026-07-31-yaonan-jin-local-search-clustering',
+  ]) {
+    assert.ok(events.some((event) => event.id === id));
+    assert.ok(news.some((item) => item.eventId === id));
+  }
+  const dates = events.map((event) => eventCalendarDate(event).getTime());
+  assert.deepEqual(dates, [...dates].sort((a, b) => b - a));
+  assert.deepEqual(news.map(({ date }) => date), news.map(({ date }) => date).sort().reverse());
 });

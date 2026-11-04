@@ -672,7 +672,7 @@ export const faculty: Person[] = [
     title: { en: 'Assistant Professor (joining January 2027)', zh: '助理教授（2027年1月加入）' },
     role: { en: 'Member', zh: '成员' },
     initials: 'HW',
-    website: 'https://sites.google.com/view/haowu/home',
+    website: 'https://wuhao-wu-jiang.github.io',
     education: { en: 'Ph.D., University of Melbourne', zh: '博士，墨尔本大学' },
     research: [
       { en: 'Sketching algorithms', zh: '草图算法' },
@@ -749,6 +749,54 @@ export const students: Person[] = [
 ];
 
 export const events: TheoryEvent[] = [
+  {
+    id: '2026-11-09-shaofeng-jiang-consistent-hashing',
+    title: {
+      en: 'Consistent Hashing and Its Applications',
+      zh: 'Consistent Hashing and Its Applications',
+    },
+    type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
+    status: { en: 'Upcoming', zh: '即将举行' },
+    speaker: { en: 'Prof. Shaofeng Jiang', zh: '姜少峰教授' },
+    speakerUrl: 'https://www.shaofengjiang.cn/',
+    affiliation: {
+      en: 'Center on Frontiers of Computing Studies, Peking University',
+      zh: '北京大学前沿计算研究中心',
+    },
+    location: { en: 'Room 401, Dao Yuan Building', zh: '道远楼 401 会议室' },
+    start: '2026-11-09T11:00:00+08:00',
+    end: '2026-11-09T12:00:00+08:00',
+    visit: { start: '2026-11-09', end: '2026-11-10' },
+    abstract: {
+      en: 'Consistent hashing partitions a metric space into bounded-diameter regions independently of the data, so that every compact subset intersects only a small number of regions. This talk introduces consistent hashing, its efficient construction, and applications to high-dimensional algorithm design, especially clustering, and concludes with open questions. The seminar will be delivered in English. Prof. Shaofeng Jiang will visit on November 9-10, 2026.',
+      zh: '一致性哈希以不依赖数据的方式，将度量空间划分为直径有界的区域，使每个紧致子集仅与少量区域相交。本报告介绍一致性哈希的概念、高效构造及其在高维算法设计中的应用，重点讨论聚类问题，并介绍相关开放问题。报告语言为英语。姜少峰教授将于 2026 年 11 月 9–10 日访问。',
+    },
+    host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
+    poster: 'images/seminar-shaofeng-jiang-2026-11-09.jpg',
+    posterAlt: {
+      en: 'Poster for the SDS Topical Seminar by Shaofeng Jiang on November 9, 2026',
+      zh: '姜少峰教授 2026 年 11 月 9 日 SDS 专题报告海报',
+    },
+  },
+  {
+    id: '2026-10-26-joseph-sakos-visit',
+    kind: 'visit',
+    title: { en: 'Research visit by Joseph Sakos', zh: 'Joseph Sakos 来访' },
+    type: { en: 'Research Visit', zh: '学术访问' },
+    status: { en: 'Completed', zh: '已结束' },
+    speaker: { en: 'Joseph Sakos', zh: 'Joseph Sakos' },
+    speakerUrl: 'https://joseph-brainstorm.github.io/',
+    affiliation: {
+      en: 'Singapore University of Technology and Design',
+      zh: '新加坡科技设计大学',
+    },
+    location: { en: 'School of Data Science, CUHK-Shenzhen', zh: '香港中文大学（深圳）数据科学学院' },
+    visit: { start: '2026-10-26', end: '2026-10-28' },
+    abstract: {
+      en: 'Joseph Sakos from Singapore University of Technology and Design visited from October 26 to 28, 2026.',
+      zh: '新加坡科技设计大学 Joseph Sakos 于 2026 年 10 月 26–28 日访问。',
+    },
+  },
   {
     id: '2026-10-15-he-sun-dynamic-graph-clustering',
     title: {
@@ -902,6 +950,30 @@ export const eventTracks: CollaborationItem[] = [
 ];
 
 export const news: NewsItem[] = [
+  {
+    date: '2026-11-03',
+    eventId: '2026-11-09-shaofeng-jiang-consistent-hashing',
+    title: {
+      en: 'Prof. Shaofeng Jiang to visit on November 9-10 and give an SDS Topical Seminar',
+      zh: '姜少峰教授将于 11 月 9–10 日来访并作 SDS 专题报告',
+    },
+    summary: {
+      en: 'Prof. Shaofeng Jiang from the Center on Frontiers of Computing Studies at Peking University will visit on November 9-10, 2026. His talk, "Consistent Hashing and Its Applications", will take place on November 9, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Aditi Dudeja.',
+      zh: '北京大学前沿计算研究中心姜少峰教授将于 2026 年 11 月 9–10 日访问，并于 11 月 9 日北京时间 11:00–12:00 在道远楼 401 会议室作题为 “Consistent Hashing and Its Applications” 的学术报告，由 Aditi Dudeja 教授主持。',
+    },
+  },
+  {
+    date: '2026-11-03',
+    eventId: '2026-10-26-joseph-sakos-visit',
+    title: {
+      en: 'Joseph Sakos visited on October 26-28',
+      zh: 'Joseph Sakos 于 10 月 26–28 日来访',
+    },
+    summary: {
+      en: 'Joseph Sakos from Singapore University of Technology and Design visited from October 26 to 28, 2026.',
+      zh: '新加坡科技设计大学 Joseph Sakos 于 2026 年 10 月 26–28 日访问。',
+    },
+  },
   {
     date: '2026-10-10',
     eventId: '2026-10-15-he-sun-dynamic-graph-clustering',
