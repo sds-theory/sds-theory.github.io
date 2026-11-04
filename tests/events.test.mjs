@@ -137,10 +137,11 @@ test('Joseph Sakos has only an October 26-28 visit and a linked bilingual news i
   const event = events.find((item) => item.id === '2026-10-26-joseph-sakos-visit');
   assert.ok(event);
   assert.equal(event.kind, 'visit');
-  assert.equal(event.speaker.en, 'Joseph Sakos');
+  assert.equal(event.speaker.en, 'Dr. Joseph Sakos');
   assert.equal(event.affiliation.en, 'Singapore University of Technology and Design');
   assert.equal(event.speakerUrl, 'https://joseph-brainstorm.github.io/');
-  for (const field of ['start', 'end', 'poster', 'photos', 'host']) assert.equal(event[field], undefined);
+  for (const field of ['start', 'end', 'poster', 'photos']) assert.equal(event[field], undefined);
+  assert.deepEqual(event.host, { en: 'Prof. Konstantinos Courcoubetis', zh: 'Konstantinos Courcoubetis 教授' });
   for (const date of ['2026-10-26', '2026-10-27', '2026-10-28']) {
     assert.equal(visitOccursOn(event, day(date)), true);
     assert.equal(seminarOccursOn(event, day(date)), false);
@@ -152,7 +153,7 @@ test('Joseph Sakos has only an October 26-28 visit and a linked bilingual news i
   assert.ok(ics.includes('DTEND;VALUE=DATE:20261029'));
   const announcement = news.find((item) => item.eventId === event.id);
   assert.equal(announcement.date, '2026-11-03');
-  assert.ok(announcement.summary.en.includes('visited from October 26 to 28, 2026'));
+  assert.ok(announcement.summary.en.includes('visits from October 26 to 28, 2026'));
   assert.ok(announcement.summary.zh.includes('2026 年 10 月 26–28 日访问'));
   assert.ok(!/seminar|talk|报告/i.test(Object.values(announcement.summary).join(' ')));
 });

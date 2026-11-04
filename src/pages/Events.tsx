@@ -23,8 +23,8 @@ function monthDays(reference: Date) {
 
 function compactSpeaker(event: TheoryEvent, language: string) {
   return textOf(event.speaker, language)
-    .replace(/^Prof\.\s*/, '')
-    .replace(/\s*(教授|研究员)$/, '');
+    .replace(/^(?:Prof|Dr)\.\s*/, '')
+    .replace(/\s*(教授|研究员|博士)$/, '');
 }
 
 export function Events() {

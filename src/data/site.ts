@@ -672,6 +672,8 @@ export const faculty: Person[] = [
     title: { en: 'Assistant Professor (joining January 2027)', zh: '助理教授（2027年1月加入）' },
     role: { en: 'Member', zh: '成员' },
     initials: 'HW',
+    avatar: 'images/faculty-hao-wu.jpg',
+    avatarPosition: '50% 50%',
     website: 'https://wuhao-wu-jiang.github.io',
     education: { en: 'Ph.D., University of Melbourne', zh: '博士，墨尔本大学' },
     research: [
@@ -768,8 +770,8 @@ export const events: TheoryEvent[] = [
     end: '2026-11-09T12:00:00+08:00',
     visit: { start: '2026-11-09', end: '2026-11-10' },
     abstract: {
-      en: 'Consistent hashing partitions a metric space into bounded-diameter regions independently of the data, so that every compact subset intersects only a small number of regions. This talk introduces consistent hashing, its efficient construction, and applications to high-dimensional algorithm design, especially clustering, and concludes with open questions. The seminar will be delivered in English. Prof. Shaofeng Jiang will visit on November 9-10, 2026.',
-      zh: '一致性哈希以不依赖数据的方式，将度量空间划分为直径有界的区域，使每个紧致子集仅与少量区域相交。本报告介绍一致性哈希的概念、高效构造及其在高维算法设计中的应用，重点讨论聚类问题，并介绍相关开放问题。报告语言为英语。姜少峰教授将于 2026 年 11 月 9–10 日访问。',
+      en: 'Consistent hashing partitions a metric space into bounded-diameter regions independently of the data, so that every compact subset intersects only a small number of regions. This talk introduces consistent hashing, its efficient construction, and applications to high-dimensional algorithm design, especially clustering, and concludes with open questions. The seminar is delivered in English. Prof. Shaofeng Jiang visits on November 9-10, 2026.',
+      zh: '一致性哈希以不依赖数据的方式，将度量空间划分为直径有界的区域，使每个紧致子集仅与少量区域相交。本报告介绍一致性哈希的概念、高效构造及其在高维算法设计中的应用，重点讨论聚类问题，并介绍相关开放问题。报告语言为英语。姜少峰教授于 2026 年 11 月 9–10 日访问。',
     },
     host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
     poster: 'images/seminar-shaofeng-jiang-2026-11-09.jpg',
@@ -781,10 +783,10 @@ export const events: TheoryEvent[] = [
   {
     id: '2026-10-26-joseph-sakos-visit',
     kind: 'visit',
-    title: { en: 'Research visit by Joseph Sakos', zh: 'Joseph Sakos 来访' },
+    title: { en: 'Research visit by Dr. Joseph Sakos', zh: 'Joseph Sakos 博士来访' },
     type: { en: 'Research Visit', zh: '学术访问' },
     status: { en: 'Completed', zh: '已结束' },
-    speaker: { en: 'Joseph Sakos', zh: 'Joseph Sakos' },
+    speaker: { en: 'Dr. Joseph Sakos', zh: 'Joseph Sakos 博士' },
     speakerUrl: 'https://joseph-brainstorm.github.io/',
     affiliation: {
       en: 'Singapore University of Technology and Design',
@@ -793,9 +795,10 @@ export const events: TheoryEvent[] = [
     location: { en: 'School of Data Science, CUHK-Shenzhen', zh: '香港中文大学（深圳）数据科学学院' },
     visit: { start: '2026-10-26', end: '2026-10-28' },
     abstract: {
-      en: 'Joseph Sakos from Singapore University of Technology and Design visited from October 26 to 28, 2026.',
-      zh: '新加坡科技设计大学 Joseph Sakos 于 2026 年 10 月 26–28 日访问。',
+      en: 'Dr. Joseph Sakos from Singapore University of Technology and Design visits from October 26 to 28, 2026, hosted by Prof. Konstantinos Courcoubetis.',
+      zh: '新加坡科技设计大学 Joseph Sakos 博士于 2026 年 10 月 26–28 日访问，由 Konstantinos Courcoubetis 教授接待。',
     },
+    host: { en: 'Prof. Konstantinos Courcoubetis', zh: 'Konstantinos Courcoubetis 教授' },
   },
   {
     id: '2026-10-15-he-sun-dynamic-graph-clustering',
@@ -804,7 +807,7 @@ export const events: TheoryEvent[] = [
       zh: 'Faster Dynamic Graph Clustering with Hierarchical Graph Contraction',
     },
     type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
-    status: { en: 'Upcoming', zh: '即将举行' },
+    status: { en: 'Completed', zh: '已结束' },
     speaker: { en: 'Prof. He Sun', zh: '孙贺教授' },
     speakerUrl: 'https://homepages.inf.ed.ac.uk/hsun4/',
     affiliation: {
@@ -816,8 +819,8 @@ export const events: TheoryEvent[] = [
     end: '2026-10-15T12:00:00+08:00',
     visit: { start: '2026-10-15', end: '2026-10-16' },
     abstract: {
-      en: 'This talk studies clustering in evolving graphs as new edges and vertices arrive. A hierarchical data structure maintains the changing cluster structure with faster amortised update and query times, with experiments on synthetic and real-world datasets. The talk is based on joint work with Suranjan De and Steinar Laenen appearing at NeurIPS 2026. The seminar will be delivered in English. He Sun will visit on October 15-16, 2026.',
-      zh: '本报告研究在新边和新顶点不断加入时的动态图聚类问题，通过分层数据结构维护随时间变化的聚类结构，改进均摊更新与查询时间，并在合成及真实数据集上进行实验验证。报告基于与 Suranjan De、Steinar Laenen 合作、发表于 NeurIPS 2026 的工作，报告语言为英语。孙贺教授将于 2026 年 10 月 15–16 日访问。',
+      en: 'This talk studies clustering in evolving graphs as new edges and vertices arrive. A hierarchical data structure maintains the changing cluster structure with faster amortised update and query times, with experiments on synthetic and real-world datasets. The talk is based on joint work with Suranjan De and Steinar Laenen appearing at NeurIPS 2026. The seminar is delivered in English. Prof. He Sun visits on October 15-16, 2026.',
+      zh: '本报告研究在新边和新顶点不断加入时的动态图聚类问题，通过分层数据结构维护随时间变化的聚类结构，改进均摊更新与查询时间，并在合成及真实数据集上进行实验验证。报告基于与 Suranjan De、Steinar Laenen 合作、发表于 NeurIPS 2026 的工作，报告语言为英语。孙贺教授于 2026 年 10 月 15–16 日访问。',
     },
     host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
     poster: 'images/seminar-he-sun-2026-10-15.png',
@@ -838,7 +841,7 @@ export const events: TheoryEvent[] = [
     location: { en: 'School of Data Science, CUHK-Shenzhen', zh: '香港中文大学（深圳）数据科学学院' },
     visit: { start: '2026-08-03', end: '2026-08-05' },
     abstract: {
-      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics visited from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
+      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics visits from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
       zh: '上海财经大学曹乃仁教授于 2026 年 8 月 3–5 日访问，由 Aditi Dudeja 教授接待。',
     },
     host: { en: 'Prof. Aditi Dudeja', zh: 'Aditi Dudeja 教授' },
@@ -954,36 +957,36 @@ export const news: NewsItem[] = [
     date: '2026-11-03',
     eventId: '2026-11-09-shaofeng-jiang-consistent-hashing',
     title: {
-      en: 'Prof. Shaofeng Jiang to visit on November 9-10 and give an SDS Topical Seminar',
-      zh: '姜少峰教授将于 11 月 9–10 日来访并作 SDS 专题报告',
+      en: 'Prof. Shaofeng Jiang visits on November 9-10 and gives an SDS Topical Seminar',
+      zh: '姜少峰教授于 11 月 9–10 日来访并作 SDS 专题报告',
     },
     summary: {
-      en: 'Prof. Shaofeng Jiang from the Center on Frontiers of Computing Studies at Peking University will visit on November 9-10, 2026. His talk, "Consistent Hashing and Its Applications", will take place on November 9, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Aditi Dudeja.',
-      zh: '北京大学前沿计算研究中心姜少峰教授将于 2026 年 11 月 9–10 日访问，并于 11 月 9 日北京时间 11:00–12:00 在道远楼 401 会议室作题为 “Consistent Hashing and Its Applications” 的学术报告，由 Aditi Dudeja 教授主持。',
+      en: 'Prof. Shaofeng Jiang from the Center on Frontiers of Computing Studies at Peking University visits on November 9-10, 2026, and gives a talk titled "Consistent Hashing and Its Applications" on November 9, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Aditi Dudeja.',
+      zh: '北京大学前沿计算研究中心姜少峰教授于 2026 年 11 月 9–10 日访问，并于 11 月 9 日北京时间 11:00–12:00 在道远楼 401 会议室作题为 “Consistent Hashing and Its Applications” 的学术报告，由 Aditi Dudeja 教授主持。',
     },
   },
   {
     date: '2026-11-03',
     eventId: '2026-10-26-joseph-sakos-visit',
     title: {
-      en: 'Joseph Sakos visited on October 26-28',
-      zh: 'Joseph Sakos 于 10 月 26–28 日来访',
+      en: 'Dr. Joseph Sakos visits on October 26-28',
+      zh: 'Joseph Sakos 博士于 10 月 26–28 日来访',
     },
     summary: {
-      en: 'Joseph Sakos from Singapore University of Technology and Design visited from October 26 to 28, 2026.',
-      zh: '新加坡科技设计大学 Joseph Sakos 于 2026 年 10 月 26–28 日访问。',
+      en: 'Dr. Joseph Sakos from Singapore University of Technology and Design visits from October 26 to 28, 2026, hosted by Prof. Konstantinos Courcoubetis.',
+      zh: '新加坡科技设计大学 Joseph Sakos 博士于 2026 年 10 月 26–28 日访问，由 Konstantinos Courcoubetis 教授接待。',
     },
   },
   {
     date: '2026-10-10',
     eventId: '2026-10-15-he-sun-dynamic-graph-clustering',
     title: {
-      en: 'He Sun to visit on October 15-16 and give an SDS Topical Seminar',
-      zh: '孙贺教授将于 10 月 15–16 日来访并作 SDS 专题报告',
+      en: 'Prof. He Sun visits on October 15-16 and gives an SDS Topical Seminar',
+      zh: '孙贺教授于 10 月 15–16 日来访并作 SDS 专题报告',
     },
     summary: {
-      en: 'Prof. He Sun, Director of the Center for Algorithms and Learning Theory at SIAT, Chinese Academy of Sciences, will visit on October 15-16, 2026. His talk, "Faster Dynamic Graph Clustering with Hierarchical Graph Contraction", will take place on October 15, 11:00 AM-12:00 PM (Beijing time), in Room 413, Zhi Xin Building, hosted by Prof. Aditi Dudeja.',
-      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心主任孙贺教授将于 2026 年 10 月 15–16 日访问，并于 10 月 15 日北京时间 11:00–12:00 在致新楼 413 会议室作题为 “Faster Dynamic Graph Clustering with Hierarchical Graph Contraction” 的学术报告，由 Aditi Dudeja 教授主持。',
+      en: 'Prof. He Sun, Director of the Center for Algorithms and Learning Theory at SIAT, Chinese Academy of Sciences, visits on October 15-16, 2026, and gives a talk titled "Faster Dynamic Graph Clustering with Hierarchical Graph Contraction" on October 15, 11:00 AM-12:00 PM (Beijing time), in Room 413, Zhi Xin Building, hosted by Prof. Aditi Dudeja.',
+      zh: '中国科学院深圳先进技术研究院算法与学习理论研究中心主任孙贺教授于 2026 年 10 月 15–16 日访问，并于 10 月 15 日北京时间 11:00–12:00 在致新楼 413 会议室作题为 “Faster Dynamic Graph Clustering with Hierarchical Graph Contraction” 的学术报告，由 Aditi Dudeja 教授主持。',
     },
   },
   {
@@ -1023,23 +1026,23 @@ export const news: NewsItem[] = [
     date: '2026-08-01',
     eventId: '2026-08-03-nairen-cao-visit',
     title: {
-      en: 'Prof. Nairen Cao to visit on August 3-5',
-      zh: '曹乃仁教授将于 8 月 3–5 日来访',
+      en: 'Prof. Nairen Cao visits on August 3-5',
+      zh: '曹乃仁教授于 8 月 3–5 日来访',
     },
     summary: {
-      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics will visit from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
-      zh: '上海财经大学曹乃仁教授将于 2026 年 8 月 3–5 日访问，由 Aditi Dudeja 教授接待。',
+      en: 'Prof. Nairen Cao from Shanghai University of Finance and Economics visits from August 3 to 5, 2026, hosted by Prof. Aditi Dudeja.',
+      zh: '上海财经大学曹乃仁教授于 2026 年 8 月 3–5 日访问，由 Aditi Dudeja 教授接待。',
     },
   },
   {
     date: '2026-07-31',
     eventId: '2026-07-31-yaonan-jin-local-search-clustering',
     title: {
-      en: 'SDS Topical Seminar by Prof. Yaonan Jin',
-      zh: 'SDS Topical Seminar：金耀楠教授报告',
+      en: 'Prof. Yaonan Jin gives an SDS Topical Seminar on July 31',
+      zh: '金耀楠教授于 7 月 31 日作 SDS 专题报告',
     },
     summary: {
-      en: 'Prof. Yaonan Jin from Hong Kong University of Science and Technology gave a research talk titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Tao Lin.',
+      en: 'Prof. Yaonan Jin from Hong Kong University of Science and Technology gives a talk titled "Local Search for Clustering in Almost-Linear Time" on July 31, 2026, 11:00 AM-12:00 PM (Beijing time), in Room 401, Dao Yuan Building, hosted by Prof. Tao Lin.',
       zh: '香港科技大学金耀楠教授于 2026 年 7 月 31 日北京时间 11:00–12:00 在道远楼 401 会议室作题为 “Local Search for Clustering in Almost-Linear Time” 的学术报告，由林涛教授主持。',
     },
     image: 'images/seminar-yaonan-jin-2026-07-31.jpg',
