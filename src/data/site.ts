@@ -782,9 +782,11 @@ export const events: TheoryEvent[] = [
   },
   {
     id: '2026-10-26-joseph-sakos-visit',
-    kind: 'visit',
-    title: { en: 'Research visit by Dr. Joseph Sakos', zh: 'Joseph Sakos 博士来访' },
-    type: { en: 'Research Visit', zh: '学术访问' },
+    title: {
+      en: 'Global Optimization for Parametrized Quantum Circuits',
+      zh: 'Global Optimization for Parametrized Quantum Circuits',
+    },
+    type: { en: 'SDS Topical Seminar', zh: 'SDS 专题报告' },
     status: { en: 'Completed', zh: '已结束' },
     speaker: { en: 'Dr. Joseph Sakos', zh: 'Joseph Sakos 博士' },
     speakerUrl: 'https://joseph-brainstorm.github.io/',
@@ -792,13 +794,20 @@ export const events: TheoryEvent[] = [
       en: 'Singapore University of Technology and Design',
       zh: '新加坡科技设计大学',
     },
-    location: { en: 'School of Data Science, CUHK-Shenzhen', zh: '香港中文大学（深圳）数据科学学院' },
+    location: { en: 'Room 105, Dao Yuan Building', zh: '道远楼 105 会议室' },
+    start: '2026-10-27T14:00:00+08:00',
+    end: '2026-10-27T15:00:00+08:00',
     visit: { start: '2026-10-26', end: '2026-10-28' },
     abstract: {
-      en: 'Dr. Joseph Sakos from Singapore University of Technology and Design visits from October 26 to 28, 2026, hosted by Prof. Konstantinos Courcoubetis.',
-      zh: '新加坡科技设计大学 Joseph Sakos 博士于 2026 年 10 月 26–28 日访问，由 Konstantinos Courcoubetis 教授接待。',
+      en: 'This talk studies global optimization for polynomial-depth parametrized quantum circuits. Under standard assumptions and with a fixed number of trainable parameters, a randomized approximation scheme estimates the globally optimal value by reconstructing a trigonometric polynomial from quantum measurements and optimizing it via a sum-of-squares hierarchy. With a linear number of parameters, even approximating a local minimizer can be strongly NP-hard. The seminar is delivered in English. Dr. Joseph Sakos visits on October 26-28, 2026.',
+      zh: '本报告研究多项式深度参数化量子线路的全局优化。在标准假设下，当可训练参数个数固定时，随机近似算法利用量子测量重构三角多项式，并通过平方和层级估计全局最优值。当参数个数线性增长时，即使近似求得局部极小点也可能是强 NP-hard 的。报告语言为英语。Joseph Sakos 博士于 2026 年 10 月 26–28 日访问。',
     },
     host: { en: 'Prof. Konstantinos Courcoubetis', zh: 'Konstantinos Courcoubetis 教授' },
+    poster: 'images/seminar-joseph-sakos-2026-10-27.png',
+    posterAlt: {
+      en: 'Poster for the SDS Topical Seminar by Joseph Sakos on October 27, 2026',
+      zh: 'Joseph Sakos 博士 2026 年 10 月 27 日 SDS 专题报告海报',
+    },
   },
   {
     id: '2026-10-15-he-sun-dynamic-graph-clustering',
@@ -969,12 +978,12 @@ export const news: NewsItem[] = [
     date: '2026-11-03',
     eventId: '2026-10-26-joseph-sakos-visit',
     title: {
-      en: 'Dr. Joseph Sakos visits on October 26-28',
-      zh: 'Joseph Sakos 博士于 10 月 26–28 日来访',
+      en: 'Dr. Joseph Sakos visits on October 26-28 and gives an SDS Topical Seminar',
+      zh: 'Joseph Sakos 博士于 10 月 26–28 日来访并作 SDS 专题报告',
     },
     summary: {
-      en: 'Dr. Joseph Sakos from Singapore University of Technology and Design visits from October 26 to 28, 2026, hosted by Prof. Konstantinos Courcoubetis.',
-      zh: '新加坡科技设计大学 Joseph Sakos 博士于 2026 年 10 月 26–28 日访问，由 Konstantinos Courcoubetis 教授接待。',
+      en: 'Dr. Joseph Sakos from Singapore University of Technology and Design visits on October 26-28, 2026, and gives a talk titled "Global Optimization for Parametrized Quantum Circuits" on October 27, 2:00 PM-3:00 PM (Beijing time), in Room 105, Dao Yuan Building, hosted by Prof. Konstantinos Courcoubetis.',
+      zh: '新加坡科技设计大学 Joseph Sakos 博士于 2026 年 10 月 26–28 日访问，并于 10 月 27 日北京时间 14:00–15:00 在道远楼 105 会议室作题为 “Global Optimization for Parametrized Quantum Circuits” 的学术报告，由 Konstantinos Courcoubetis 教授主持。',
     },
   },
   {

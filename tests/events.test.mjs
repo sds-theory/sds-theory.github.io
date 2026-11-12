@@ -133,29 +133,34 @@ test('Shaofeng Jiang visits on November 9-10 with a seminar and poster on Novemb
   }
 });
 
-test('Joseph Sakos has only an October 26-28 visit and a linked bilingual news item', () => {
+test('Joseph Sakos visits on October 26-28 and gives a seminar on October 27', async () => {
   const event = events.find((item) => item.id === '2026-10-26-joseph-sakos-visit');
   assert.ok(event);
-  assert.equal(event.kind, 'visit');
+  assert.notEqual(event.kind, 'visit');
+  assert.equal(event.start, '2026-10-27T14:00:00+08:00');
+  assert.equal(event.end, '2026-10-27T15:00:00+08:00');
   assert.equal(event.speaker.en, 'Dr. Joseph Sakos');
   assert.equal(event.affiliation.en, 'Singapore University of Technology and Design');
   assert.equal(event.speakerUrl, 'https://joseph-brainstorm.github.io/');
-  for (const field of ['start', 'end', 'poster', 'photos']) assert.equal(event[field], undefined);
   assert.deepEqual(event.host, { en: 'Prof. Konstantinos Courcoubetis', zh: 'Konstantinos Courcoubetis 教授' });
   for (const date of ['2026-10-26', '2026-10-27', '2026-10-28']) {
     assert.equal(visitOccursOn(event, day(date)), true);
-    assert.equal(seminarOccursOn(event, day(date)), false);
+    assert.equal(seminarOccursOn(event, day(date)), date === '2026-10-27');
   }
   for (const date of ['2026-10-25', '2026-10-29']) assert.equal(visitOccursOn(event, day(date)), false);
   assert.equal(visitCalendarDates(event.visit), '20261026/20261029');
   const ics = decodeURIComponent(visitIcsDataUrl(event, 'en'));
   assert.ok(ics.includes('DTSTART;VALUE=DATE:20261026'));
   assert.ok(ics.includes('DTEND;VALUE=DATE:20261029'));
+  await access(new URL(`../public/${event.poster}`, import.meta.url));
   const announcement = news.find((item) => item.eventId === event.id);
   assert.equal(announcement.date, '2026-11-03');
-  assert.ok(announcement.summary.en.includes('visits from October 26 to 28, 2026'));
+  assert.ok(announcement.summary.en.includes('visits on October 26-28, 2026'));
   assert.ok(announcement.summary.zh.includes('2026 年 10 月 26–28 日访问'));
-  assert.ok(!/seminar|talk|报告/i.test(Object.values(announcement.summary).join(' ')));
+  for (const language of ['en', 'zh']) {
+    assert.ok(announcement.summary[language].includes(event.title[language]));
+    assert.ok(announcement.summary[language].includes(event.location[language]));
+  }
 });
 
 test('new entries retain the earlier events and keep news and calendar entries ordered', () => {
